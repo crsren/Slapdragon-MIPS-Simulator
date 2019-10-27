@@ -1,10 +1,12 @@
-#inlcude <string>
+#include <string>
 #include <iostream>
 
 using namespace std;
 
-int main() {
-    cout << "This is from the main.cpp" << endl;
+int main(int argc, char *argv[]) {
+
+    for (int i = 0; i < argc; ++i)
+        cout << argv[i] << endl;
 
     return 0;
 }
