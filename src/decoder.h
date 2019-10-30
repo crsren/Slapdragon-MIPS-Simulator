@@ -4,10 +4,8 @@
 #include <string>
 
 class Rtype {
-private:
-    // different parts
-
 public:
+    //custom size or just 8bit (like rn) ??
     // int source1 : 5;
     // int source2 : 5;
     // int dest: 5;
@@ -20,26 +18,23 @@ public:
     uint8_t fnCode;
 
     void init(uint32_t& word);
-    // constructor to cut in parts
-    // int i = 1;
+    //void show(); only if could have same name
 };
 
 class Itype {
-private:
-    // different parts
-
 public:
-    // constructor to cut in parts
-    // int i = 2;
+    uint8_t source1;
+    uint8_t source2;
+    uint32_t address;
+
+    void init(uint32_t& word);
 };
 
 class Jtype {
-private:
-    // different parts
-
 public:
-    // constructor to cut in parts
-    // int i = 3;
+    uint32_t address;
+
+    void init(uint32_t& word);
 };
 
 class instruction {
@@ -48,13 +43,17 @@ private:
 public:
     enum{RTYPE, JTYPE, ITYPE} tag;
     union {
-        Rtype r; //could be all named the same ("part")
+        // CAN THIS SOMEHOW WORK? WOULD ALLOW CALLING "<instruction>.content.show()"
+        // Rtype content;
+        // Jtype content;
+        // Itype content;
+        Rtype r;
         Jtype j;
         Itype i;
     };
 
     instruction(uint32_t& word);
-    std::string content();
+    void showContent();
 };
 
 

@@ -12,20 +12,27 @@ instruction::instruction(uint32_t& word) {
         tag = instruction::RTYPE;
         r.init(word);
         std::cout << "issa rtype" << std::endl;
-        //  initiate r with input word
     } else if (opCode == 2 || opCode == 3) {
         tag = instruction::JTYPE;
+        j.init(word);
+        std::cout << "issa jtype" << std::endl;
     } else {
         tag = instruction::ITYPE;
+        i.init(word);
+        std::cout << "issa itype" << std::endl;
     }
+    //content.init(word); if rji could have same name
 }
 
-std::string instruction::content() {
+// declare show functions inside rji classes instead if could have same name
+void instruction::showContent() {
     switch(tag) {
-        case instruction::RTYPE: return "rrrrrrr";
-        case instruction::JTYPE: return "jjjjjjj";
-        case instruction::ITYPE: return "iiiiiii";
-    }
+        case instruction::RTYPE: std::cout << "[Source1: " << r.source1 << " | Source2:" << r.source2 << " | Dest: " << r.dest << " | Shift Amt: " << r.shift_amt << " | Fn Code: " << r.fnCode << " ]" << std::endl;
+
+        case instruction::ITYPE: std::cout << "[OpCode: " << opCode <<" | Source1: " << i.source1 << " | Source2/Dest:" << i.source2 << " | Address: " << i.address << " ]" << std::endl;
+
+        case instruction::JTYPE: std::cout << "[OpCode: " << opCode << " | Address:" << j.address << " ]" << std::endl;
+    };
 }
 
 void Rtype::init(uint32_t& word) {
@@ -35,7 +42,7 @@ void Rtype::init(uint32_t& word) {
     shift_amt = bitwise::isolate8(word, 20,5);
     fnCode = bitwise::isolate8(word, 26,5);
 }
-/*
+
 void Itype::init(uint32_t& word) {
     source1 = bitwise::isolate8(word,5,5);
     source2 = bitwise::isolate8(word,10,5);
@@ -44,4 +51,4 @@ void Itype::init(uint32_t& word) {
 
 void Jtype::init(uint32_t& word) {
     address = bitwise::isolate32(word,5,26);
-} */
+}
