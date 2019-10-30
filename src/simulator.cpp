@@ -10,7 +10,8 @@
 // cerr for not genuine output
 
 void printvector(std::vector<unsigned char> v);
-std::vector<uint32_t> void convert(std::vector<unsigned char> vec);
+std::vector<uint32_t> convert(std::vector<unsigned char> vec);
+void printvector(std::vector<uint32_t> v);
 
 int main(int argc, char *argv[]) {
 
@@ -37,18 +38,14 @@ int main(int argc, char *argv[]) {
     // temporarily store all binary instructions character by character
     //char * buffer = new char[bin_length];
     //bin_stream.read(&buffer[0], bin_length);
-    std::cout << bin_length << '\n';
+    std::cerr << bin_length << '\n';
     std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
 
     std::cerr << "Read " << immembyte.size() << std::endl;
-    printvector(immembyte);
+    //printvector(immembyte);
+    imem = convert(immembyte);
 
-    imem = conver(immembyte);
-
-    std::cout << imem[0] << '\n';
-
-
-
+    printvector(imem);
 
     std::vector<uint32_t> dmem;
     dmem.resize(dmem_length);
@@ -67,6 +64,7 @@ int main(int argc, char *argv[]) {
 
         } else if(pc < imem_off + imem_length) {
             instruction = imem[pc / 4]; // !!!!! why / 4
+            std::cerr << "working to an extend" << '\n';
         } else {
             //memory exception
             exit(-11);
@@ -84,11 +82,16 @@ void printvector(std::vector<unsigned char> v){
   }
 }
 
-std::vector<uint32_t> void convert(std::vector<unsigned char> vec){
+void printvector(std::vector<uint32_t> v){
+  for (int i=0; i < v.size(); i++){
+    std::cerr << +v[i] << '\n';
+  }
+}
+
+std::vector<uint32_t> convert(std::vector<unsigned char> vec){
   std::vector<uint32_t> final;
-  for (int i=0; i < vec.size(); i++){
-    uint32_t tmp = vec[0] | vec[1] << 8 | vec[2] << 16 | vec[3] << 32;
-    std::cout << tmp << '\n';
+  for (int i=0; i < vec.size(); i = i + 4){
+    uint32_t tmp = vec[i] | vec[i+1] << 8 | vec[i+2] << 16 | vec[i+3] << 24;
     final.push_back(tmp);
   }
   return final;
