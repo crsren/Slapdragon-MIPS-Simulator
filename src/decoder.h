@@ -39,7 +39,7 @@ public:
     enum{RTYPE, JTYPE, ITYPE} tag;
     union {
         Rtype r; //could be all named the same ("part")
-        Jtype k;
+        Jtype j;
         Itype i;
     };
 

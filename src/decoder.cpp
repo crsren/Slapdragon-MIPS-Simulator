@@ -7,6 +7,7 @@
 instruction::instruction(char in) {
     if (in == 'r') { //later if opcode == 0 etc
         tag = instruction::RTYPE;
+        r.init()
         //  initiate r with input word
     } else if (in == 'j') {
         tag = instruction::JTYPE;
