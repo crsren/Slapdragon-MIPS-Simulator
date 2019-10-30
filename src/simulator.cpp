@@ -3,12 +3,14 @@
 #include <iostream>
 #include <vector>
 
+#include "decoder.h"
+
 using namespace std;
 
 // cout for character printed by bitstream
 // cerr for not genuine output
 
-int main(int argc, char *argv[]) {
+/* int main(int argc, char *argv[]) {
 
     const int imem_off = 0x10000000;
     const int imem_length = 0x1000000;
@@ -58,4 +60,17 @@ int main(int argc, char *argv[]) {
     }
 
     return 1;
+} */
+
+int main() {
+
+    cout << "Enter r j or i" << endl;
+    char input;
+    cin >> input;
+
+    instruction yeye(input);
+
+    cout << yeye.content() << endl;
+
+    return 0;
 }

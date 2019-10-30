@@ -1,4 +1,4 @@
 
-bin/mips_simulator
+bin/*
 .DS_Store
 bin/mips_simulator.exe
