@@ -4,8 +4,7 @@
 #include <vector>
 
 #include "decoder.h"
-
-using namespace std;
+#include "helpers.h"
 
 // cout for character printed by bitstream
 // cerr for not genuine output
@@ -62,15 +61,15 @@ using namespace std;
     return 1;
 } */
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    cout << "Enter r j or i" << endl;
-    char input;
-    cin >> input;
+    uint32_t ching = 0b11111111111111111111110000000000;
+    instruction yeye(ching);
+    //uint8_t chong = bitwise::isolate8(ching,0,6);
 
-    instruction yeye(input);
+    //std::cout << unsigned(chong) << std::endl;
 
-    cout << yeye.content() << endl;
+    yeye.showContent();
 
     return 0;
 }
