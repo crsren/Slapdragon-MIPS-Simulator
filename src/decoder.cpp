@@ -4,21 +4,21 @@
 
 #include "decoder.h"
 
-void instruction::instruction(char in) {
+instruction::instruction(char in) {
     if (in == 'r') { //later if opcode == 0 etc
-        type = instruction::RTYPE;
-        r =
+        tag = instruction::RTYPE;
+        //  initiate r with input word
     } else if (in == 'j') {
-        type = instruction::JTYPE;
+        tag = instruction::JTYPE;
     } else {
-        type = instruction::ITYPE;
+        tag = instruction::ITYPE;
     }
 }
 
 std::string instruction::content() {
-    switch(type) {
-        case instruction::r: std::cout << "rrrrrrr" << std::endl;
-        case instruction::j: std::cout << "jjjjjjj" << std::endl;
-        case instruction::i: std::cout << "iiiiiii" << std::endl;
+    switch(tag) {
+        case instruction::RTYPE: return "rrrrrrr";
+        case instruction::JTYPE: return "jjjjjjj";
+        case instruction::ITYPE: return "iiiiiii";
     }
 }
