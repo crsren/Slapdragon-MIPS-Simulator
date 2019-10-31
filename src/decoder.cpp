@@ -11,15 +11,12 @@ instruction::instruction(uint32_t& word) {
     if (opCode == 0) {
         tag = instruction::RTYPE;
         r.init(word);
-        std::cout << "issa rtype" << std::endl;
     } else if (opCode == 2 || opCode == 3) {
         tag = instruction::JTYPE;
         j.init(word);
-        std::cout << "issa jtype" << std::endl;
     } else {
         tag = instruction::ITYPE;
         i.init(word);
-        std::cout << "issa itype" << std::endl;
     }
     //content.init(word); if rji could have same name
 }
@@ -27,20 +24,24 @@ instruction::instruction(uint32_t& word) {
 // declare show functions inside rji classes instead if could have same name
 void instruction::showContent() {
     switch(tag) {
-        case instruction::RTYPE: std::cout << "[Source1: " << r.source1 << " | Source2:" << r.source2 << " | Dest: " << r.dest << " | Shift Amt: " << r.shift_amt << " | Fn Code: " << r.fnCode << " ]" << std::endl;
+        case instruction::RTYPE:
+        std::cout << "[Source1: " << unsigned(r.source1) << " | Source2:" << unsigned(r.source2) << " | Dest: " << unsigned(r.dest) << " | Shift Amt: " << unsigned(r.shift_amt) << " | Fn Code: " << unsigned(r.fnCode) << " ]" << std::endl;
+        break;
 
-        case instruction::ITYPE: std::cout << "[OpCode: " << opCode <<" | Source1: " << i.source1 << " | Source2/Dest:" << i.source2 << " | Address: " << i.address << " ]" << std::endl;
+        case instruction::ITYPE: std::cout << "[OpCode: " << unsigned(opCode) <<" | Source1: " << unsigned(i.source1) << " | Source2/Dest:" << unsigned(i.source2) << " | Address: " << unsigned(i.address) << " ]" << std::endl;
+        break;
 
-        case instruction::JTYPE: std::cout << "[OpCode: " << opCode << " | Address:" << j.address << " ]" << std::endl;
+        case instruction::JTYPE: std::cout << "[OpCode: " << unsigned(opCode) << " | Address:" << unsigned(j.address) << " ]" << std::endl;
+        break;
     };
 }
 
 void Rtype::init(uint32_t& word) {
-    source1 = bitwise::isolate8(word,5,5);
-    source2 = bitwise::isolate8(word,10,5);
-    dest = bitwise::isolate8(word, 15,5);
-    shift_amt = bitwise::isolate8(word, 20,5);
-    fnCode = bitwise::isolate8(word, 26,5);
+    source1 = bitwise::isolate8(word,7,5);
+    source2 = bitwise::isolate8(word,12,5);
+    dest = bitwise::isolate8(word, 17,5);
+    shift_amt = bitwise::isolate8(word, 22,5);
+    fnCode = bitwise::isolate8(word, 27,5);
 }
 
 void Itype::init(uint32_t& word) {
