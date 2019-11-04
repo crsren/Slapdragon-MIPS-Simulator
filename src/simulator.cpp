@@ -2,13 +2,17 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <bitset>
 
 #include "decoder.h"
-
+#include "helpers.h"
 
 // cout for character printed by bitstream
 // cerr for not genuine output
 
+
+int main(int argc, char *argv[]) {
+  
 void printvector(std::vector<unsigned char> v);
 std::vector<uint32_t> convert(std::vector<unsigned char> vec);
 void printvector(std::vector<uint32_t> v);
@@ -102,9 +106,14 @@ std::vector<uint32_t> convert(std::vector<unsigned char> vec){
     char input;
     cin >> input;
 
-    instruction yeye(input);
+    uint32_t ching = 0b0000100001000010000100001000000;
+    instruction yeye(ching);
+    // uint8_t chong = bitwise::isolate8(ching,10,6);
 
-    cout << yeye.content() << endl;
+    // std::bitset<8> x(chong);
+    // std::cout << x << std::endl;
+    yeye.showContent();
+    // std::cout << bitwise::get_binary(yeye.r.source1) << std::endl;
 
     return 0;
 }*/
