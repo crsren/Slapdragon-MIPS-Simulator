@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     bin_stream.seekg(0, bin_stream.beg);
 
     std::vector<uint32_t> imem;
-    imem.resize(imem_length); //taking all memory
+    imem.resize(bin_length); //taking all memory
 
 
     // temporarily store all binary instructions character by character
@@ -51,26 +51,29 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> dmem;
     dmem.resize(dmem_length);
 
-    std::vector<uint32_t> reg;
+    std::vector<uint32_t> reg = {0};
     reg.resize(32);
 
-    uint32_t pc = imem_off;
+    int pc = 0;
 
     while(1) {
-        uint32_t instruction;
-        if(pc == 0) {
-            //execution finished
-            exit(0);
-        } else if(pc < imem_off) {
 
-        } else if(pc < imem_off + imem_length) {
-            instruction = imem[pc / 4]; // !!!!! why / 4
-            std::cerr << "working to an extend" << '\n';
-        } else {
-            //memory exception
-            std::cerr << "ching chong chang" << std::endl;
-            exit(-11);
-        }
+      //next(pc);
+      
+      if (pc == imem.size()){
+        std::cout << "Sucess finished" << '\n';
+        exit(0);
+      }
+
+      uint32_t word = imem[pc]; // !!!!! why / 4
+      instruction current(word);
+
+
+      //} else {
+          //memory exception
+        //  exit(-11);
+      //}
+      pc++;
     }
 
     return 1;
@@ -80,13 +83,14 @@ int main(int argc, char *argv[]) {
 
 void printvector(std::vector<unsigned char> v){
   for (int i=0; i < v.size(); i++){
-    std::cerr << +v[i] << '\n';
+    std::cerr << bitwise::get_binary(v[i]) << '\n';
   }
 }
 
 void printvector(std::vector<uint32_t> v){
   for (int i=0; i < v.size(); i++){
-    std::cerr << +v[i] << '\n';
+    std::cerr << bitwise::get_binary(v[i]) << '\n';
+
   }
 }
 
@@ -98,7 +102,6 @@ std::vector<uint32_t> convert(std::vector<unsigned char> vec){
   }
   return final;
 }
-
 /*int main() {
 
     cout << "Enter r j or i" << endl;
