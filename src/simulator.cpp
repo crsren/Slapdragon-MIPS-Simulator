@@ -10,9 +10,6 @@
 // cout for character printed by bitstream
 // cerr for not genuine output
 
-
-int main(int argc, char *argv[]) {
-  
 void printvector(std::vector<unsigned char> v);
 std::vector<uint32_t> convert(std::vector<unsigned char> vec);
 void printvector(std::vector<uint32_t> v);
@@ -54,7 +51,7 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> dmem;
     dmem.resize(dmem_length);
 
-    std::vector<uint32_t> reg = {0};
+    std::vector<uint32_t> reg;
     reg.resize(32);
 
     uint32_t pc = imem_off;
@@ -71,6 +68,7 @@ int main(int argc, char *argv[]) {
             std::cerr << "working to an extend" << '\n';
         } else {
             //memory exception
+            std::cerr << "ching chong chang" << std::endl;
             exit(-11);
         }
     }
@@ -100,6 +98,7 @@ std::vector<uint32_t> convert(std::vector<unsigned char> vec){
   }
   return final;
 }
+
 /*int main() {
 
     cout << "Enter r j or i" << endl;
