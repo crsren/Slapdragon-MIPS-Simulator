@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     while(1) {
 
       //next(pc);
-      
+
       if (pc == imem.size()){
         std::cout << "Sucess finished" << '\n';
         exit(0);
@@ -67,7 +67,8 @@ int main(int argc, char *argv[]) {
 
       uint32_t word = imem[pc]; // !!!!! why / 4
       instruction current(word);
-
+      std::cout << "opCode: " << bitwise::get_binary(current.opCode) << std::endl;
+      current.showContent();
 
       //} else {
           //memory exception
@@ -78,7 +79,6 @@ int main(int argc, char *argv[]) {
 
     return 1;
 }
-
 
 
 void printvector(std::vector<unsigned char> v){
@@ -102,20 +102,3 @@ std::vector<uint32_t> convert(std::vector<unsigned char> vec){
   }
   return final;
 }
-/*int main() {
-
-    cout << "Enter r j or i" << endl;
-    char input;
-    cin >> input;
-
-    uint32_t ching = 0b0000100001000010000100001000000;
-    instruction yeye(ching);
-    // uint8_t chong = bitwise::isolate8(ching,10,6);
-
-    // std::bitset<8> x(chong);
-    // std::cout << x << std::endl;
-    yeye.showContent();
-    // std::cout << bitwise::get_binary(yeye.r.source1) << std::endl;
-
-    return 0;
-}*/

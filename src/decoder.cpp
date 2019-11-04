@@ -7,7 +7,6 @@
 
 instruction::instruction(uint32_t& word) {
     opCode = bitwise::isolate8(word, 0, 6);
-    std::cout << "opCode: " << bitwise::get_binary(opCode) << std::endl;
     if (opCode == 0) {
         tag = instruction::RTYPE;
         r.init(word);
@@ -53,3 +52,13 @@ void Itype::init(uint32_t& word) {
 void Jtype::init(uint32_t& word) {
     address = bitwise::isolate32(word,5,26);
 }
+
+// --------------------------------------------------------------------
+// R-TYPE
+void Rtype::ADDU(std::vector<uint32_t> &registers) {
+    registers[dest] = registers[source1] + registers[source2];
+}
+
+// void Rtype::JR(uint32_t& pc) {
+//     pc = registers[source1]
+// }
