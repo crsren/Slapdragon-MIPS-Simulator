@@ -39,7 +39,8 @@ public:
 
 class instruction {
 private:
-    int opCode : 6;
+    // int opCode : 6;
+    uint8_t opCode;
 public:
     enum{RTYPE, JTYPE, ITYPE} tag;
     union {

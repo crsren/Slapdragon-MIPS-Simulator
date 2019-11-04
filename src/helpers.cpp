@@ -4,14 +4,13 @@
 #include <string>
 
 uint8_t bitwise::isolate8(uint32_t word, uint32_t start, uint32_t length) {
-
-    return (((1 << length) - 1) & (word >> (start - 1)));
-
+    uint8_t temp = ((1 << length) - 1) << start;
+    return word & temp;
 }
 
 uint32_t bitwise::isolate32(uint32_t word, uint32_t start, uint32_t length) {
     uint32_t temp = ((1 << length) - 1) << start;
-    return word & temp >> start;
+    return word & temp;
 
 }
 

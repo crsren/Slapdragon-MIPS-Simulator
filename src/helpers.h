@@ -2,7 +2,7 @@
 #define HELPERS_H
 
 #include <cstdint>
-#include<string>
+#include <string>
 
 struct bitwise {
     static uint8_t isolate8(uint32_t word, uint32_t start, uint32_t length);

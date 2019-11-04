@@ -7,7 +7,7 @@
 
 instruction::instruction(uint32_t& word) {
     opCode = bitwise::isolate8(word, 0, 6);
-    std::cout << "opCode: " << unsigned(opCode) << std::endl;
+    std::cout << "opCode: " << bitwise::get_binary(opCode) << std::endl;
     if (opCode == 0) {
         tag = instruction::RTYPE;
         r.init(word);
@@ -25,7 +25,7 @@ instruction::instruction(uint32_t& word) {
 void instruction::showContent() {
     switch(tag) {
         case instruction::RTYPE:
-        std::cout << "[Source1: " << unsigned(r.source1) << " | Source2:" << unsigned(r.source2) << " | Dest: " << unsigned(r.dest) << " | Shift Amt: " << unsigned(r.shift_amt) << " | Fn Code: " << unsigned(r.fnCode) << " ]" << std::endl;
+        std::cout << "[Source1: " << unsigned(r.source1) << " | Source2: " << unsigned(r.source2) << " | Dest: " << unsigned(r.dest) << " | Shift Amt: " << unsigned(r.shift_amt) << " | Fn Code: " << unsigned(r.fnCode) << " ]" << std::endl;
         break;
 
         case instruction::ITYPE: std::cout << "[OpCode: " << unsigned(opCode) <<" | Source1: " << unsigned(i.source1) << " | Source2/Dest:" << unsigned(i.source2) << " | Address: " << unsigned(i.address) << " ]" << std::endl;
