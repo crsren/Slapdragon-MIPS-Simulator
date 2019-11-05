@@ -23,14 +23,14 @@ public:
     void init(uint32_t& word);
     void ADDU(std::vector<uint32_t> &registers);
     void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
-    void test();
+    static void test(int in);
     //void JR();
     //void show(); only if could have same name
 
     //LUT "pointer to function " <-> "fn code"
-    static std::map<uint8_t, std::function<void()>> fnMap = {
+    /* static std::map<uint8_t, std::function<void()>> fnMap = {
 							{ 0x21, [this] { Rtype.test(); } }
-            };
+            }; */
 };
 
 class Itype {
@@ -68,7 +68,8 @@ public:
 
     instruction(uint32_t& word);
     void showContent();
-    void run();
+
+    void (*run) (int in);
 };
 
 

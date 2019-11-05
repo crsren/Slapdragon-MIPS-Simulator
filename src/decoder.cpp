@@ -14,6 +14,7 @@ instruction::instruction(uint32_t& word) {
     if (opCode == 0) {
         tag = instruction::RTYPE;
         r.init(word);
+        run = r.test;
     } else if (opCode == 2 || opCode == 3) {
         tag = instruction::JTYPE;
         j.init(word);
@@ -37,23 +38,6 @@ void instruction::showContent() {
         case instruction::JTYPE: std::cout << "[OpCode: " << unsigned(opCode) << " | Address:" << unsigned(j.address) << " ]" << std::endl;
         break;
     };
-}
-
-void instruction::run() {
-  switch (tag) {
-    case instruction::RTYPE:
-      //r.fnMap[r.fnCode];
-    break;
-
-    case instruction::ITYPE:
-
-    break;
-
-    case instruction::JTYPE:
-
-    break;
-
-  };
 }
 
 void Rtype::init(uint32_t& word) {
@@ -90,6 +74,6 @@ void Itype::ADDI(std::vector<uint32_t> &registers){
 
 }
 
-void Rtype::test(){
-  std::cerr << "/* error message */" << '\n';
+void Rtype::test(int in){
+  std::cerr << "Rtype test with input: " << in << '\n';
 }
