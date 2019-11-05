@@ -19,6 +19,7 @@ public:
 
     void init(uint32_t& word);
     void ADDU(std::vector<uint32_t> &registers);
+    void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
     //void JR();
     //void show(); only if could have same name
 
