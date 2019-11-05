@@ -18,7 +18,11 @@ public:
     uint8_t fnCode;
 
     void init(uint32_t& word);
+    void ADDU(std::vector<uint32_t> &registers);
+    //void JR();
     //void show(); only if could have same name
+
+    //LUT "pointer to function " <-> "fn code"
 };
 
 class Itype {
