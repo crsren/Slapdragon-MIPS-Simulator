@@ -59,6 +59,6 @@ void Rtype::ADDU(std::vector<uint32_t> &registers) {
     registers[dest] = registers[source1] + registers[source2];
 }
 
-// void Rtype::JR(uint32_t& pc) {
-//     pc = registers[source1]
-// }
+void Rtype::JR(uint32_t& pc) {
+     pc = memhelp::iconvert(registers[source1])
+}
