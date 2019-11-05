@@ -2,6 +2,10 @@
 #include <cstdint>
 #include <bitset>
 #include <string>
+#include <vector>
+#include <iostream>
+
+
 
 const int imem_off = 0x10000000;
 const int imem_length = 0x1000000;
@@ -46,4 +50,10 @@ int memhelp::dconvert(uint32_t input){
   }
   uint32_t offset  = input - dmem_off;
   return offset/4;
+}
+
+void memhelp::showregisters(std::vector<uint32_t> reg){
+  for (int i = 0; i < reg.size(); i++){
+    std::cerr << "Register " << i <<": " << +reg[i] << '\n';
+  }
 }

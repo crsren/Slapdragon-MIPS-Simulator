@@ -69,13 +69,8 @@ int main(int argc, char *argv[]) {
 
       uint32_t word = imem[pc]; // !!!!! why / 4
       instruction current(word);
-<<<<<<< HEAD
       current.showContent();
-
-=======
-      std::cout << "opCode: " << bitwise::get_binary(current.opCode) << std::endl;
-      current.showContent();
->>>>>>> 2dcc35636ba6fa24f50c331d899247bbe5e0ab7d
+      memhelp::showregisters(reg);
 
       //} else {
           //memory exception

@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
+
 
 struct bitwise {
     static uint8_t isolate8(uint32_t word, uint32_t start, uint32_t length);
@@ -15,6 +17,7 @@ struct bitwise {
 struct memhelp {
     static int iconvert(uint32_t input);
     static int dconvert(uint32_t input);
+    static void showregisters(std::vector<uint32_t> reg);
 };
 
 #endif
