@@ -25,12 +25,10 @@ public:
     void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
     static void test(int in);
     //void JR();
-    //void show(); only if could have same name
 
-    //LUT "pointer to function " <-> "fn code"
-    /* static std::map<uint8_t, std::function<void()>> fnMap = {
-							{ 0x21, [this] { Rtype.test(); } }
-            }; */
+    //LUT "fn code" <-> "pointer to function"
+     //static std::map< uint8_t, void (*)(int) > fnMap;
+    //std::map< uint8_t, int > fnMap;
 };
 
 class Itype {
@@ -57,10 +55,6 @@ private:
 public:
     enum{RTYPE, JTYPE, ITYPE} tag;
     union {
-        // CAN THIS SOMEHOW WORK? WOULD ALLOW CALLING "<instruction>.content.show()"
-        // Rtype content;
-        // Jtype content;
-        // Itype content;
         Rtype r;
         Jtype j;
         Itype i;

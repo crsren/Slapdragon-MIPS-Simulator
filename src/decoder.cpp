@@ -14,7 +14,8 @@ instruction::instruction(uint32_t& word) {
     if (opCode == 0) {
         tag = instruction::RTYPE;
         r.init(word);
-        run = r.test;
+        //std::cout << "fnMap at 10: " << r.fnMap[10] << std::endl;
+        //r.fnMap[r.fnCode];
     } else if (opCode == 2 || opCode == 3) {
         tag = instruction::JTYPE;
         j.init(word);
@@ -22,10 +23,8 @@ instruction::instruction(uint32_t& word) {
         tag = instruction::ITYPE;
         i.init(word);
     }
-    //content.init(word); if rji could have same name
 }
 
-// declare show functions inside rji classes instead if could have same name
 void instruction::showContent() {
     switch(tag) {
         case instruction::RTYPE:
@@ -46,6 +45,9 @@ void Rtype::init(uint32_t& word) {
     dest = bitwise::isolate8(word, 17,5);
     shift_amt = bitwise::isolate8(word, 22,5);
     fnCode = bitwise::isolate8(word, 27,5);
+
+    //since "non-const static data member must be initialized out of line"
+    //fnMap[10] = 100;
 }
 
 void Itype::init(uint32_t& word) {

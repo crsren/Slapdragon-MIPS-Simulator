@@ -88,7 +88,9 @@ int main() {
     uint32_t input = 0b00000000000000000000000000000000;
     instruction ins(input);
     ins.showContent();
-    ins.run(10);
+    //ins.run(10);
+
+    return 0;
 }
 
 
