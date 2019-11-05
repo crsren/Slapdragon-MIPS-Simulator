@@ -12,4 +12,9 @@ struct bitwise {
 
 };
 
+struct memhelp {
+    static int iconvert(uint32_t input);
+    static int dconvert(uint32_t input);
+};
+
 #endif

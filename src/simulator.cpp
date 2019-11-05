@@ -10,17 +10,19 @@
 // cout for character printed by bitstream
 // cerr for not genuine output
 
+const int imem_off = 0x10000000;
+const int imem_length = 0x1000000;
+
+const int dmem_off = 0x20000000;
+const int dmem_length = 0x4000000;
+
 void printvector(std::vector<unsigned char> v);
 std::vector<uint32_t> convert(std::vector<unsigned char> vec);
 void printvector(std::vector<uint32_t> v);
 
 int main(int argc, char *argv[]) {
 
-    const int imem_off = 0x10000000;
-    const int imem_length = 0x1000000;
 
-    const int dmem_off = 0x20000000;
-    const int dmem_length = 0x4000000;
 
     std::cerr << "Simulating binary " << argv[1] << std::endl;
 
@@ -59,7 +61,7 @@ int main(int argc, char *argv[]) {
     while(1) {
 
       //next(pc);
-      
+
       if (pc == imem.size()){
         std::cout << "Sucess finished" << '\n';
         exit(0);
@@ -67,6 +69,7 @@ int main(int argc, char *argv[]) {
 
       uint32_t word = imem[pc]; // !!!!! why / 4
       instruction current(word);
+      current.showContent();
 
 
       //} else {
