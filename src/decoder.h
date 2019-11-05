@@ -2,6 +2,9 @@
 #define DECODER_H
 
 #include <string>
+#include <map>
+#include <functional>
+
 
 class Rtype {
 public:
@@ -20,10 +23,14 @@ public:
     void init(uint32_t& word);
     void ADDU(std::vector<uint32_t> &registers);
     void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
+    void test();
     //void JR();
     //void show(); only if could have same name
 
     //LUT "pointer to function " <-> "fn code"
+    static std::map<uint8_t, std::function<void()>> fnMap = {
+							{ 0x21, [this] { Rtype.test(); } }
+            };
 };
 
 class Itype {
@@ -33,6 +40,7 @@ public:
     uint32_t address;
 
     void init(uint32_t& word);
+    void ADDI(std::vector<uint32_t> &registers);
 };
 
 class Jtype {
@@ -60,6 +68,7 @@ public:
 
     instruction(uint32_t& word);
     void showContent();
+    void run();
 };
 
 

@@ -39,6 +39,23 @@ void instruction::showContent() {
     };
 }
 
+void instruction::run() {
+  switch (tag) {
+    case instruction::RTYPE:
+      //r.fnMap[r.fnCode];
+    break;
+
+    case instruction::ITYPE:
+
+    break;
+
+    case instruction::JTYPE:
+
+    break;
+
+  };
+}
+
 void Rtype::init(uint32_t& word) {
     source1 = bitwise::isolate8(word,7,5);
     source2 = bitwise::isolate8(word,12,5);
@@ -65,4 +82,14 @@ void Rtype::ADDU(std::vector<uint32_t> &registers) {
 
 void Rtype::JR(uint32_t& pc, const std::vector<uint32_t> &registers) {
      pc = memhelp::iconvert(registers[source1]);
+}
+
+
+//I-TYPE
+void Itype::ADDI(std::vector<uint32_t> &registers){
+
+}
+
+void Rtype::test(){
+  std::cerr << "/* error message */" << '\n';
 }

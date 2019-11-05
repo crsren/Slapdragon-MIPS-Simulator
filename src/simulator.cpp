@@ -54,6 +54,8 @@ int main(int argc, char *argv[]) {
     dmem.resize(dmem_length);
 
     std::vector<uint32_t> reg = {0};
+    reg[0] = 32;
+    reg[1] = 64;
     reg.resize(32);
 
     int pc = 0;
