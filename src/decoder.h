@@ -2,7 +2,7 @@
 #define DECODER_H
 
 #include <string>
-#include <map>
+#include <map> //change to unordered_map
 #include <functional>
 
 
@@ -23,12 +23,13 @@ public:
     void init(uint32_t& word);
     void ADDU(std::vector<uint32_t> &registers);
     void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
-    static void test(int in);
+    static void test1(int in);
+    static void test2(int in);
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
-     //static std::map< uint8_t, void (*)(int) > fnMap;
-    //std::map< uint8_t, int > fnMap;
+    //static std::map< uint8_t, void (*)(int) > fnMap;
+    std::map< uint8_t, void (*)(int) > fnMap;
 };
 
 class Itype {
@@ -53,14 +54,12 @@ private:
     // int opCode : 6;
     uint8_t opCode;
 public:
-    enum{RTYPE, JTYPE, ITYPE} tag;
-    union {
-        Rtype r;
-        Jtype j;
-        Itype i;
-    };
+    char tag;
+    Rtype r;
+    Jtype j;
+    Itype i;
 
-    instruction(uint32_t& word);
+    void init(uint32_t& word);
     void showContent();
 
     void (*run) (int in);
