@@ -14,15 +14,9 @@ const int dmem_off = 0x20000000;
 const int dmem_length = 0x4000000;
 
 
-uint8_t bitwise::isolate8(uint32_t word, uint32_t start, uint32_t length) {
-    uint8_t temp = ((1 << length) - 1) << start;
-    return word & temp;
-}
-
-uint32_t bitwise::isolate32(uint32_t word, uint32_t start, uint32_t length) {
-    uint32_t temp = ((1 << length) - 1) << start;
-    return word & temp;
-
+uint32_t bitwise::isolate(uint32_t word, uint32_t start, uint32_t length) {
+    uint32_t temp = ((((1 << length) - 1) << start) & word) >> start;
+    return temp;
 }
 
 std::string bitwise::get_binary(uint32_t word) {
