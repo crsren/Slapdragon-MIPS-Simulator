@@ -21,10 +21,8 @@ public:
     uint8_t fnCode;
 
     void init(uint32_t& word);
-    void ADDU(std::vector<uint32_t> &registers);
-    void JR(uint32_t& pc, const std::vector<uint32_t> &registers);
-    static void test1(int in);
-    static void test2(int in);
+    void ADDU(uint32_t& pc, std::vector<uint32_t> &registers);
+    void JR(uint32_t& pc, std::vector<uint32_t> &registers);
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
@@ -39,7 +37,7 @@ public:
     uint32_t address;
 
     void init(uint32_t& word);
-    void ADDI(std::vector<uint32_t> &registers);
+    void ADDI(uint32_t& pc, std::vector<uint32_t> &registers);
 };
 
 class Jtype {
@@ -62,7 +60,7 @@ public:
     void init(uint32_t& word);
     void showContent();
 
-    void (*run) (int in);
+    void (*run) (uint32_t& pc, const std::vector<uint32_t> &registers);
 };
 
 

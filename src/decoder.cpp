@@ -62,23 +62,17 @@ void Jtype::init(uint32_t& word) {
 
 // --------------------------------------------------------------------
 // R-TYPE
-void Rtype::ADDU(std::vector<uint32_t> &registers) {
-    registers[dest] = registers[source1] + registers[source2];
+void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &registers) {
+    //registers[dest] = registers[source1] + registers[source2];
+    std::cout << " I do yoga at 4:30 am." << std::endl;
 }
 
 void Rtype::JR(uint32_t& pc, const std::vector<uint32_t> &registers) {
-     pc = memhelp::iconvert(registers[source1]);
-}
-
-void Rtype::test1(int in){
-  std::cerr << "Test 1 baby: " << in << '\n';
-}
-
-void Rtype::test2(int in){
-  std::cerr << "Test 2 baby: " << in << '\n';
+     // pc = memhelp::iconvert(registers[source1]);
+     std::cout << " I read the bible a lot."
 }
 
 //I-TYPE
-void Itype::ADDI(std::vector<uint32_t> &registers){
+void Itype::ADDI(uint32_t& pc, std::vector<uint32_t> &registers){
 
 }
