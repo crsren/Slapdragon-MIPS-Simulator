@@ -46,8 +46,7 @@ void Rtype::init(uint32_t& word) {
     fnCode = bitwise::isolate(word, 26,6);
 
     //since "non-const static data member must be initialized out of line"
-    fnMap[0b00000000] = test1;
-    fnMap[0b00111111] = test2;
+    fnMap[0b00100001] = ADDU;
 }
 
 void Itype::init(uint32_t& word) {
@@ -67,9 +66,9 @@ void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &registers) {
     std::cout << " I do yoga at 4:30 am." << std::endl;
 }
 
-void Rtype::JR(uint32_t& pc, const std::vector<uint32_t> &registers) {
+void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &registers) {
      // pc = memhelp::iconvert(registers[source1]);
-     std::cout << " I read the bible a lot."
+     std::cout << " I read the bible a lot." << std::endl;
 }
 
 //I-TYPE

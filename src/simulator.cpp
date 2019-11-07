@@ -86,7 +86,8 @@ void printvector(std::vector<uint32_t> v);
 
 int main() {
     uint32_t input = 0b00000000000000000000000000000000;
-    instruction ins(input);
+    instruction ins;
+    ins.init(input);
     ins.showContent();
     //ins.run(10);
 
