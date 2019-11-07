@@ -6,8 +6,8 @@
 #include <functional>
 
 
-class Rtype {
-public:
+struct Rtype {
+//public:
     //custom size or just 8bit (like rn) ??
     // int source1 : 5;
     // int source2 : 5;
@@ -21,13 +21,15 @@ public:
     uint8_t fnCode;
 
     void init(uint32_t& word);
-    static void ADDU(uint32_t& pc, std::vector<uint32_t> &registers);
+    void run(uint32_t& pc, std::vector<uint32_t> &registers);
+
+    void ADDU(uint32_t& pc, std::vector<uint32_t> &registers);
     void JR(uint32_t& pc, std::vector<uint32_t> &registers);
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
-    std::map< uint8_t, void (*)(uint32_t& pc, std::vector<uint32_t> &registers) > fnMap;
+    // std::map< uint8_t, void (*)(uint32_t& pc, std::vector<uint32_t> &registers) > fnMap;
 };
 
 class Itype {
@@ -59,8 +61,9 @@ public:
 
     void init(uint32_t& word);
     void showContent();
+    void run(uint32_t& pc, std::vector<uint32_t> &registers);
 
-    void (*run) (uint32_t& pc, std::vector<uint32_t> &registers);
+    // void (*run) (uint32_t& pc, std::vector<uint32_t> &registers);
 };
 
 

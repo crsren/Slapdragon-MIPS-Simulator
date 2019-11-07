@@ -86,9 +86,10 @@ void printvector(std::vector<uint32_t> v);
 
 int main() {
     std::vector<uint32_t> reg = {0};
-    reg[1] = 32;
-    reg[2] = 64;
     reg.resize(32);
+    reg[1] = 1;
+    reg[2] = 2;
+    memhelp::showregisters(reg);
 
     uint32_t pc = 0;
     uint32_t input = 0b10000100000001000001000001000000;

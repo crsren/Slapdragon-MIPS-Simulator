@@ -14,7 +14,8 @@ void instruction::init(uint32_t& word) {
     if (opCode == 0) {
         tag = 'R';
         r.init(word);
-        run = r.fnMap[r.fnCode];
+        //run = &r.fnMap[r.fnCode];
+
     } else if (opCode == 2 || opCode == 3) {
         tag = 'I';
         j.init(word);
@@ -38,6 +39,24 @@ void instruction::showContent() {
     };
 }
 
+void instruction::run(uint32_t& pc, std::vector<uint32_t> &registers) {
+    switch(tag) {
+        case 'R':
+        r.run(pc, registers);
+        break;
+
+        case 'I':
+
+        break;
+
+        case 'J':
+
+        break;
+    }
+}
+
+//-------------------------------------------------
+
 void Rtype::init(uint32_t& word) {
     source1 = bitwise::isolate(word,6,5);
     source2 = bitwise::isolate(word,11,5);
@@ -46,7 +65,19 @@ void Rtype::init(uint32_t& word) {
     fnCode = bitwise::isolate(word, 26,6);
 
     //since "non-const static data member must be initialized out of line"
-    fnMap[0b00100001] = ADDU;
+    //fnMap[0b00100001] = ADDU;
+}
+
+void Rtype::run(uint32_t& pc, std::vector<uint32_t> &registers) {
+    switch(fnCode) {
+        case 0b00100001:
+        ADDU(pc, registers);
+        break;
+
+        case 0b00001000:
+        JR(pc, registers);
+        break;
+    }
 }
 
 void Itype::init(uint32_t& word) {
@@ -62,13 +93,14 @@ void Jtype::init(uint32_t& word) {
 // --------------------------------------------------------------------
 // R-TYPE
 void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &registers) {
-    //registers[dest] = registers[source1] + registers[source2];
+    registers[dest] = registers[source1] + registers[source2];
+    // std::cout << registers[source2] << ", " << registers[source1] << ", " << registers[dest] << std::endl;
     std::cout << " I do yoga at 4:30 am." << std::endl;
 }
 
 void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &registers) {
-     // pc = memhelp::iconvert(registers[source1]);
-     std::cout << " I read the bible a lot." << std::endl;
+    // pc = memhelp::iconvert(registers[source1]);
+    std::cout << " I read the bible a lot." << std::endl;
 }
 
 //I-TYPE
