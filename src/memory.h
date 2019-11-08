@@ -25,9 +25,7 @@ public:
   Memory(std::vector<unsigned char>);
   int iconvert(uint32_t input);
   int dconvert(uint32_t input);
-  void showregisters();
-
-
+  void showRegisters();
 };
 
 

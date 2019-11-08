@@ -6,13 +6,12 @@
 
 #include "memory.h"
 
-Memory::Memory(std::vector<unsigned char> tmp){
+Memory::Memory(std::vector<unsigned char> byte){
 
   imem.resize(bin_length);
 
-
-  for (int i=0; i < imem.size(); i = i + 4){
-    uint32_t tmp = imem[i+3] | imem[i+2] << 8 | imem[i+1] << 16 | imem[i] << 24;
+  for (int i=0; i < byte.size(); i = i + 4){
+    uint32_t tmp = byte[i+3] | byte[i+2] << 8 | byte[i+1] << 16 | byte[i] << 24;
     imem.push_back(tmp);
   }
 
@@ -21,7 +20,7 @@ Memory::Memory(std::vector<unsigned char> tmp){
 
   reg[1] = 0xFFFFFFFF;
   reg[2] = 64;
-  reg[8] = 0x10000004;
+  reg[8] = 0x10000000;
 
 }
 
@@ -46,7 +45,7 @@ int Memory::dconvert(uint32_t input){
   return offset/4;
 }
 
-void Memory::showregisters(){
+void Memory::showRegisters(){
   std::cerr << "******************************************" << '\n';
   for (int i = 0; i < reg.size(); i++){
     std::cerr << "Register " << i <<": " << +reg[i] << '\n';

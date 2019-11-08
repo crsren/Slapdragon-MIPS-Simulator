@@ -16,6 +16,7 @@ void instruction::init(uint32_t& word) {
         tag = 'R';
         r.init(word);
         //run = &r.fnMap[r.fnCode];
+        std::cerr << "My mom is an rtype" << std::endl;
 
     } else if (opCode == 2 || opCode == 3) {
         tag = 'I';
@@ -40,10 +41,10 @@ void instruction::showContent() {
     };
 }
 
-void instruction::run(uint32_t& pc, std::vector<uint32_t> &reg) {
+void instruction::run(Memory& mem) {
     switch(tag) {
         case 'R':
-        r.run(pc, reg);
+        r.run(mem);
         break;
 
         case 'I':
@@ -69,94 +70,94 @@ void Rtype::init(uint32_t& word) {
     //fnMap[0b00100001] = ADDU;
 }
 
-void Rtype::run(uint32_t& pc, std::vector<uint32_t> &reg) {
+void Rtype::run(Memory& mem) {
     switch(fnCode) {
         case 0x00:
-        //SLL(pc, reg);
+        //SLL(mem);
         break;
 
         case 0x02:
-        //SRL(pc, reg);
+        //SRL(mem);
         break;
 
         case 0x03:
-        //SRA(pc, reg);
+        //SRA(mem);
         break;
 
         case 0x08:  //0b00100001:
-        JR(pc, reg);
+        JR(mem);
         break;
 
         case 0x10:  //0b00100001:
-        //MFHI(pc, reg);
+        //MFHI(mem);
         break;
 
         case 0x11:  //0b00100001:
-        //MTHI(pc, reg);
+        //MTHI(mem);
         break;
 
         case 0x12:  //0b00100001:
-        //MFLO(pc, reg);
+        //MFLO(mem);
         break;
 
         case 0x13:  //0b00100001:
-        //MTLO(pc, reg);
+        //MTLO(mem);
         break;
 
         case 0x18:  //0b00100001:
-        //MULT(pc, reg);
+        //MULT(mem);
         break;
 
         case 0x19:  //0b00100001:
-        //MULTU(pc, reg);
+        //MULTU(mem);
         break;
 
         case 0x1A:  //0b00100001:
-        //DIV(pc, reg);
+        //DIV(mem);
         break;
 
         case 0x1B:  //0b00100001:
-        //DIVU(pc, reg);
+        //DIVU(mem);
         break;
 
         case 0x20:
-        ADD(pc, reg);
+        ADD(mem);
         break;
 
         case 0x21:  //0b00100001:
-        ADDU(pc, reg);
+        ADDU(mem);
         break;
 
         case 0x22:  //0b00100001:
-        //SUB(pc, reg);
+        //SUB(mem);
         break;
 
         case 0x23:  //0b00100001:
-        //SUBU(pc, reg);
+        //SUBU(mem);
         break;
 
         case 0x24:  //0b00100001:
-        //AND(pc, reg);
+        //AND(mem);
         break;
 
         case 0x25:  //0b00100001:
-        //OR(pc, reg);
+        //OR(mem);
         break;
 
         case 0x26:  //0b00100001:
-        //XOR(pc, reg);
+        //XOR(mem);
         break;
 
         case 0x27:  //0b00100001:
-        //NOR(pc, reg);
+        //NOR(mem);
         break;
 
         case 0x2A:  //0b00100001:
-        //SLT(pc, reg);
+        //SLT(mem);
         break;
 
         case 0x2B:  //0b00100001:
-        //SLTU(pc, reg);
+        //SLTU(mem);
         break;
 
     }
@@ -174,35 +175,30 @@ void Jtype::init(uint32_t& word) {
 
 // --------------------------------------------------------------------
 // R-TYPE
-void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &reg) {
-    reg[dest] = reg[source1] + reg[source2];
+void Rtype::ADDU(Memory& mem) {
+    mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
     std::cout << " I do yoga at 4:30 am." << std::endl;
-    pc++;
+    mem.pc++;
 }
 
-<<<<<<< HEAD
-void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &registers) {
-    //pc = Memory::iconvert(registers[source1]);
-=======
-void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &reg) {
-    pc = memhelp::iconvert(reg[source1]);
->>>>>>> ba2cab210d854d2695cebd59074208c734de80de
+void Rtype::JR(Memory& mem) {
+    mem.pc = mem.iconvert(mem.reg[source1]);
     std::cout << " I read the bible a lot." << std::endl;
 }
 
-void Rtype::ADD(uint32_t& pc, std::vector<uint32_t> &reg) {
-    int32_t s1 = (int32_t) reg[source1];
-    int32_t s2 = (int32_t) reg[source2];
-    if (((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) || ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0))){
+void Rtype::ADD(Memory& mem) {
+    int32_t s1 = (int32_t) mem.reg[source1];
+    int32_t s2 = (int32_t) mem.reg[source2];
+    if ( ( ((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0)) ) ){
         std::cerr << "Overflow" << '\n';
         std::exit(-10);
     }
-    reg[dest] = (uint32_t) (s1 + s2);
+    mem.reg[dest] = (uint32_t) (s1 + s2);
     std::cout << " ADD successfull" << std::endl;
-    pc++;
+    mem.pc++;
 }
 
 //I-TYPE
-void Itype::ADDI(uint32_t& pc, std::vector<uint32_t> &reg){
+void Itype::ADDI(Memory& mem){
 
 }

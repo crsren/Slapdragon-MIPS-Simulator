@@ -5,6 +5,8 @@
 #include <map> //change to unordered_map
 #include <functional>
 
+#include "memory.h"
+
 
 struct Rtype {
 //public:
@@ -21,16 +23,17 @@ struct Rtype {
     uint8_t fnCode;
 
     void init(uint32_t& word);
-    void run(uint32_t& pc, std::vector<uint32_t> &reg);
+    void run(Memory& mem);
 
-    void ADDU(uint32_t& pc, std::vector<uint32_t> &reg);
-    void ADD(uint32_t& pc, std::vector<uint32_t> &reg);
-    void JR(uint32_t& pc, std::vector<uint32_t> &reg);
+    void SLL(Memory& mem);
+    void ADDU(Memory& mem);
+    void ADD(Memory& mem);
+    void JR(Memory& mem);
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
-    // std::map< uint8_t, void (*)(uint32_t& pc, std::vector<uint32_t> &reg) > fnMap;
+    // std::map< uint8_t, void (*)(Memory& mem) > fnMap;
 };
 
 class Itype {
@@ -40,7 +43,7 @@ public:
     uint32_t address;
 
     void init(uint32_t& word);
-    void ADDI(uint32_t& pc, std::vector<uint32_t> &reg);
+    void ADDI(Memory& mem);
 };
 
 class Jtype {
@@ -62,9 +65,9 @@ public:
 
     void init(uint32_t& word);
     void showContent();
-    void run(uint32_t& pc, std::vector<uint32_t> &reg);
+    void run(Memory& mem);
 
-    // void (*run) (uint32_t& pc, std::vector<uint32_t> &reg);
+    // void (*run) (Memory& mem);
 };
 
 

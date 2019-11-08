@@ -35,60 +35,63 @@ int main(int argc, char *argv[]) {
     std::cerr << "Read " << immembyte.size() << std::endl;
     Memory mem(immembyte);
 
+
+    instruction ins;
+    printvector(mem.imem);
     while(1) {
 
-      //next(pc);
+        //next(pc);
 
-      if (mem.pc == mem.imem.size()){
-        std::cout << "Sucess finished" << '\n';
-        exit(0);
-      }
+        if (mem.pc >= mem.imem.size()){
+            std::cout << "Sucess finished" << '\n';
+            exit(0);
+        }
 
-      uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
-      instruction ins;
-      ins.init(word);
-      ins.showContent();
-      ins.run(mem.pc, mem.reg);
-      mem.showregisters();
+        uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
+        ins.init(word);
+        ins.showContent();
+        ins.run(mem);
+        mem.showRegisters();
 
-      //} else {
-          //memory exception
+        //} else {
+        //memory exception
         //  exit(-11);
-      //}
-      //pc++;
+        //}
+        //pc++;
     }
 
     return 1;
+
 }
 
 // int main() {
-    // std::vector<uint32_t> reg = {0};
-    // reg.resize(32);
-    // reg[1] = 1;
-    // reg[2] = 2;
-    // memhelp::showregisters(reg);
-    //
-    // uint32_t pc = 0;
-    // uint32_t input = 0b10000100000001000001000001000000;
-    // instruction ins;
-    // ins.init(input);
-    // ins.showContent();
-    // ins.run(pc, reg);
-    // memhelp::showregisters(reg);
+// std::vector<uint32_t> reg = {0};
+// reg.resize(32);
+// reg[1] = 1;
+// reg[2] = 2;
+// memhelp::showregisters(reg);
+//
+// uint32_t pc = 0;
+// uint32_t input = 0b10000100000001000001000001000000;
+// instruction ins;
+// ins.init(input);
+// ins.showContent();
+// ins.run(pc, reg);
+// memhelp::showregisters(reg);
 //
 //     return 0;
 // }
 
 
 void printvector(std::vector<unsigned char> v){
-  for (int i=0; i < v.size(); i++){
-    std::cerr << bitwise::get_binary(v[i]) << '\n';
-  }
+    for (int i=0; i < v.size(); i++){
+        std::cerr << bitwise::get_binary(v[i]) << '\n';
+    }
 }
 
 void printvector(std::vector<uint32_t> v){
-  for (int i=0; i < v.size(); i++){
-    std::cerr << bitwise::get_binary(v[i]) << '\n';
+    for (int i=0; i < v.size(); i++){
+        std::cerr << bitwise::get_binary(v[i]) << '\n';
 
-  }
+    }
 }
