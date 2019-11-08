@@ -6,6 +6,7 @@
 
 #include "decoder.h"
 #include "helpers.h"
+##include "memmory.h"
 
 // cout for character printed by bitstream
 // cerr for not genuine output
@@ -58,7 +59,7 @@ int main(int argc, char *argv[]) {
 
     reg[1] = 0xFFFFFFFF;
     reg[2] = 64;
-    reg[8] = 0;
+    reg[8] = 0x10000004;
 
     uint32_t pc = 0;
 
