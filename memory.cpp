@@ -6,6 +6,10 @@
 
 
 
+void Memory::Memory(){
+
+}
+
 int Memory::iconvert(uint32_t input){
   std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
     if ((input < imem_off) || (input > imem_off + imem_length)){
@@ -25,4 +29,12 @@ int Memory::dconvert(uint32_t input){
   }
   uint32_t offset  = input - dmem_off;
   return offset/4;
+}
+
+void Memory::showregisters(std::vector<uint32_t> reg){
+  std::cerr << "******************************************" << '\n';
+  for (int i = 0; i < reg.size(); i++){
+    std::cerr << "Register " << i <<": " << +reg[i] << '\n';
+  }
+  std::cerr << "******************************************" << '\n';
 }

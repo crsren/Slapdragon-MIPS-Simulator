@@ -20,12 +20,3 @@ std::string bitwise::get_binary(uint8_t word) {
     std::bitset<8> x(word);
     return x.to_string();
 }
-
-
-void memhelp::showregisters(std::vector<uint32_t> reg){
-  std::cerr << "******************************************" << '\n';
-  for (int i = 0; i < reg.size(); i++){
-    std::cerr << "Register " << i <<": " << +reg[i] << '\n';
-  }
-  std::cerr << "******************************************" << '\n';
-}
