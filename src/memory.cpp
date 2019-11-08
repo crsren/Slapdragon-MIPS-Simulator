@@ -10,7 +10,7 @@ Memory::Memory(std::vector<unsigned char> byte){
 
   imem.resize(bin_length);
 
-  for (int i=0; i < byte.size(); i = i + 4){
+  for (int i=0; i < byte.size(); i = i + 4) {
     uint32_t tmp = byte[i+3] | byte[i+2] << 8 | byte[i+1] << 16 | byte[i] << 24;
     imem.push_back(tmp);
   }

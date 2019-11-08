@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     printvector(mem.imem);
     while(1) {
 
-        //next(pc);
+        mem.pc = mem.ahead_pc;
 
         if (mem.pc >= mem.imem.size()){
             std::cout << "Sucess finished" << '\n';
