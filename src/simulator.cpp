@@ -39,31 +39,21 @@ int main(int argc, char *argv[]) {
 
     instruction ins;
     while(1) {
-<<<<<<< HEAD
-      
-=======
 
-        mem.pc = mem.ahead_pc;
 
->>>>>>> 90d9d6b884be4818cc79d13ededc894b9f359a79
         if (mem.pc >= mem.imem.size()){
-            std::cout << "Sucess finished" << '\n';
+            std::cerr << "Sucess finished" << '\n';
             exit(0);
         } else {
-            std::cout << "PC at " << mem.pc << std::endl;
+            std::cerr << "PC at " << mem.pc << std::endl;
         }
 
         uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
         ins.init(word);
         ins.showContent();
         ins.run(mem);
-        mem.showRegisters();
+        //mem.showRegisters();
 
-        //} else {
-        //memory exception
-        //  exit(-11);
-        //}
-        //pc++;
     }
 
     return 1;

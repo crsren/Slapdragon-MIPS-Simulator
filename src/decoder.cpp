@@ -30,13 +30,13 @@ void instruction::init(uint32_t& word) {
 void instruction::showContent() {
     switch(tag) {
         case 'R':
-        std::cout << "[Source1: " << bitwise::get_binary(r.source1) << " | Source2: " << bitwise::get_binary(r.source2) << " | Dest: " << bitwise::get_binary(r.dest) << " | Shift Amt: " << bitwise::get_binary(r.shift_amt) << " | Fn Code: " << bitwise::get_binary(r.fnCode) << " ]" << std::endl;
+        std::cerr << "[Source1: " << bitwise::get_binary(r.source1) << " | Source2: " << bitwise::get_binary(r.source2) << " | Dest: " << bitwise::get_binary(r.dest) << " | Shift Amt: " << bitwise::get_binary(r.shift_amt) << " | Fn Code: " << bitwise::get_binary(r.fnCode) << " ]" << std::endl;
         break;
 
-        case 'I': std::cout << "[OpCode: " << bitwise::get_binary(opCode) <<" | Source1: " << bitwise::get_binary(i.source1) << " | Source2/Dest:" << bitwise::get_binary(i.source2) << " | Address: " << bitwise::get_binary(i.address) << " ]" << std::endl;
+        case 'I': std::cerr << "[OpCode: " << bitwise::get_binary(opCode) <<" | Source1: " << bitwise::get_binary(i.source1) << " | Source2/Dest:" << bitwise::get_binary(i.source2) << " | Address: " << bitwise::get_binary(i.address) << " ]" << std::endl;
         break;
 
-        case 'J': std::cout << "[OpCode: " << bitwise::get_binary(opCode) << " | Address:" << bitwise::get_binary(j.address) << " ]" << std::endl;
+        case 'J': std::cerr << "[OpCode: " << bitwise::get_binary(opCode) << " | Address:" << bitwise::get_binary(j.address) << " ]" << std::endl;
         break;
     };
 }
@@ -177,13 +177,15 @@ void Jtype::init(uint32_t& word) {
 // R-TYPE
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
-    std::cout << " I do yoga at 4:30 am." << std::endl;
+    std::cerr << " I do yoga at 4:30 am." << std::endl;
+    mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
 }
 
 void Rtype::JR(Memory& mem) {
-    std::cout << " I read the bible a lot." << std::endl;
-    mem.pc = mem.iconvert(mem.reg[source1]);
+    std::cerr << " I read the bible a lot." << std::endl;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc = mem.iconvert(mem.reg[source1]);
 
 }
 
@@ -195,8 +197,9 @@ void Rtype::ADD(Memory& mem) {
         std::exit(-10);
     }
     mem.reg[dest] = (uint32_t) (s1 + s2);
-    std::cout << " ADD successfull" << std::endl;
-    mem.pc++;
+    std::cerr << " ADD successfull" << std::endl;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
 }
 
 //I-TYPE

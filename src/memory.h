@@ -19,7 +19,7 @@ public:
   std::vector<uint32_t> dmem;
 
   uint32_t pc = 0;
-  uint32_t ahead_pc = 0;
+  uint32_t ahead_pc = 1;
   uint32_t hi = 0;
   uint32_t lo = 0;
 
