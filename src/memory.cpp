@@ -18,9 +18,9 @@ Memory::Memory(std::vector<unsigned char> byte){
   dmem.resize(dmem_length);
   reg.resize(32);
 
-  reg[1] = 0xFFFFFFFF;
-  reg[2] = 64;
-  reg[8] = 0x10000000;
+  reg[1] = 1;
+  reg[2] = 1;
+  reg[8] = 0;
 
 }
 

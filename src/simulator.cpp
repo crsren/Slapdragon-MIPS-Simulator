@@ -45,6 +45,8 @@ int main(int argc, char *argv[]) {
         if (mem.pc >= mem.imem.size()){
             std::cout << "Sucess finished" << '\n';
             exit(0);
+        } else {
+            std::cout << "PC at " << mem.pc << std::endl;
         }
 
         uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
