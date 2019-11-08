@@ -21,16 +21,16 @@ struct Rtype {
     uint8_t fnCode;
 
     void init(uint32_t& word);
-    void run(uint32_t& pc, std::vector<uint32_t> &registers);
+    void run(uint32_t& pc, std::vector<uint32_t> &reg);
 
-    void ADDU(uint32_t& pc, std::vector<uint32_t> &registers);
-    void ADD(uint32_t& pc, std::vector<uint32_t> &registers);
-    void JR(uint32_t& pc, std::vector<uint32_t> &registers);
+    void ADDU(uint32_t& pc, std::vector<uint32_t> &reg);
+    void ADD(uint32_t& pc, std::vector<uint32_t> &reg);
+    void JR(uint32_t& pc, std::vector<uint32_t> &reg);
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
-    // std::map< uint8_t, void (*)(uint32_t& pc, std::vector<uint32_t> &registers) > fnMap;
+    // std::map< uint8_t, void (*)(uint32_t& pc, std::vector<uint32_t> &reg) > fnMap;
 };
 
 class Itype {
@@ -40,7 +40,7 @@ public:
     uint32_t address;
 
     void init(uint32_t& word);
-    void ADDI(uint32_t& pc, std::vector<uint32_t> &registers);
+    void ADDI(uint32_t& pc, std::vector<uint32_t> &reg);
 };
 
 class Jtype {
@@ -62,9 +62,9 @@ public:
 
     void init(uint32_t& word);
     void showContent();
-    void run(uint32_t& pc, std::vector<uint32_t> &registers);
+    void run(uint32_t& pc, std::vector<uint32_t> &reg);
 
-    // void (*run) (uint32_t& pc, std::vector<uint32_t> &registers);
+    // void (*run) (uint32_t& pc, std::vector<uint32_t> &reg);
 };
 
 
