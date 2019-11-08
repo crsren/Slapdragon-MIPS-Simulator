@@ -7,7 +7,7 @@
 
 
 
-const int imem_off = 0x10000000;
+const int imem_off = 0x1000000;
 const int imem_length = 0x1000000;
 
 const int dmem_off = 0x20000000;
@@ -30,16 +30,20 @@ std::string bitwise::get_binary(uint8_t word) {
 }
 
 int memhelp::iconvert(uint32_t input){
+  std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
     if ((input < imem_off) || (input > imem_off + imem_length)){
+      std::cerr << "Memmory Error" << '\n';
       std::exit(-10);
     }
     uint32_t offset  = input - imem_off;
+    std::cerr << "final position: " << offset/4 << '\n';
     return offset/4;
 
 }
 
 int memhelp::dconvert(uint32_t input){
   if ((input < dmem_off) || (input > dmem_off + dmem_length)){
+    std::cerr << "Memmory Error" << '\n';
     std::exit(-10);
   }
   uint32_t offset  = input - dmem_off;

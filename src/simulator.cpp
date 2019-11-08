@@ -56,8 +56,9 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> reg = {0};
     reg.resize(32);
 
-    reg[1] = 32;
+    reg[1] = 0xFFFFFFFF;
     reg[2] = 64;
+    reg[8] = 0;
 
     uint32_t pc = 0;
 
@@ -81,7 +82,7 @@ int main(int argc, char *argv[]) {
           //memory exception
         //  exit(-11);
       //}
-      pc++;
+      //pc++;
     }
 
     return 1;

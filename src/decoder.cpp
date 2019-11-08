@@ -77,6 +77,10 @@ void Rtype::run(uint32_t& pc, std::vector<uint32_t> &registers) {
         case 0b00001000:
         JR(pc, registers);
         break;
+
+        case 0b00100000:
+        ADD(pc, registers);
+        break;
     }
 }
 
@@ -94,13 +98,25 @@ void Jtype::init(uint32_t& word) {
 // R-TYPE
 void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &registers) {
     registers[dest] = registers[source1] + registers[source2];
-    // std::cout << registers[source2] << ", " << registers[source1] << ", " << registers[dest] << std::endl;
     std::cout << " I do yoga at 4:30 am." << std::endl;
+    pc++;
 }
 
 void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &registers) {
-    // pc = memhelp::iconvert(registers[source1]);
+    pc = memhelp::iconvert(registers[source1]);
     std::cout << " I read the bible a lot." << std::endl;
+}
+
+void Rtype::ADD(uint32_t& pc, std::vector<uint32_t> &registers) {
+    int32_t s1 = (int32_t) registers[source1];
+    int32_t s2 = (int32_t) registers[source2];
+    if (((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) || ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0))){
+      std::cerr << "Overflow" << '\n';
+      std::exit(-10);
+    }
+    registers[dest] = (uint32_t) (s1 + s2);
+    std::cout << " ADD successfull" << std::endl;
+    pc++;
 }
 
 //I-TYPE

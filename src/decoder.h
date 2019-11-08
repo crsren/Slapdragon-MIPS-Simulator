@@ -24,6 +24,7 @@ struct Rtype {
     void run(uint32_t& pc, std::vector<uint32_t> &registers);
 
     void ADDU(uint32_t& pc, std::vector<uint32_t> &registers);
+    void ADD(uint32_t& pc, std::vector<uint32_t> &registers);
     void JR(uint32_t& pc, std::vector<uint32_t> &registers);
     //void JR();
 
