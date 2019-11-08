@@ -33,15 +33,13 @@ int main(int argc, char *argv[]) {
     std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
 
     std::cerr << "Read " << immembyte.size() << std::endl;
+    printvector(immembyte);
     Memory mem(immembyte);
 
 
     instruction ins;
-    printvector(mem.imem);
     while(1) {
-
-        //next(pc);
-
+      
         if (mem.pc >= mem.imem.size()){
             std::cout << "Sucess finished" << '\n';
             exit(0);
