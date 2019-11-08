@@ -6,7 +6,7 @@
 
 #include "decoder.h"
 #include "helpers.h"
-##include "memmory.h"
+#include "memory.h"
 
 // cout for character printed by bitstream
 // cerr for not genuine output
@@ -29,47 +29,27 @@ int main(int argc, char *argv[]) {
     int bin_length = bin_stream.tellg();
     bin_stream.seekg(0, bin_stream.beg);
 
-    imem.resize(bin_length); //taking all memory
-
-
-    // temporarily store all binary instructions character by character
-    //char * buffer = new char[bin_length];
-    //bin_stream.read(&buffer[0], bin_length);
     std::cerr << bin_length << '\n';
     std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
 
     std::cerr << "Read " << immembyte.size() << std::endl;
-    //printvector(immembyte);
-    imem = convert(immembyte);
-
-    printvector(imem);
-
-    std::vector<uint32_t> dmem;
-    dmem.resize(dmem_length);
-
-    std::vector<uint32_t> reg = {0};
-    reg.resize(32);
-
-    reg[1] = 0xFFFFFFFF;
-    reg[2] = 64;
-    reg[8] = 0x10000004;
-
+    Memory mem(immembyte);
 
     while(1) {
 
       //next(pc);
 
-      if (pc == imem.size()){
+      if (mem.pc == mem.imem.size()){
         std::cout << "Sucess finished" << '\n';
         exit(0);
       }
 
-      uint32_t word = imem[pc]; // !!!!! why / 4
+      uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
       instruction ins;
       ins.init(word);
       ins.showContent();
-      ins.run(pc, reg);
-      memhelp::showregisters(reg);
+      ins.run(mem.pc, mem.reg);
+      mem.showregisters();
 
       //} else {
           //memory exception
@@ -111,13 +91,4 @@ void printvector(std::vector<uint32_t> v){
     std::cerr << bitwise::get_binary(v[i]) << '\n';
 
   }
-}
-
-std::vector<uint32_t> convert(std::vector<unsigned char> vec){
-  std::vector<uint32_t> final;
-  for (int i=0; i < vec.size(); i = i + 4){
-    uint32_t tmp = vec[i+3] | vec[i+2] << 8 | vec[i+1] << 16 | vec[i] << 24;
-    final.push_back(tmp);
-  }
-  return final;
 }

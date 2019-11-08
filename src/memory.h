@@ -17,14 +17,15 @@ public:
   std::vector<uint32_t> reg;
   std::vector<uint32_t> imem;
   std::vector<uint32_t> dmem;
-  int pc = 0;
-  int hi = 0;
-  int lo = 0;
 
+  uint32_t pc = 0;
+  uint32_t hi = 0;
+  uint32_t lo = 0;
 
+  Memory(std::vector<unsigned char>);
   int iconvert(uint32_t input);
   int dconvert(uint32_t input);
-  void showregisters(std::vector<uint32_t> reg);
+  void showregisters();
 
 
 };

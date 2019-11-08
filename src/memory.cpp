@@ -4,9 +4,24 @@
 #include <vector>
 #include <bitset>
 
+#include "memory.h"
+
+Memory::Memory(std::vector<unsigned char> tmp){
+
+  imem.resize(bin_length);
 
 
-void Memory::Memory(){
+  for (int i=0; i < imem.size(); i = i + 4){
+    uint32_t tmp = imem[i+3] | imem[i+2] << 8 | imem[i+1] << 16 | imem[i] << 24;
+    imem.push_back(tmp);
+  }
+
+  dmem.resize(dmem_length);
+  reg.resize(32);
+
+  reg[1] = 0xFFFFFFFF;
+  reg[2] = 64;
+  reg[8] = 0x10000004;
 
 }
 
@@ -31,7 +46,7 @@ int Memory::dconvert(uint32_t input){
   return offset/4;
 }
 
-void Memory::showregisters(std::vector<uint32_t> reg){
+void Memory::showregisters(){
   std::cerr << "******************************************" << '\n';
   for (int i = 0; i < reg.size(); i++){
     std::cerr << "Register " << i <<": " << +reg[i] << '\n';

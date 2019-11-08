@@ -8,6 +8,7 @@
 
 #include "decoder.h"
 #include "helpers.h"
+#include "memory.h"
 
 void instruction::init(uint32_t& word) {
     opCode = bitwise::isolate(word, 0, 6);
@@ -103,7 +104,7 @@ void Rtype::ADDU(uint32_t& pc, std::vector<uint32_t> &registers) {
 }
 
 void Rtype::JR(uint32_t& pc, std::vector<uint32_t> &registers) {
-    pc = memhelp::iconvert(registers[source1]);
+    //pc = Memory::iconvert(registers[source1]);
     std::cout << " I read the bible a lot." << std::endl;
 }
 
