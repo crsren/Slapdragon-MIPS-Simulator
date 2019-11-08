@@ -178,12 +178,13 @@ void Jtype::init(uint32_t& word) {
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
     std::cout << " I do yoga at 4:30 am." << std::endl;
-    mem.pc++;
+    mem.ahead_pc++;
 }
 
 void Rtype::JR(Memory& mem) {
-    mem.pc = mem.iconvert(mem.reg[source1]);
     std::cout << " I read the bible a lot." << std::endl;
+    mem.pc = mem.iconvert(mem.reg[source1]);
+
 }
 
 void Rtype::ADD(Memory& mem) {

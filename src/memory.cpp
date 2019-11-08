@@ -8,7 +8,13 @@
 
 Memory::Memory(std::vector<unsigned char> byte){
 
+<<<<<<< HEAD
   for (int i=0; i < byte.size(); i = i + 4){
+=======
+  imem.resize(bin_length);
+
+  for (int i=0; i < byte.size(); i = i + 4) {
+>>>>>>> 90d9d6b884be4818cc79d13ededc894b9f359a79
     uint32_t tmp = byte[i+3] | byte[i+2] << 8 | byte[i+1] << 16 | byte[i] << 24;
     imem.push_back(tmp);
   }
@@ -17,9 +23,9 @@ Memory::Memory(std::vector<unsigned char> byte){
   dmem.resize(dmem_length);
   reg.resize(32);
 
-  reg[1] = 0xFFFFFFFF;
-  reg[2] = 64;
-  reg[8] = 0x10000000;
+  reg[1] = 1;
+  reg[2] = 1;
+  reg[8] = 0;
 
 }
 
