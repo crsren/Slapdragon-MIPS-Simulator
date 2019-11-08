@@ -1,3 +1,11 @@
+make all:
+	g++ -std=c++11 -c simulator.cpp -o ../bin/simulator.o
+	g++ -std=c++11 -c decoder.cpp -o ../bin/decoder.o
+	g++ -std=c++11 -c helpers.cpp -o ../bin/helpers.o
+	g++ -std=c++11 -c memory.cpp -o ../bin/memory.o
+	g++ ../bin/simulator.o ../bin/decoder.o ../bin/helpers.o ../bin/memory.o -o ../bin/mips_simulator
+
+
 simulator: simulator.cpp
 	g++ -std=c++11 -c simulator.cpp -o ../bin/simulator.o
 
@@ -10,7 +18,7 @@ helpers: helpers.cpp helpers.h
 memory: memory.cpp memory.h
 	g++ -std=c++11 -c memory.cpp -o ../bin/memory.o
 
-all: ../bin/simulator.o ../bin/decoder.o ../bin/helpers.o
+link: ../bin/simulator.o ../bin/decoder.o ../bin/helpers.o
 	g++ ../bin/simulator.o ../bin/decoder.o ../bin/helpers.o ../bin/memory.o -o ../bin/mips_simulator
 
 testbench: mips_testbench.sh
