@@ -29,6 +29,8 @@ struct Rtype {
     void ADDU(Memory& mem);
     void ADD(Memory& mem);
     void JR(Memory& mem);
+    void MFHI(Memory& mem);
+
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
@@ -38,11 +40,14 @@ struct Rtype {
 
 class Itype {
 public:
+    uint8_t opCode;
     uint8_t source1;
     uint8_t source2;
     uint32_t address;
 
     void init(uint32_t& word);
+    void run(Memory& mem);
+
     void ADDI(Memory& mem);
 };
 

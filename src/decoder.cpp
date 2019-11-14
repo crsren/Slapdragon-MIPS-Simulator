@@ -48,11 +48,11 @@ void instruction::run(Memory& mem) {
         break;
 
         case 'I':
-
+        i.run(mem);
         break;
 
         case 'J':
-
+        j.run(mem);
         break;
     }
 }
@@ -89,7 +89,7 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x10:  //0b00100001:
-        //MFHI(mem);
+        MFHI(mem);
         break;
 
         case 0x11:  //0b00100001:
@@ -164,10 +164,23 @@ void Rtype::run(Memory& mem) {
 }
 
 void Itype::init(uint32_t& word) {
+    opCode = bitwise::isolate(word, 0, 6);
     source1 = bitwise::isolate(word,5,5);
     source2 = bitwise::isolate(word,10,5);
     address = bitwise::isolate(word, 15,16);
 }
+
+void Itype::run(Memory& mem) {
+  switch(opCode) {
+    case 0x08:
+    ADDI(mem);
+    break;
+
+
+  }
+}
+
+
 
 void Jtype::init(uint32_t& word) {
     address = bitwise::isolate(word,5,26);
@@ -202,6 +215,11 @@ void Rtype::ADD(Memory& mem) {
     mem.ahead_pc++;
 }
 
+void Rtype::MFHI(Memory& mem) {
+    mem.reg[dest] = mem.hi;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
+}
 //I-TYPE
 void Itype::ADDI(Memory& mem){
 
