@@ -38,7 +38,7 @@ int Memory::iconvert(uint32_t input){
 }
 
 int Memory::dconvert(uint32_t input){
-  if ((input < dmem_off) || (input > dmem_off + dmem_length)){
+  if ((input < dmem_off) || (input > dmem_off + dmem_length) || (bitwise::isolate(input, 2, 0) != 0){
     std::cerr << "Memmory Error" << '\n';
     std::exit(-10);
   }
