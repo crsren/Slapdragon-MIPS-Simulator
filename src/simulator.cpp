@@ -33,8 +33,8 @@ int main(int argc, char *argv[]) {
     std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
 
     std::cerr << "Read " << immembyte.size() << std::endl;
-    printvector(immembyte);
     Memory mem(immembyte);
+    printvector(mem.imem);
 
 
     instruction ins;
@@ -53,6 +53,10 @@ int main(int argc, char *argv[]) {
         ins.showContent();
         ins.run(mem);
         //mem.showRegisters();
+
+        if (mem.pc == -1){
+          exit(bitwise::isolate(mem.reg[2], 0, 8));
+        }
 
     }
 
