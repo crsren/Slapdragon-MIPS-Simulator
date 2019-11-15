@@ -52,7 +52,7 @@ uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
 ins.init(word);
 ins.showContent();
 ins.run(mem);
-//mem.showRegisters();
+mem.showRegisters();
 
         if (mem.pc == -1){
           exit(bitwise::isolate(mem.reg[2], 0, 8));

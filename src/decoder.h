@@ -16,13 +16,13 @@ struct Rtype {
     // int dest: 5;
     // int shift_amt: 5;
     // int fnCode: 6;
-    uint8_t source1;
-    uint8_t source2;
-    uint8_t dest;
-    uint8_t shift_amt;
-    uint8_t fnCode;
+    unsigned char source1;
+    unsigned char source2;
+    unsigned char dest;
+    unsigned char shift_amt;
+    unsigned char fnCode;
 
-    void init(uint32_t& word);
+    void init(unsigned int& word);
     void run(Memory& mem);
 
     void SLL(Memory& mem);
@@ -34,18 +34,18 @@ struct Rtype {
     //void JR();
 
     //LUT "fn code" <-> "pointer to function"
-    //static std::map< uint8_t, void (*)(int) > fnMap;
-    // std::map< uint8_t, void (*)(Memory& mem) > fnMap;
+    //static std::map< unsigned char, void (*)(int) > fnMap;
+    // std::map< unsigned char, void (*)(Memory& mem) > fnMap;
 };
 
 class Itype {
 public:
-    uint8_t opCode;
-    uint8_t source1;
-    uint8_t source2;
-    uint32_t immediate;
+    unsigned char opCode;
+    unsigned char source1;
+    unsigned char source2;
+    unsigned int immediate;
 
-    void init(uint32_t& word);
+    void init(unsigned int& word);
     void run(Memory& mem);
 
     void ADDI(Memory& mem);
@@ -57,23 +57,23 @@ public:
 
 class Jtype {
 public:
-    uint32_t address;
+    unsigned int address;
 
-    void init(uint32_t& word);
+    void init(unsigned int& word);
     void run(Memory& mem);
 };
 
 class instruction {
 private:
     // int opCode : 6;
-    uint8_t opCode;
+    unsigned char opCode;
 public:
     char tag;
     Rtype r;
     Jtype j;
     Itype i;
 
-    void init(uint32_t& word);
+    void init(unsigned int& word);
     void showContent();
     void run(Memory& mem);
 

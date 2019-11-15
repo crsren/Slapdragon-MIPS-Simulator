@@ -10,7 +10,7 @@
 #include "helpers.h"
 #include "memory.h"
 
-void instruction::init(uint32_t& word) {
+void instruction::init(unsigned int& word) {
     opCode = bitwise::isolate(word, 26, 6);
     if (opCode == 0) {
         tag = 'R';
@@ -60,7 +60,7 @@ void instruction::run(Memory& mem) {
 
 //-------------------------------------------------
 
-void Rtype::init(uint32_t& word) {
+void Rtype::init(unsigned int& word) {
     source1 = bitwise::isolate(word,21,5);
     source2 = bitwise::isolate(word,16,5);
     dest = bitwise::isolate(word, 11,5);
@@ -74,9 +74,7 @@ void Rtype::init(uint32_t& word) {
 void Rtype::run(Memory& mem) {
     switch(fnCode) {
         case 0x00:
-        //SLL(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SLL(mem);
         break;
 
         case 0x02:
@@ -209,7 +207,7 @@ void Rtype::run(Memory& mem) {
     }
 }
 
-void Itype::init(uint32_t& word) {
+void Itype::init(unsigned int& word) {
     opCode = bitwise::isolate(word, 26, 6);
     source1 = bitwise::isolate(word,21,5);
     source2 = bitwise::isolate(word,16,5);
@@ -242,7 +240,7 @@ void Itype::run(Memory& mem) {
 
 
 
-void Jtype::init(uint32_t& word) {
+void Jtype::init(unsigned int& word) {
     address = bitwise::isolate(word,0,26);
 }
 
@@ -253,6 +251,12 @@ void Jtype::run(Memory& mem) {
 
 // --------------------------------------------------------------------
 // R-TYPE
+void Rtype::SLL(Memory& mem) {
+    mem.reg[dest] = mem.reg[source2] << shift_amt;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
+}
+
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
     mem.pc = mem.ahead_pc;
@@ -266,13 +270,13 @@ void Rtype::JR(Memory& mem) {
 }
 
 void Rtype::ADD(Memory& mem) {
-    int32_t s1 = (int32_t) mem.reg[source1];
-    int32_t s2 = (int32_t) mem.reg[source2];
+    int s1 = (int) mem.reg[source1];
+    int s2 = (int) mem.reg[source2];
     if ( ( ((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0)) ) ){
         std::cerr << "Overflow" << '\n';
         std::exit(-10);
     }
-    mem.reg[dest] = (uint32_t) (s1 + s2);
+    mem.reg[dest] = (unsigned int) (s1 + s2);
     mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
 }
@@ -288,7 +292,7 @@ void Itype::ADDI(Memory& mem){
 }
 
 void Itype::LUI(Memory& mem){
-    uint32_t tmp  = immediate << 16;
+    unsigned int tmp  = immediate << 16;
     mem.reg[source2] = tmp;
     mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
@@ -301,9 +305,9 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-  int32_t offset = immediate;
-  location = (int32_t)mem.reg[source2] + offset;
-  mem.reg[source1] = mem.dmem[dconvert(location)];
+  int offset = immediate;
+  unsigned int location = (int)mem.reg[source2] + offset;
+  mem.reg[source1] = mem.dmem[mem.dconvert(location)];
   mem.pc = mem.ahead_pc;
   mem.ahead_pc++;
 }
