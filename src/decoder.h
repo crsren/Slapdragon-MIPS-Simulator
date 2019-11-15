@@ -27,10 +27,12 @@ struct Rtype {
 
     void SLL(Memory& mem);
     void SRL(Memory& mem);
-    void ADDU(Memory& mem);
-    void ADD(Memory& mem);
+    void SRA(Memory& mem);
     void JR(Memory& mem);
     void MFHI(Memory& mem);
+    
+    void ADD(Memory& mem);
+    void ADDU(Memory& mem);
 
     //void JR();
 

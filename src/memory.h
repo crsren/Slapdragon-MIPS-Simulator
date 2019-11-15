@@ -24,6 +24,7 @@ public:
   uint32_t lo = 0;
 
   Memory(std::vector<uint8_t>);
+  Memory();
 
   void branch(uint8_t target);
   void forward();

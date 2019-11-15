@@ -313,5 +313,5 @@ void Itype::LW(Memory& mem){
     int offset = immediate;
     uint32_t location = (int)mem.reg[source2] + offset;
     mem.reg[source1] = mem.dmem[mem.dconvert(location)];
-    mmem.forward();
+    mem.forward();
 }
