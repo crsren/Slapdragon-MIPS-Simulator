@@ -299,3 +299,11 @@ void Itype::ORI(Memory& mem){
     mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
 }
+
+void Itype::LW(Memory& mem){
+  int32_t offset = immediate;
+  location = (int32_t)mem.reg[source2] + offset;
+  mem.reg[source1] = mem.dmem[dconvert(location)];
+  mem.pc = mem.ahead_pc;
+  mem.ahead_pc++;
+}
