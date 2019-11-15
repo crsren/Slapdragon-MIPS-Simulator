@@ -50,6 +50,7 @@ public:
 
     void ADDI(Memory& mem);
     void LUI(Memory& mem);
+    void ORI(Memory& mem);
 
 };
 

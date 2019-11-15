@@ -16,7 +16,7 @@ void instruction::init(uint32_t& word) {
         tag = 'R';
         r.init(word);
         //run = &r.fnMap[r.fnCode];
-        std::cerr << "My mom is an rtype" << std::endl;
+        std::cerr << "Rtype instruction" << std::endl;
 
     } else if (opCode == 2 || opCode == 3) {
         tag = 'J';
@@ -24,6 +24,7 @@ void instruction::init(uint32_t& word) {
     } else {
         tag = 'I';
         i.init(word);
+        std::cerr << "Jtype instruction" << std::endl;
     }
 }
 
@@ -74,14 +75,20 @@ void Rtype::run(Memory& mem) {
     switch(fnCode) {
         case 0x00:
         //SLL(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x02:
         //SRL(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x03:
         //SRA(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x08:  //0b00100001:
@@ -94,30 +101,44 @@ void Rtype::run(Memory& mem) {
 
         case 0x11:  //0b00100001:
         //MTHI(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x12:  //0b00100001:
         //MFLO(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x13:  //0b00100001:
         //MTLO(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x18:  //0b00100001:
         //MULT(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x19:  //0b00100001:
         //MULTU(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x1A:  //0b00100001:
         //DIV(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x1B:  //0b00100001:
         //DIVU(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x20:
@@ -130,34 +151,50 @@ void Rtype::run(Memory& mem) {
 
         case 0x22:  //0b00100001:
         //SUB(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x23:  //0b00100001:
         //SUBU(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x24:  //0b00100001:
         //AND(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x25:  //0b00100001:
         //OR(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x26:  //0b00100001:
         //XOR(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x27:  //0b00100001:
         //NOR(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x2A:  //0b00100001:
         //SLT(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
         case 0x2B:  //0b00100001:
         //SLTU(mem);
+        std::cerr << "Not implemented yet." << std::endl;
+        exit(-1);
         break;
 
     }
@@ -180,6 +217,10 @@ void Itype::run(Memory& mem) {
     LUI(mem);
     break;
 
+    case 0x0D:
+    ORI(mem);
+    break;
+
 
   }
 }
@@ -191,20 +232,19 @@ void Jtype::init(uint32_t& word) {
 }
 
 void Jtype::run(Memory& mem) {
-
+    std::cerr << "J.run not implemented yet." << '\n';
+    exit(-1);
 }
 
 // --------------------------------------------------------------------
 // R-TYPE
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
-    std::cerr << " I do yoga at 4:30 am." << std::endl;
     mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
 }
 
 void Rtype::JR(Memory& mem) {
-    std::cerr << " I read the bible a lot." << std::endl;
     mem.pc = mem.ahead_pc;
     mem.ahead_pc = mem.iconvert(mem.reg[source1]);
 
@@ -237,6 +277,13 @@ void Itype::LUI(Memory& mem){
   std::cerr << "LUI" << '\n';
   uint32_t tmp  = immediate << 16;
   mem.reg[source2] = tmp;
+  mem.pc = mem.ahead_pc;
+  mem.ahead_pc++;
+}
+
+void Itype::ORI(Memory& mem){
+  std::cerr << "ORI" << '\n';
+  mem.reg[source2] = mem.reg[source1] | immediate;
   mem.pc = mem.ahead_pc;
   mem.ahead_pc++;
 }

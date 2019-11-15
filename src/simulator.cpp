@@ -54,11 +54,11 @@ ins.showContent();
 ins.run(mem);
 //mem.showRegisters();
 
-if (mem.pc == -1){
-exit(bitwise::isolate(mem.reg[2], 0, 8));
-}
-
-}
+        if (mem.pc == -1){
+          exit(bitwise::isolate(mem.reg[2], 0, 8));
+        }
+        std::cin.get();
+    }
 
 return 1;
 
