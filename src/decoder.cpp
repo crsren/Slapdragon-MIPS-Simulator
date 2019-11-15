@@ -11,7 +11,7 @@
 #include "memory.h"
 
 void instruction::init(uint32_t& word) {
-    opCode = bitwise::isolate(word, 0, 6);
+    opCode = bitwise::isolate(word, 26, 6);
     if (opCode == 0) {
         tag = 'R';
         r.init(word);
@@ -20,10 +20,10 @@ void instruction::init(uint32_t& word) {
 
     } else if (opCode == 2 || opCode == 3) {
         tag = 'J';
-        i.init(word);
+        j.init(word);
     } else {
         tag = 'I';
-        j.init(word);
+        i.init(word);
     }
 }
 
@@ -60,11 +60,11 @@ void instruction::run(Memory& mem) {
 //-------------------------------------------------
 
 void Rtype::init(uint32_t& word) {
-    source1 = bitwise::isolate(word,6,5);
-    source2 = bitwise::isolate(word,11,5);
-    dest = bitwise::isolate(word, 16,5);
-    shift_amt = bitwise::isolate(word, 21,5);
-    fnCode = bitwise::isolate(word, 26,6);
+    source1 = bitwise::isolate(word,21,5);
+    source2 = bitwise::isolate(word,16,5);
+    dest = bitwise::isolate(word, 11,5);
+    shift_amt = bitwise::isolate(word, 6,5);
+    fnCode = bitwise::isolate(word, 0,6);
 
     //since "non-const static data member must be initialized out of line"
     //fnMap[0b00100001] = ADDU;
@@ -164,10 +164,10 @@ void Rtype::run(Memory& mem) {
 }
 
 void Itype::init(uint32_t& word) {
-    opCode = bitwise::isolate(word, 0, 6);
-    source1 = bitwise::isolate(word,5,5);
-    source2 = bitwise::isolate(word,10,5);
-    immediate = bitwise::isolate(word, 15,16);
+    opCode = bitwise::isolate(word, 26, 6);
+    source1 = bitwise::isolate(word,21,5);
+    source2 = bitwise::isolate(word,16,5);
+    immediate = bitwise::isolate(word, 0,16);
 }
 
 void Itype::run(Memory& mem) {
@@ -187,7 +187,7 @@ void Itype::run(Memory& mem) {
 
 
 void Jtype::init(uint32_t& word) {
-    address = bitwise::isolate(word,5,26);
+    address = bitwise::isolate(word,0,26);
 }
 
 void Jtype::run(Memory& mem) {
