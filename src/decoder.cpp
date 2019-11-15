@@ -93,10 +93,12 @@ void Rtype::run(Memory& mem) {
 
         case 0x08:  //0b00100001:
         JR(mem);
+        std::cerr << "JR" << '\n';
         break;
 
         case 0x10:  //0b00100001:
         MFHI(mem);
+        std::cerr << "MFHI" << '\n';
         break;
 
         case 0x11:  //0b00100001:
@@ -143,10 +145,12 @@ void Rtype::run(Memory& mem) {
 
         case 0x20:
         ADD(mem);
+        std::cerr << "ADD" << '\n';
         break;
 
         case 0x21:  //0b00100001:
         ADDU(mem);
+        std::cerr << "ADDU" << '\n';
         break;
 
         case 0x22:  //0b00100001:
@@ -197,6 +201,11 @@ void Rtype::run(Memory& mem) {
         exit(-1);
         break;
 
+
+        default:
+        std::cerr << "Non-existing instruction." << '\n';
+        exit(-1);
+        break;
     }
 }
 
@@ -208,21 +217,27 @@ void Itype::init(uint32_t& word) {
 }
 
 void Itype::run(Memory& mem) {
-  switch(opCode) {
-    case 0x08:
-    ADDI(mem);
-    break;
+    switch(opCode) {
+        case 0x08:
+        ADDI(mem);
+        std::cerr << "ADDI" << '\n';
+        break;
 
-    case 0x0F:
-    LUI(mem);
-    break;
+        case 0x0F:
+        LUI(mem);
+        std::cerr << "LUI" << '\n';
+        break;
 
-    case 0x0D:
-    ORI(mem);
-    break;
+        case 0x0D:
+        ORI(mem);
+        std::cerr << "ORI" << '\n';
+        break;
 
-
-  }
+        default:
+        std::cerr << "Non-existing instruction." << '\n';
+        exit(-1);
+        break;
+    }
 }
 
 
@@ -258,7 +273,6 @@ void Rtype::ADD(Memory& mem) {
         std::exit(-10);
     }
     mem.reg[dest] = (uint32_t) (s1 + s2);
-    std::cerr << " ADD successfull" << std::endl;
     mem.pc = mem.ahead_pc;
     mem.ahead_pc++;
 }
@@ -274,16 +288,14 @@ void Itype::ADDI(Memory& mem){
 }
 
 void Itype::LUI(Memory& mem){
-  std::cerr << "LUI" << '\n';
-  uint32_t tmp  = immediate << 16;
-  mem.reg[source2] = tmp;
-  mem.pc = mem.ahead_pc;
-  mem.ahead_pc++;
+    uint32_t tmp  = immediate << 16;
+    mem.reg[source2] = tmp;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
 }
 
 void Itype::ORI(Memory& mem){
-  std::cerr << "ORI" << '\n';
-  mem.reg[source2] = mem.reg[source1] | immediate;
-  mem.pc = mem.ahead_pc;
-  mem.ahead_pc++;
+    mem.reg[source2] = mem.reg[source1] | immediate;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
 }
