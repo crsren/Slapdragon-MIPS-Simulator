@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         if (mem.pc == -1){
           exit(bitwise::isolate(mem.reg[2], 0, 8));
         }
-
+        std::cin.get();
     }
 
     return 1;

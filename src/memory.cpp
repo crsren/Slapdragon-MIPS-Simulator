@@ -25,7 +25,9 @@ Memory::Memory(std::vector<unsigned char> byte){
 
 int Memory::iconvert(uint32_t input){
   std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
-    if ((input < imem_off) || (input > imem_off + imem_length)){
+    if (input = 0){
+      return -1;
+    }else if ((input < imem_off) || (input > imem_off + imem_length) ){
       std::cerr << "Memmory Error" << '\n';
       std::exit(-10);
     }
