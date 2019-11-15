@@ -26,6 +26,7 @@ struct Rtype {
     void run(Memory& mem);
 
     void SLL(Memory& mem);
+    void SRL(Memory& mem);
     void ADDU(Memory& mem);
     void ADD(Memory& mem);
     void JR(Memory& mem);

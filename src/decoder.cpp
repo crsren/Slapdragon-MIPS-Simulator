@@ -257,6 +257,19 @@ void Rtype::SLL(Memory& mem) {
     mem.ahead_pc++;
 }
 
+void Rtype::SRL(Memory& mem) {
+    mem.reg[dest] = mem.reg[source2] >> shift_amt;
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
+}
+
+void Rtype::SRA(Memory& mem) {
+    unsigned int temp = 0 - bitwise::isolate(mem.reg[dest],1,31);
+    mem.reg[dest] = (mem.reg[source2] >> shift_amt) & temp << (32-shift_amt);
+    mem.pc = mem.ahead_pc;
+    mem.ahead_pc++;
+}
+
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
     mem.pc = mem.ahead_pc;
