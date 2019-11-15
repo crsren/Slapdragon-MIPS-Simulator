@@ -10,7 +10,7 @@
 #include "helpers.h"
 #include "memory.h"
 
-void instruction::init(unsigned int& word) {
+void instruction::init(uint32_t& word) {
     opCode = bitwise::isolate(word, 26, 6);
     if (opCode == 0) {
         tag = 'R';
@@ -60,7 +60,7 @@ void instruction::run(Memory& mem) {
 
 //-------------------------------------------------
 
-void Rtype::init(unsigned int& word) {
+void Rtype::init(uint32_t& word) {
     source1 = bitwise::isolate(word,21,5);
     source2 = bitwise::isolate(word,16,5);
     dest = bitwise::isolate(word, 11,5);
@@ -207,7 +207,7 @@ void Rtype::run(Memory& mem) {
     }
 }
 
-void Itype::init(unsigned int& word) {
+void Itype::init(uint32_t& word) {
     opCode = bitwise::isolate(word, 26, 6);
     source1 = bitwise::isolate(word,21,5);
     source2 = bitwise::isolate(word,16,5);
@@ -240,7 +240,7 @@ void Itype::run(Memory& mem) {
 
 
 
-void Jtype::init(unsigned int& word) {
+void Jtype::init(uint32_t& word) {
     address = bitwise::isolate(word,0,26);
 }
 
@@ -253,33 +253,29 @@ void Jtype::run(Memory& mem) {
 // R-TYPE
 void Rtype::SLL(Memory& mem) {
     mem.reg[dest] = mem.reg[source2] << shift_amt;
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 
 void Rtype::SRL(Memory& mem) {
     mem.reg[dest] = mem.reg[source2] >> shift_amt;
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 
 void Rtype::SRA(Memory& mem) {
-    unsigned int temp = 0 - bitwise::isolate(mem.reg[dest],1,31);
-    mem.reg[dest] = (mem.reg[source2] >> shift_amt) & temp << (32-shift_amt);
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    uint32_t bottom = mem.reg[source2] >> shift_amt;
+    uint32_t top = -(mem.reg[source2] >> 31) << (32-shift_amt);
+    mem.reg[dest] = top | bottom;
+
+    mem.forward();
 }
 
 void Rtype::ADDU(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 
 void Rtype::JR(Memory& mem) {
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc = mem.iconvert(mem.reg[source1]);
-
+    mem.branch(source1);
 }
 
 void Rtype::ADD(Memory& mem) {
@@ -289,15 +285,13 @@ void Rtype::ADD(Memory& mem) {
         std::cerr << "Overflow" << '\n';
         std::exit(-10);
     }
-    mem.reg[dest] = (unsigned int) (s1 + s2);
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.reg[dest] = (uint32_t) (s1 + s2);
+    mem.forward();
 }
 
 void Rtype::MFHI(Memory& mem) {
     mem.reg[dest] = mem.hi;
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 //I-TYPE
 void Itype::ADDI(Memory& mem){
@@ -305,22 +299,19 @@ void Itype::ADDI(Memory& mem){
 }
 
 void Itype::LUI(Memory& mem){
-    unsigned int tmp  = immediate << 16;
+    uint32_t tmp  = immediate << 16;
     mem.reg[source2] = tmp;
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 
 void Itype::ORI(Memory& mem){
     mem.reg[source2] = mem.reg[source1] | immediate;
-    mem.pc = mem.ahead_pc;
-    mem.ahead_pc++;
+    mem.forward();
 }
 
 void Itype::LW(Memory& mem){
-  int offset = immediate;
-  unsigned int location = (int)mem.reg[source2] + offset;
-  mem.reg[source1] = mem.dmem[mem.dconvert(location)];
-  mem.pc = mem.ahead_pc;
-  mem.ahead_pc++;
+    int offset = immediate;
+    uint32_t location = (int)mem.reg[source2] + offset;
+    mem.reg[source1] = mem.dmem[mem.dconvert(location)];
+    mem.forward();
 }
