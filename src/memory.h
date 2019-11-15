@@ -23,10 +23,14 @@ public:
   uint32_t hi = 0;
   uint32_t lo = 0;
 
-  Memory(std::vector<unsigned char>);
+  Memory(std::vector<uint8_t>);
+
+  void branch(uint8_t target);
+  void forward();
+  void showRegisters();
+
   int iconvert(uint32_t input);
   int dconvert(uint32_t input);
-  void showRegisters();
 };
 
 
