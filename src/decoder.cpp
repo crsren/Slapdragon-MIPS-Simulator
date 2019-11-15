@@ -19,11 +19,11 @@ void instruction::init(uint32_t& word) {
         std::cerr << "My mom is an rtype" << std::endl;
 
     } else if (opCode == 2 || opCode == 3) {
-        tag = 'I';
-        j.init(word);
-    } else {
         tag = 'J';
         i.init(word);
+    } else {
+        tag = 'I';
+        j.init(word);
     }
 }
 
@@ -33,7 +33,7 @@ void instruction::showContent() {
         std::cerr << "[Source1: " << bitwise::get_binary(r.source1) << " | Source2: " << bitwise::get_binary(r.source2) << " | Dest: " << bitwise::get_binary(r.dest) << " | Shift Amt: " << bitwise::get_binary(r.shift_amt) << " | Fn Code: " << bitwise::get_binary(r.fnCode) << " ]" << std::endl;
         break;
 
-        case 'I': std::cerr << "[OpCode: " << bitwise::get_binary(opCode) <<" | Source1: " << bitwise::get_binary(i.source1) << " | Source2/Dest:" << bitwise::get_binary(i.source2) << " | Address: " << bitwise::get_binary(i.address) << " ]" << std::endl;
+        case 'I': std::cerr << "[OpCode: " << bitwise::get_binary(opCode) <<" | Source1: " << bitwise::get_binary(i.source1) << " | Source2/Dest:" << bitwise::get_binary(i.source2) << " | immediate: " << bitwise::get_binary(i.immediate) << " ]" << std::endl;
         break;
 
         case 'J': std::cerr << "[OpCode: " << bitwise::get_binary(opCode) << " | Address:" << bitwise::get_binary(j.address) << " ]" << std::endl;
@@ -167,13 +167,17 @@ void Itype::init(uint32_t& word) {
     opCode = bitwise::isolate(word, 0, 6);
     source1 = bitwise::isolate(word,5,5);
     source2 = bitwise::isolate(word,10,5);
-    address = bitwise::isolate(word, 15,16);
+    immediate = bitwise::isolate(word, 15,16);
 }
 
 void Itype::run(Memory& mem) {
   switch(opCode) {
     case 0x08:
     ADDI(mem);
+    break;
+
+    case 0x0F:
+    LUI(mem);
     break;
 
 
@@ -184,6 +188,10 @@ void Itype::run(Memory& mem) {
 
 void Jtype::init(uint32_t& word) {
     address = bitwise::isolate(word,5,26);
+}
+
+void Jtype::run(Memory& mem) {
+
 }
 
 // --------------------------------------------------------------------
@@ -223,4 +231,12 @@ void Rtype::MFHI(Memory& mem) {
 //I-TYPE
 void Itype::ADDI(Memory& mem){
 
+}
+
+void Itype::LUI(Memory& mem){
+  std::cerr << "LUI" << '\n';
+  uint32_t tmp  = immediate << 16;
+  mem.reg[source2] = tmp;
+  mem.pc = mem.ahead_pc;
+  mem.ahead_pc++;
 }

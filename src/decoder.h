@@ -43,12 +43,14 @@ public:
     uint8_t opCode;
     uint8_t source1;
     uint8_t source2;
-    uint32_t address;
+    uint32_t immediate;
 
     void init(uint32_t& word);
     void run(Memory& mem);
 
     void ADDI(Memory& mem);
+    void LUI(Memory& mem);
+
 };
 
 class Jtype {
@@ -56,6 +58,7 @@ public:
     uint32_t address;
 
     void init(uint32_t& word);
+    void run(Memory& mem);
 };
 
 class instruction {
