@@ -67,7 +67,6 @@ void Rtype::init(uint32_t& word) {
     shift_amt = bitwise::isolate(word, 6,5);
     fnCode = bitwise::isolate(word, 0,6);
 
-    //since "non-const static data member must be initialized out of line"
     //fnMap[0b00100001] = ADDU;
 }
 
@@ -75,18 +74,17 @@ void Rtype::run(Memory& mem) {
     switch(fnCode) {
         case 0x00:
         SLL(mem);
+        std::cerr << "SLL" << '\n';
         break;
 
         case 0x02:
-        //SRL(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SRL(mem);
+        std::cerr << "SRL" << '\n';
         break;
 
         case 0x03:
-        //SRA(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SRA(mem);
+        std::cerr << "SRA" << '\n';
         break;
 
         case 0x08:  //0b00100001:
@@ -100,20 +98,20 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x11:  //0b00100001:
-        //MTHI(mem);
-        std::cerr << "Not implemented yet." << std::endl;
+        MTHI(mem);
+        std::cerr << "MTHI" << std::endl;
         exit(-1);
         break;
 
         case 0x12:  //0b00100001:
-        //MFLO(mem);
-        std::cerr << "Not implemented yet." << std::endl;
+        MFLO(mem);
+        std::cerr << "MFLO" << std::endl;
         exit(-1);
         break;
 
         case 0x13:  //0b00100001:
-        //MTLO(mem);
-        std::cerr << "Not implemented yet." << std::endl;
+        MTLO(mem);
+        std::cerr << "MTLO" << std::endl;
         exit(-1);
         break;
 
@@ -221,15 +219,19 @@ void Itype::run(Memory& mem) {
         std::cerr << "ADDI" << '\n';
         break;
 
+        case 0x0D:
+        ORI(mem);
+        std::cerr << "ORI" << '\n';
+        break;
+
         case 0x0F:
         LUI(mem);
         std::cerr << "LUI" << '\n';
         break;
 
-        case 0x0D:
-        ORI(mem);
-        std::cerr << "ORI" << '\n';
-        break;
+        case 0x23:
+        LW(mem);
+        std::cerr << "LW" << '\n';
 
         default:
         std::cerr << "Non-existing instruction." << '\n';
@@ -269,13 +271,28 @@ void Rtype::SRA(Memory& mem) {
     mem.forward();
 }
 
-void Rtype::ADDU(Memory& mem) {
-    mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
+void Rtype::JR(Memory& mem) {
+    mem.branch(source1);
+}
+
+void Rtype::MFHI(Memory& mem) {
+    mem.reg[dest] = mem.hi;
     mem.forward();
 }
 
-void Rtype::JR(Memory& mem) {
-    mem.branch(source1);
+void Rtype::MTHI(Memory& mem) {
+    mem.hi = mem.reg[source1];
+    mem.forward();
+}
+
+void Rtype::MFLO(Memory& mem) {
+    mem.reg[dest] = mem.lo;
+    mem.forward();
+}
+
+void Rtype::MTLO(Memory& mem) {
+    mem.lo = mem.reg[source1];
+    mem.forward();
 }
 
 void Rtype::ADD(Memory& mem) {
@@ -289,13 +306,22 @@ void Rtype::ADD(Memory& mem) {
     mem.forward();
 }
 
-void Rtype::MFHI(Memory& mem) {
-    mem.reg[dest] = mem.hi;
+void Rtype::ADDU(Memory& mem) {
+    mem.reg[dest] = mem.reg[source1] + mem.reg[source2];
     mem.forward();
 }
+
+//----------------------------------------------------------
 //I-TYPE
 void Itype::ADDI(Memory& mem){
 
+    /* thinking maybe like this?
+    if(!int_overflow(a,b) ) {
+        mem.reg[source2] = mem.reg[source1] + immediate;
+    }
+    */
+
+    std::cerr << "not fully implemented." << '\n';
 }
 
 void Itype::LUI(Memory& mem){
@@ -310,8 +336,7 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-    int offset = immediate;
-    uint32_t location = (int)mem.reg[source2] + offset;
+    uint32_t location = (int)mem.reg[source2] + immediate;
     mem.reg[source1] = mem.dmem[mem.dconvert(location)];
     mem.forward();
 }

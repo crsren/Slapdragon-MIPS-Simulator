@@ -30,11 +30,12 @@ struct Rtype {
     void SRA(Memory& mem);
     void JR(Memory& mem);
     void MFHI(Memory& mem);
-    
+    void MTHI(Memory& mem);
+    void MFLO(Memory& mem);
+    void MTLO(Memory& mem);
+
     void ADD(Memory& mem);
     void ADDU(Memory& mem);
-
-    //void JR();
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
@@ -52,9 +53,10 @@ public:
     void run(Memory& mem);
 
     void ADDI(Memory& mem);
-    void LUI(Memory& mem);
     void ORI(Memory& mem);
+    void LUI(Memory& mem);
     void LW(Memory& mem);
+    void BEQ(Memory& mem);
 
 };
 
