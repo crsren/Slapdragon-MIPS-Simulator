@@ -1,11 +1,8 @@
 #!/bin/bash
 
-./bin/simulator
 EXIT_STATUS = $?
+TEST = $("ADDU-wrap") #$1
+SIMULATOR = $("mips_simulator")
+#later the input $1 will be the name of the simulator and the tests wil be predefined (?)
 
-if [ $EXIT_STATUS -e 0]; then
-    echo "Succeeded";
-else
-    echo "Failed";
-    # catch different exit cases
-fi
+echo ./bin/$(SIMULATOR) ./testsThomas/$(TEST).mips.bin

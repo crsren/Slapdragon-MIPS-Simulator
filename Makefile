@@ -1,6 +1,9 @@
 #for testing, incomplete as formal makefile
 
 CC := g++ -std=c++11
+CPPFLAGS := -W -Wall
+
+#mips linux gnu stuff !!!
 
 PRG_SRC := $(wildcard ./src/*.cpp)
 
@@ -12,12 +15,12 @@ o: $(PRG_SRC)
 	mv *.o ./build
 
 $(PRG_SRC):
-	$(CC) -c $@
+	$(CC) $(CPPFLAGS) -c $@
 
 
 simulator: ./build/*.o
 	mkdir -p bin
-	$(CC) ./build/*.o -o ./bin/mips_simulator
+	$(CC) $(CPPFLAGS) ./build/*.o -o ./bin/mips_simulator
 
 clean:
 	rm -rf ./bin/*
@@ -26,4 +29,5 @@ clean:
 
 testbench: ./src/testbench.sh
 	mkdir -p bin
-	cp ./src/testbench.sh ./bin/mips_testbench.sh
+	cp ./src/testbench.sh ./bin/mips_testbench
+	chmod 755 ./bin/mips_testbench
