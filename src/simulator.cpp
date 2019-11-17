@@ -20,48 +20,48 @@ int main(int argc, char *argv[]) {
 
 
 
-std::cerr << "Simulating binary " << argv[1] << std::endl;
+    std::cerr << "Simulating binary " << argv[1] << std::endl;
 
-std::ifstream bin_stream(argv[1], std::ios::binary);
-
-
-//get length of binary instructions of input file
-bin_stream.seekg(0, bin_stream.end);
-int bin_length = bin_stream.tellg();
-bin_stream.seekg(0, bin_stream.beg);
-
-std::cerr << bin_length << '\n';
-std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
-
-std::cerr << "Read " << immembyte.size() << std::endl;
-Memory mem(immembyte);
-printvector(mem.imem);
+    std::ifstream bin_stream(argv[1], std::ios::binary);
 
 
-instruction ins;
-while(1) {
+    //get length of binary instructions of input file
+    bin_stream.seekg(0, bin_stream.end);
+    int bin_length = bin_stream.tellg();
+    bin_stream.seekg(0, bin_stream.beg);
+
+    std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
+
+    // std::cerr << "Read " << immembyte.size() << std::endl;
+    Memory mem(immembyte);
+    // printvector(mem.imem);
 
 
-if (mem.pc >= mem.imem.size()){
-std::cerr << "Sucess finished" << '\n';
-exit(0);
-} else {
-std::cerr << "PC at " << mem.pc << std::endl;
-}
+    instruction ins;
+    while(1) {
 
-uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
-ins.init(word);
-ins.showContent();
-ins.run(mem);
-mem.showRegisters();
 
-        if (mem.pc == -1){
-          exit(bitwise::isolate(mem.reg[2], 0, 8));
+        if (mem.pc >= mem.imem.size()){
+            std::cerr << "PC > imem; Finished" << '\n';
+            exit(0);
+        } else {
+            // std::cerr << "PC at " << mem.pc << std::endl;
         }
-        std::cin.get();
+
+        uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
+        ins.init(word);
+        //ins.showContent();
+        ins.run(mem);
+        //mem.showRegisters();
+
+        if (mem.pc == -1) {
+            std::cerr << "PC = -1; Finished" << '\n';
+            exit(bitwise::isolate(mem.reg[2], 0, 8));
+        }
+        // std::cin.get();
     }
 
-return 1;
+    return 1;
 
 }
 

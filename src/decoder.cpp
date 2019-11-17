@@ -16,7 +16,7 @@ void instruction::init(uint32_t& word) {
         tag = 'R';
         r.init(word);
         //run = &r.fnMap[r.fnCode];
-        std::cerr << "Rtype instruction" << std::endl;
+        // std::cerr << "Rtype instruction" << std::endl;
 
     } else if (opCode == 2 || opCode == 3) {
         tag = 'J';
@@ -24,7 +24,7 @@ void instruction::init(uint32_t& word) {
     } else {
         tag = 'I';
         i.init(word);
-        std::cerr << "Jtype instruction" << std::endl;
+        // std::cerr << "Jtype instruction" << std::endl;
     }
 }
 
