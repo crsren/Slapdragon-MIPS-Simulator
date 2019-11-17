@@ -23,11 +23,11 @@ public:
   int bin_length;
 
   std::vector<uint32_t> reg;
-  std::vector<uint32_t> imem;
-  std::vector<uint32_t> dmem;
+  std::vector<uint8_t> imem;
+  std::vector<uint8_t> dmem;
 
   uint32_t pc = 0;
-  uint32_t ahead_pc = 1;
+  uint32_t ahead_pc = 4;
   uint32_t hi = 0;
   uint32_t lo = 0;
 
@@ -37,9 +37,9 @@ public:
   void branch(uint8_t target);
   void forward();
   void showRegisters();
+  uint32_t instrtoword(int start);
+  uint32_t datatoword(int start);
 
-  //int iconvert(uint32_t input);
-  //int dconvert(uint32_t input);
 
   unsigned int readconvert(std::string& type, uint32_t input);
   unsigned int writeconvert(std::string& type, uint32_t input);

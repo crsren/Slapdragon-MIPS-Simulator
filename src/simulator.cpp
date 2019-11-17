@@ -40,14 +40,9 @@ printvector(mem.imem);
 
 instruction ins;
 while(1) {
-  if (mem.pc >= mem.imem.size()){
-  std::cerr << "Sucess finished" << '\n';
-  exit(0);
-  } else {
   std::cerr << "PC at " << mem.pc << std::endl;
-  }
 
-  uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
+  uint32_t word = mem.instrtoword(mem.pc);
   std::cerr << bitwise::get_binary(word) << '\n';
   ins.init(word);
   ins.showContent();
@@ -83,9 +78,11 @@ return 1;
 
 
 void printvector(std::vector<uint8_t> v){
+    std::cerr << "[";
     for (int i=0; i < v.size(); i++){
-        std::cerr << bitwise::get_binary(v[i]) << '\n';
+        std::cerr << bitwise::get_binary(v[i]) << ", ";
     }
+    std::cerr << "]" << '\n';
 }
 
 void printvector(std::vector<uint32_t> v){

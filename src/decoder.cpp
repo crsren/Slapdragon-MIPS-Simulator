@@ -20,7 +20,7 @@ void instruction::init(uint32_t& word) {
 
     } else if (opCode == 2 || opCode == 3) {
         tag = 'J';
-        std::cerr << "Itype instruction" << std::endl;
+        std::cerr << "Jtype instruction" << std::endl;
         j.init(word);
     } else {
         tag = 'I';
@@ -349,7 +349,7 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-    uint32_t location = (int)mem.reg[source2] + immediate;
+    uint32_t location = mem.reg[source2] + (int)immediate;
     if (location % 4 != 0){
       std::cerr << "Address Error, not alligned address" << '\n';
       exit(-11);
@@ -357,12 +357,48 @@ void Itype::LW(Memory& mem){
     std::string type = "";
     unsigned int value = mem.readconvert(type, location);
     if (type == "imem"){
-      mem.reg[source1] = (int)mem.imem[value];
+      mem.reg[source1] = (int)mem.instrtoword(value);
     } else if (type == "dmem"){
-      mem.reg[source1] = (int)mem.dmem[value];
+      mem.reg[source1] = (int)mem.datatoword(value);
     } else if (type == "getc"){
       mem.reg[source1] = value;
     }
     std::cerr << bitwise::get_binary(mem.reg[source1]) << '\n';
     mem.forward();
+}
+
+void Itype::LWL(Memory& mem){
+    unsigned int location = mem.reg[source2] + (int)immediate;
+
+    std::string type = "";
+    unsigned int value = mem.readconvert(type, location);
+
+    if (type == "imem"){
+      int tmp = (int)mem.instrtoword(value);
+      mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
+    } else if (type == "dmem"){
+      int tmp = (int)mem.datatoword(value);
+      mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
+    } else if (type == "getc"){
+      int tmp = value;
+      mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
+    }
+}
+
+void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
+    unsigned int location = mem.reg[source2] + (int)immediate;
+
+    std::string type = "";
+    unsigned int value = mem.readconvert(type, location);
+
+    if (type == "imem"){
+      int tmp = (int)mem.instrtoword(value);
+      mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
+    } else if (type == "dmem"){
+      int tmp = (int)mem.datatoword(value);
+      mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
+    } else if (type == "getc"){
+      int tmp = value;
+      mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
+    }
 }
