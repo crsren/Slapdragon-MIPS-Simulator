@@ -22,6 +22,10 @@ simulator: ./build/*.o
 	mkdir -p bin
 	$(CC) $(CPPFLAGS) ./build/*.o -o ./bin/mips_simulator
 
+%.o: ./src/%.cpp
+	mkdir -p build
+	$(CC) $(CPPFLAGS) -c $< -o ./build/$@
+
 clean:
 	rm -rf ./bin/*
 	rm -rf ./build/*
