@@ -4,20 +4,49 @@ chmod 755 ttt/*
 
 SIMULATOR=$1
 
-> out.csv #clean csv file
+function getStatus {
+	if [ $1 == $2 ] && [ $3 == $3 ]
+	then
+		Status="Pass"
+	else
+		Status="Fail"
+		echo "!!!" Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!!!"
+	fi
+}
 
-for i in ttt/ADDU-wrap.mips.bin; do
+echo TestID,Instruction,Status,Author,Message > out.csv #clean csv file and write header row
 
-TEST=${i%%.*}; #remove suffix
+for i in ttt/*.bin
+do
 
-$SIMULATOR $i
+TEST=${i%%.*} #remove suffix
 
 echo "------------------------------------------------------------"
-echo $TEST
 
-#echo $? > $TEST.got.retcode
+#run simulator with testcase
+$SIMULATOR $i
 
-#echo $1 > $TEST.got.stdout #not sure if this will capture all stdcout
+#store return code and stdout
+got_RETCODE=$?
+got_STDOUT=$1 #not sure if this will capture all of stdout
+$got_RETCODE > $TEST.got.retcode
+$got_STDOUT > $TEST.got.stdout
 
-cat $TEST.got.retcode" " >> out.csv
+#load references
+ref_RETCODE=$(cat $TEST.ref.retcode)
+ref_STDOUT=$(cat $TEST.ref.stdout)
+
+#define output variables
+TestID=${TEST##*/}
+Instruction=${TestID%%-*}
+#check when exactly STATUS is supposed to be FAIL or PASS !!!!!!!!!!!!
+getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
+
+#check where we are supposed to get Author from !!!!!!!!!!!!!!
+Author="Slapdragon"
+#Message (optional (what went wrong), free form) !!!!!!!!!
+Message="-"
+
+echo $TestID","$Instruction","$Status","$Author","$Message >> out.csv
+
 done
