@@ -20,8 +20,10 @@ for BIN in ttt/*.bin
 do
 
 TEST=${BIN%%.*} #remove suffix
+TestID=${TEST##*/}
 
 echo "------------------------------------------------------------"
+echo $TestID
 
 #run simulator with testcase and redirect stdout and stderr
 $SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr 
@@ -36,8 +38,7 @@ ref_RETCODE=$(cat $TEST.ref.retcode)
 ref_STDOUT=$(cat $TEST.ref.stdout)
 
 #define output variables
-TestID=${TEST##*/}
-echo $TestID
+
 Instruction=${TestID%%-*}
 #check when exactly STATUS is supposed to be FAIL or PASS !!!!!!!!!!!!
 getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
