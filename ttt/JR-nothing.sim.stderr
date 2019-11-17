@@ -1,0 +1,5 @@
+Simulating binary ttt/JR-nothing.mips.bin
+input: 0, offset: 285212672
+JR
+SLL
+PC = -1; Finished

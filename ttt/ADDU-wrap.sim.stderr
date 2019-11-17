@@ -1,0 +1,10 @@
+Simulating binary ttt/ADDU-wrap.mips.bin
+LUI
+ORI
+LUI
+ORI
+ADDU
+input: 0, offset: 285212672
+JR
+SLL
+PC = -1; Finished

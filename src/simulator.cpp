@@ -20,32 +20,31 @@ int main(int argc, char *argv[]) {
 
 
 
-std::cerr << "Simulating binary " << argv[1] << std::endl;
+    std::cerr << "Simulating binary " << argv[1] << std::endl;
 
-std::ifstream bin_stream(argv[1], std::ios::binary);
-
-
-//get length of binary instructions of input file
-bin_stream.seekg(0, bin_stream.end);
-int bin_length = bin_stream.tellg();
-bin_stream.seekg(0, bin_stream.beg);
-
-std::cerr << bin_length << '\n';
-std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
-
-std::cerr << "Read " << immembyte.size() << std::endl;
-Memory mem(immembyte);
-printvector(mem.imem);
+    std::ifstream bin_stream(argv[1], std::ios::binary);
 
 
+    //get length of binary instructions of input file
+    bin_stream.seekg(0, bin_stream.end);
+    int bin_length = bin_stream.tellg();
+    bin_stream.seekg(0, bin_stream.beg);
+
+    std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
+
+    // std::cerr << "Read " << immembyte.size() << std::endl;
+    Memory mem(immembyte);
+    // printvector(mem.imem);
+
+ 
 instruction ins;
 while(1) {
-  std::cerr << "PC at " << mem.pc << std::endl;
+  //std::cerr << "PC at " << mem.pc << std::endl;
 
   uint32_t word = mem.instrtoword(mem.pc);
   std::cerr << bitwise::get_binary(word) << '\n';
   ins.init(word);
-  ins.showContent();
+  //ins.showContent();
   ins.run(mem);
   mem.showRegisters();
 
