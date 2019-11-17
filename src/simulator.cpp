@@ -36,32 +36,25 @@ int main(int argc, char *argv[]) {
     Memory mem(immembyte);
     // printvector(mem.imem);
 
+ 
+instruction ins;
+while(1) {
+  //std::cerr << "PC at " << mem.pc << std::endl;
 
-    instruction ins;
-    while(1) {
+  uint32_t word = mem.instrtoword(mem.pc);
+  std::cerr << bitwise::get_binary(word) << '\n';
+  ins.init(word);
+  //ins.showContent();
+  ins.run(mem);
+  mem.showRegisters();
 
+  if (mem.pc == -1){
+    exit(bitwise::isolate(mem.reg[2], 0, 8));
+  }
+  std::cin.get();
+}
 
-        if (mem.pc >= mem.imem.size()){
-            std::cerr << "PC > imem; Finished" << '\n';
-            exit(0);
-        } else {
-            // std::cerr << "PC at " << mem.pc << std::endl;
-        }
-
-        uint32_t word = mem.imem[mem.pc]; // !!!!! why / 4
-        ins.init(word);
-        //ins.showContent();
-        ins.run(mem);
-        //mem.showRegisters();
-
-        if (mem.pc == -1) {
-            std::cerr << "PC = -1; Finished" << '\n';
-            exit(bitwise::isolate(mem.reg[2], 0, 8));
-        }
-        // std::cin.get();
-    }
-
-    return 1;
+return 1;
 
 }
 
@@ -84,14 +77,15 @@ int main(int argc, char *argv[]) {
 
 
 void printvector(std::vector<uint8_t> v){
+    std::cerr << "[";
     for (int i=0; i < v.size(); i++){
-        std::cerr << bitwise::get_binary(v[i]) << '\n';
+        std::cerr << bitwise::get_binary(v[i]) << ", ";
     }
+    std::cerr << "]" << '\n';
 }
 
 void printvector(std::vector<uint32_t> v){
     for (int i=0; i < v.size(); i++){
         std::cerr << bitwise::get_binary(v[i]) << '\n';
-
     }
 }

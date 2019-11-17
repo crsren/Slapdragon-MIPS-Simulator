@@ -8,14 +8,9 @@
 #include "helpers.h"
 
 Memory::Memory(std::vector<uint8_t> byte){
-
-    for (int i=0; i < byte.size(); i = i + 4){
-        uint32_t tmp = byte[i+3] | byte[i+2] << 8 | byte[i+1] << 16 | byte[i] << 24;
-        imem.push_back(tmp);
-    }
-
+    imem = byte;
+	  reg.resize(32);
     dmem.resize(dmem_length);
-    reg.resize(32);
 }
 
 Memory::Memory() {
@@ -24,35 +19,86 @@ Memory::Memory() {
 
 void Memory::branch(uint8_t target) {
     pc = ahead_pc;
-    ahead_pc = iconvert(reg[target]);
+    ahead_pc = execconvert(reg[target]);
 }
 
 void Memory::forward() {
     pc = ahead_pc;
-    ahead_pc ++;
+    ahead_pc = ahead_pc + 4;
 }
 
-int Memory::iconvert(uint32_t input){
+unsigned int Memory::readconvert(std::string& type, uint32_t input){
     std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
-    if (input == 0){
-        return -1;
-    }else if ((input < imem_off) || (input > imem_off + imem_length) ){
-        std::cerr << "Memmory Error" << '\n';
-        std::exit(-10);
+    if ((input >= imem_off) && (input <= imem_off + imem_length)){
+        uint32_t offset  = input - imem_off;
+        std::cerr << "final position: " << offset << '\n';
+        type = "imem";
+        return offset;
+    } else if ((input >= dmem_off) && (input <= dmem_off + dmem_length)){
+        uint32_t offset  = input - dmem_off;
+        std::cerr << "final position: " << offset << '\n';
+        type = "dmem";
+        return offset;
+    } else if (input == getc_off){
+        char tmp;
+        std::cin >> tmp;
+        type = "getc";
+        return (unsigned int)tmp;
+    } else{
+      std::cerr << "Memmory Error" << '\n';
+      std::exit(-10);
     }
-    uint32_t offset  = input - imem_off;
-    std::cerr << "final position: " << offset/4 << '\n';
-    return offset/4;
-
 }
 
-int Memory::dconvert(uint32_t input){
-    if ( (input < dmem_off) || (input > dmem_off + dmem_length) || (bitwise::isolate(input, 2, 0) != 0 )){
-        std::cerr << "Memmory Error" << '\n';
-        std::exit(-10);
+unsigned int Memory::writeconvert(std::string& type, uint32_t input){
+  std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
+  if ((input >= dmem_off) && (input <= dmem_off + dmem_length)){
+      uint32_t offset  = input - dmem_off;
+      std::cerr << "final position: " << offset << '\n';
+      type = "dmem";
+      return offset;
+  } else if (input == putc_off){
+      char tmp;
+      std::cout << tmp;
+      type = "putc";
+      return (unsigned int)tmp;
+  } else{
+    std::cerr << "Memmory Error" << '\n';
+    std::exit(-10);
+  }
+}
+
+unsigned int Memory::execconvert(uint32_t input){
+    if (input == null_off){
+      return -1;
+    } else if ((input >= imem_off) && (input <= imem_off + imem_length)){
+        uint32_t offset  = input - imem_off;
+        std::cerr << "final position: " << offset << '\n';
+        return offset;
+    } else{
+      std::cerr << "Memmory Error" << '\n';
+      std::exit(-10);
     }
-    uint32_t offset  = input - dmem_off;
-    return offset/4;
+}
+
+uint32_t Memory::instrtoword(int start){
+    try {
+        uint32_t tmp = imem[start+3] | imem[start+2] << 8 | imem[start+1] << 16 | imem[start] << 24;
+        return tmp;
+    }
+    catch (std::out_of_range) {
+        exit(-11);
+    }
+}
+
+uint32_t Memory::datatoword(int start){
+    try {
+        uint32_t tmp = dmem[start+3] | dmem[start+2] << 8 | dmem[start+1] << 16 | dmem[start] << 24;
+        return tmp;
+    }
+    catch (std::out_of_range) {
+        exit(-11);
+    }
 }
 
 void Memory::showRegisters(){
