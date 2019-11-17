@@ -10,34 +10,34 @@ function getStatus {
 		Status="Pass"
 	else
 		Status="Fail"
-		echo "!!!" Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!!!"
+		echo Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!"
 	fi
 }
 
 echo TestID,Instruction,Status,Author,Message > out.csv #clean csv file and write header row
 
-for i in ttt/*.bin
+for BIN in ttt/*.bin
 do
 
-TEST=${i%%.*} #remove suffix
+TEST=${BIN%%.*} #remove suffix
 
 echo "------------------------------------------------------------"
 
-#run simulator with testcase
-$SIMULATOR $i
+#run simulator with testcase and redirect stdout and stderr
+$SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr 
 
-#store return code and stdout
+#capture and store return code
 got_RETCODE=$?
-got_STDOUT=$1 #not sure if this will capture all of stdout
-$got_RETCODE > $TEST.got.retcode
-$got_STDOUT > $TEST.got.stdout
+echo $got_RETCODE > $TEST.got.retcode
 
-#load references
+#load references (used in getStatus)
+got_STDOUT=$(cat $TEST.got.stdout)
 ref_RETCODE=$(cat $TEST.ref.retcode)
 ref_STDOUT=$(cat $TEST.ref.stdout)
 
 #define output variables
 TestID=${TEST##*/}
+echo $TestID
 Instruction=${TestID%%-*}
 #check when exactly STATUS is supposed to be FAIL or PASS !!!!!!!!!!!!
 getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
@@ -45,7 +45,7 @@ getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 #check where we are supposed to get Author from !!!!!!!!!!!!!!
 Author="Slapdragon"
 #Message (optional (what went wrong), free form) !!!!!!!!!
-Message="-"
+Message=$(cat $TEST.sim.stderr)
 
 echo $TestID","$Instruction","$Status","$Author","$Message >> out.csv
 
