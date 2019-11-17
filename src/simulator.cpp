@@ -42,7 +42,7 @@ instruction ins;
 while(1) {
   std::cerr << "PC at " << mem.pc << std::endl;
 
-  uint32_t word = mem.instrtoword(mem.pc);
+  uint32_t word = mem.instrToWord(mem.pc);
   std::cerr << bitwise::get_binary(word) << '\n';
   ins.init(word);
   ins.showContent();

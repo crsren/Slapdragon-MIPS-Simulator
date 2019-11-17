@@ -37,13 +37,13 @@ public:
   void branch(uint8_t target);
   void forward();
   void showRegisters();
-  uint32_t instrtoword(int start);
-  uint32_t datatoword(int start);
+  uint32_t instrToWord(int start);
+  uint32_t dataToWord(int start);
 
 
-  unsigned int readconvert(std::string& type, uint32_t input);
-  unsigned int writeconvert(std::string& type, uint32_t input);
-  unsigned int execconvert(uint32_t input);
+  unsigned int readConvert(std::string& type, uint32_t input);
+  unsigned int writeConvert(std::string& type, uint32_t input);
+  unsigned int execConvert(uint32_t input);
 };
 
 

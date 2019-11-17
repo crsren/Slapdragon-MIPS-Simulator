@@ -1,8 +1,52 @@
 #!/bin/bash
 
-EXIT_STATUS = $?
-TEST = $("ADDU-wrap") #$1
-SIMULATOR = $("mips_simulator")
-#later the input $1 will be the name of the simulator and the tests wil be predefined (?)
+chmod 755 ttt/*
 
-echo ./bin/$(SIMULATOR) ./testsThomas/$(TEST).mips.bin
+SIMULATOR=$1
+
+function getStatus {
+	if [ $1 == $2 ] && [ $3 == $3 ]
+	then
+		Status="Pass"
+	else
+		Status="Fail"
+		echo Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!"
+	fi
+}
+
+echo TestID,Instruction,Status,Author,Message > out.csv #clean csv file and write header row
+
+for BIN in ttt/*.bin
+do
+
+TEST=${BIN%%.*} #remove suffix
+
+echo "------------------------------------------------------------"
+
+#run simulator with testcase and redirect stdout and stderr
+$SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr 
+
+#capture and store return code
+got_RETCODE=$?
+echo $got_RETCODE > $TEST.got.retcode
+
+#load references (used in getStatus)
+got_STDOUT=$(cat $TEST.got.stdout)
+ref_RETCODE=$(cat $TEST.ref.retcode)
+ref_STDOUT=$(cat $TEST.ref.stdout)
+
+#define output variables
+TestID=${TEST##*/}
+echo $TestID
+Instruction=${TestID%%-*}
+#check when exactly STATUS is supposed to be FAIL or PASS !!!!!!!!!!!!
+getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
+
+#check where we are supposed to get Author from !!!!!!!!!!!!!!
+Author="Slapdragon"
+#Message (optional (what went wrong), free form) !!!!!!!!!
+Message=$(cat $TEST.sim.stderr)
+
+echo $TestID","$Instruction","$Status","$Author","$Message >> out.csv
+
+done

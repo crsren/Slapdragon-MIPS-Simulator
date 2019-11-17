@@ -355,11 +355,11 @@ void Itype::LW(Memory& mem){
       exit(-11);
     }
     std::string type = "";
-    unsigned int value = mem.readconvert(type, location);
+    unsigned int value = mem.readConvert(type, location);
     if (type == "imem"){
-      mem.reg[source1] = (int)mem.instrtoword(value);
+      mem.reg[source1] = (int)mem.instrToWord(value);
     } else if (type == "dmem"){
-      mem.reg[source1] = (int)mem.datatoword(value);
+      mem.reg[source1] = (int)mem.dataToWord(value);
     } else if (type == "getc"){
       mem.reg[source1] = value;
     }
@@ -371,13 +371,13 @@ void Itype::LWL(Memory& mem){
     unsigned int location = mem.reg[source2] + (int)immediate;
 
     std::string type = "";
-    unsigned int value = mem.readconvert(type, location);
+    unsigned int value = mem.readConvert(type, location);
 
     if (type == "imem"){
-      int tmp = (int)mem.instrtoword(value);
+      int tmp = (int)mem.instrToWord(value);
       mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
     } else if (type == "dmem"){
-      int tmp = (int)mem.datatoword(value);
+      int tmp = (int)mem.dataToWord(value);
       mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
     } else if (type == "getc"){
       int tmp = value;
@@ -389,13 +389,13 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
     unsigned int location = mem.reg[source2] + (int)immediate;
 
     std::string type = "";
-    unsigned int value = mem.readconvert(type, location);
+    unsigned int value = mem.readConvert(type, location);
 
     if (type == "imem"){
-      int tmp = (int)mem.instrtoword(value);
+      int tmp = (int)mem.instrToWord(value);
       mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
     } else if (type == "dmem"){
-      int tmp = (int)mem.datatoword(value);
+      int tmp = (int)mem.dataToWord(value);
       mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
     } else if (type == "getc"){
       int tmp = value;

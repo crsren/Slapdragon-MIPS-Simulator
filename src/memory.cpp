@@ -19,7 +19,7 @@ Memory::Memory() {
 
 void Memory::branch(uint8_t target) {
     pc = ahead_pc;
-    ahead_pc = execconvert(reg[target]);
+    ahead_pc = execConvert(reg[target]);
 }
 
 void Memory::forward() {
@@ -27,7 +27,7 @@ void Memory::forward() {
     ahead_pc = ahead_pc + 4;
 }
 
-unsigned int Memory::readconvert(std::string& type, uint32_t input){
+unsigned int Memory::readConvert(std::string& type, uint32_t input){
     std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
     if ((input >= imem_off) && (input <= imem_off + imem_length)){
         uint32_t offset  = input - imem_off;
@@ -50,7 +50,7 @@ unsigned int Memory::readconvert(std::string& type, uint32_t input){
     }
 }
 
-unsigned int Memory::writeconvert(std::string& type, uint32_t input){
+unsigned int Memory::writeConvert(std::string& type, uint32_t input){
   std::cerr << "input: " << input << ", offset: " << imem_off + imem_length << '\n';
   if ((input >= dmem_off) && (input <= dmem_off + dmem_length)){
       uint32_t offset  = input - dmem_off;
@@ -68,7 +68,7 @@ unsigned int Memory::writeconvert(std::string& type, uint32_t input){
   }
 }
 
-unsigned int Memory::execconvert(uint32_t input){
+unsigned int Memory::execConvert(uint32_t input){
     if (input == null_off){
       return -1;
     } else if ((input >= imem_off) && (input <= imem_off + imem_length)){
@@ -81,7 +81,7 @@ unsigned int Memory::execconvert(uint32_t input){
     }
 }
 
-uint32_t Memory::instrtoword(int start){
+uint32_t Memory::instrToWord(int start){
     try {
         uint32_t tmp = imem[start+3] | imem[start+2] << 8 | imem[start+1] << 16 | imem[start] << 24;
         return tmp;
@@ -91,7 +91,7 @@ uint32_t Memory::instrtoword(int start){
     }
 }
 
-uint32_t Memory::datatoword(int start){
+uint32_t Memory::dataToWord(int start){
     try {
         uint32_t tmp = dmem[start+3] | dmem[start+2] << 8 | dmem[start+1] << 16 | dmem[start] << 24;
         return tmp;
