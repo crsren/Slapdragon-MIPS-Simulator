@@ -45,6 +45,7 @@ getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 
 #check where we are supposed to get Author from !!!!!!!!!!!!!!
 Author="Slapdragon"
+#Author=$(cat $TEST.author)
 #Message (optional (what went wrong), free form) !!!!!!!!!
 Message=$(cat $TEST.sim.stderr)
 
