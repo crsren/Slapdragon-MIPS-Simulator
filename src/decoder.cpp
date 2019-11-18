@@ -363,7 +363,6 @@ void Itype::LW(Memory& mem){
     } else if (type == "getc"){
       mem.reg[source1] = value;
     }
-    std::cerr << bitwise::get_binary(mem.reg[source1]) << '\n';
     mem.forward();
 }
 
@@ -383,6 +382,7 @@ void Itype::LWL(Memory& mem){
       int tmp = value;
       mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
     }
+    mem.forward();
 }
 
 void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
@@ -401,4 +401,5 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
       int tmp = value;
       mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
     }
+    mem.forward();
 }
