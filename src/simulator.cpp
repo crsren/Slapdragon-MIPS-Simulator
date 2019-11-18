@@ -36,25 +36,25 @@ int main(int argc, char *argv[]) {
     Memory mem(immembyte);
     // printvector(mem.imem);
 
- 
-instruction ins;
-while(1) {
-  //std::cerr << "PC at " << mem.pc << std::endl;
 
-  uint32_t word = mem.instrtoword(mem.pc);
-  std::cerr << bitwise::get_binary(word) << '\n';
-  ins.init(word);
-  //ins.showContent();
-  ins.run(mem);
-  mem.showRegisters();
+    instruction ins;
+    while(1) {
+        std::cerr << "PC at " << mem.pc << std::endl;
 
-  if (mem.pc == -1){
-    exit(bitwise::isolate(mem.reg[2], 0, 8));
-  }
-  std::cin.get();
-}
+        uint32_t word = mem.instrToWord(mem.pc);
+        std::cerr << bitwise::get_binary(word) << '\n';
+        ins.init(word);
+        ins.showContent();
+        ins.run(mem);
+        mem.showRegisters();
 
-return 1;
+        if (mem.pc == -1){
+            exit(bitwise::isolate(mem.reg[2], 0, 8));
+        }
+        // std::cin.get();
+    }
+
+    return 1;
 
 }
 
