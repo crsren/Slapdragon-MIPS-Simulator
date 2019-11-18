@@ -46,7 +46,7 @@ unsigned int Memory::readConvert(std::string& type, uint32_t input){
         return (unsigned int)tmp;
     } else{
       std::cerr << "Memmory Error" << '\n';
-      std::exit(-10);
+      std::exit(-11);
     }
 }
 
@@ -64,7 +64,7 @@ unsigned int Memory::writeConvert(std::string& type, uint32_t input){
       return (unsigned int)tmp;
   } else{
     std::cerr << "Memmory Error" << '\n';
-    std::exit(-10);
+    std::exit(-11);
   }
 }
 
@@ -77,7 +77,7 @@ unsigned int Memory::execConvert(uint32_t input){
         return offset;
     } else{
       std::cerr << "Memmory Error" << '\n';
-      std::exit(-10);
+      std::exit(-11);
     }
 }
 
