@@ -163,9 +163,7 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x24:  //0b00100001:
-        //AND(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        AND(mem);
         break;
 
         case 0x25:  //0b00100001:
@@ -322,8 +320,8 @@ void Rtype::ADDU(Memory& mem) {
 }
 
 void Rtype::AND(Memory& mem) {
-
-    std::cerr << "not fully implemented." << '\n';
+    mem.reg[dest] = mem.reg[source1] & mem.reg[source2];
+    mem.forward();
 }
 //----------------------------------------------------------
 //I-TYPE
