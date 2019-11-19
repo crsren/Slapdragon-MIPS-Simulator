@@ -356,8 +356,15 @@ void Itype::ORI(Memory& mem){
 
 void Itype::LB(Memory& mem){
     unsigned int effective = mem.reg[source1] + immediate;
-    char tmp = mem.dmem[readConvert(effective)];
-    mem.reg[source2] = (int)tmp;
+    std::string type ="";
+    unsigned int value = mem.readConvert(type, effective);
+    if (type == "imem"){
+        mem.reg[source1] = (int)mem.imem[value];
+    } else if (type == "dmem"){
+        mem.reg[source1] = (int)mem.dmem[value];
+    } else if (type == "getc"){
+        mem.reg[source1] = (int)value;
+    }
     mem.forward();
 }
 
