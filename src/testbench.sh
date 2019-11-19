@@ -13,7 +13,7 @@ function getStatus {
 	else
 		Status="Fail"
 		echo Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!"
-		Message="Retcode ["$1"] expected ["$2"] - Stdout ["$3"] expected ["$4"]."
+		Error="Retcode ["$1"] expected ["$2"] - Stdout ["$3"] expected ["$4"]."
 	fi
 }
 
@@ -52,12 +52,13 @@ Instruction=${TestID%%-*}
 getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 
 #check where we are supposed to get Author from !!!!!!!!!!!!!!
-Author="Slapdragon"
-#Author=$(cat $TEST.author)
+tmp=$(sed -n 1p $TEST.mips.s)
+Author=${tmp##*:}
 
 #Message (optional (what went wrong), free form) !!!!!!!!!
-#Message=$(cat $TEST.sim.stderr)
+tmp=$(sed -n 2p $TEST.mips.s)
+Message=${tmp##*#}
 
-echo $TestID","$Instruction","$Status","$Author","$Message >> out.csv
+echo $TestID","$Instruction","$Status","$Author","$Message";"$Error >> out.csv
 
 done
