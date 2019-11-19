@@ -189,8 +189,7 @@ void Rtype::run(Memory& mem) {
 
         case 0x2A:  //0b00100001:
         SLT(mem);
-        std::cerr << "SLT" << std::endl;
-        exit(-1);
+
         break;
 
         case 0x2B:  //0b00100001:
@@ -270,24 +269,20 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x0A:
-        //SLTI(mem);
+        SLTI(mem);
         std::cerr << "SLTI" << '\n';
         std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
         case 0x0B:
-        //SLTIU(mem);
+        SLTIU(mem);
         std::cerr << "SLTIU" << '\n';
         std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
         case 0x0C:
-        //ANDI(mem);
+        ANDI(mem);
         std::cerr << "ANDI" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
         case 0x0D:
@@ -296,10 +291,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x0E:
-        //XORI(mem);
+        XORI(mem);
         std::cerr << "XORI" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
         case 0x0F:
@@ -343,10 +336,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x28:
-        //SB(mem);
+        SB(mem);
         std::cerr << "SB" << '\n';
-        std::cerr << "NOT" << '\n';
-        exit(-1);
         break;
 
         case 0x29:
@@ -357,10 +348,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x2B:
-        //SW(mem);
+        SW(mem);
         std::cerr << "SW" << '\n';
-        std::cerr << "NOT" << '\n';
-        exit(-1);
         break;
 
         default:
@@ -557,6 +546,16 @@ void Itype::ADDI(Memory& mem){
         exit(-10);
     }
     mem.reg[source2] = (uint32_t)(s1 + s2);
+    mem.forward();
+}
+
+void Itype::ANDI(Memory& mem) {
+    mem.reg[source2] = mem.reg[source1] & immediate;
+    mem.forward();
+}
+
+void Itype::XORI(Memory& mem) {
+    mem.reg[source2] = mem.reg[source1] ^ immediate;
     mem.forward();
 }
 
