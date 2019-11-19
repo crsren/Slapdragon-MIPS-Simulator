@@ -1,3 +1,6 @@
+#Created by: Nikita
+#Tests DIV for dividing by zero exception.
+
 lui     v0,0x7fff
 ori     v0,v0,0xffff
 div     $a0,v1
