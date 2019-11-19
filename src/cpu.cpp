@@ -22,9 +22,10 @@ uint32_t Memory::sign_extend(uint32_t word, int msb) {
         return extension | word;
 }
 
-void Memory::branch(uint8_t target) {
+void Memory::branch(uint32_t target) {
+    reg[0] = 0;
     pc = ahead_pc;
-    ahead_pc = execConvert(reg[target]);
+    ahead_pc = execConvert(target);
 }
 
 void Memory::forward() {
@@ -109,7 +110,7 @@ uint32_t Memory::dataToWord(int start){
 
 void Memory::showRegisters(){
     std::cerr << "******************************************" << '\n';
-    for (int i = 0; i < reg.size(); i++){
+    for (unsigned int i = 0; i < reg.size(); i++){
         std::cerr << "Register " << i <<": " << +reg[i] << '\n';
     }
     std::cerr << "******************************************" << '\n';

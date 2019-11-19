@@ -59,12 +59,15 @@ public:
     void run(Memory& mem);
 
     void ADDI(Memory& mem);
+    void ADDIU(Memory& mem);
     void ORI(Memory& mem);
     void LUI(Memory& mem);
     void LW(Memory& mem);
     void BEQ(Memory& mem);
     void LB(Memory& mem);
     void LBU(Memory& mem);
+    void LH(Memory& mem);
+    void LHU(Memory& mem);
     void LWL(Memory& mem);
     void LWR(Memory& mem);
 

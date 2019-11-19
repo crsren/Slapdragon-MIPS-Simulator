@@ -7,17 +7,17 @@
 
 class Memory{
 public:
-  const int null_off = 0;
+  const unsigned int null_off = 0;
 
-  const int imem_off = 0x10000000;
-  const int imem_length = 0x1000000;
+  const unsigned int imem_off = 0x10000000;
+  const unsigned int imem_length = 0x1000000;
 
-  const int dmem_off = 0x20000000;
-  const int dmem_length = 0x4000000;
+  const unsigned int dmem_off = 0x20000000;
+  const unsigned int dmem_length = 0x4000000;
 
-  const int getc_off = 0x30000000;
+  const unsigned int getc_off = 0x30000000;
 
-  const int putc_off = 0x30000004;
+  const unsigned int putc_off = 0x30000004;
 
 
   int bin_length;

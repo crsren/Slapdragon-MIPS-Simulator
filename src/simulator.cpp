@@ -78,14 +78,14 @@ int main(int argc, char *argv[]) {
 
 void printvector(std::vector<uint8_t> v){
     std::cerr << "[";
-    for (int i=0; i < v.size(); i++){
+    for (unsigned int i=0; i < v.size(); i++){
         std::cerr << bitwise::get_binary(v[i]) << ", ";
     }
     std::cerr << "]" << '\n';
 }
 
 void printvector(std::vector<uint32_t> v){
-    for (int i=0; i < v.size(); i++){
+    for (unsigned int i=0; i < v.size(); i++){
         std::cerr << bitwise::get_binary(v[i]) << '\n';
     }
 }

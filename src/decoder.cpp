@@ -267,7 +267,7 @@ void Rtype::SRA(Memory& mem) {
 }
 
 void Rtype::JR(Memory& mem) {
-    mem.branch(source1);
+    mem.branch(mem.reg[source1]);
 }
 
 void Rtype::MFHI(Memory& mem) {
@@ -291,12 +291,21 @@ void Rtype::MTLO(Memory& mem) {
 }
 
 void Rtype::MULT(Memory& mem){
-    int s1 = (int) mem.reg[source1];
-    int s2 = (int) mem.reg[source2];
+    int s1 = (int)mem.reg[source1];
+    int s2 = (int)mem.reg[source2];
     long int tmp = s1 * s2;
-    //mem.lo = bitwise::isolate()
+    mem.lo = tmp;
+    mem.hi = tmp >> 32;
     mem.forward();
 }
+
+void Rtype::MULTU(Memory& mem){
+  long uint32_t tmp = mem.reg[source1] * mem.reg[source2];
+  mem.lo = tmp;
+  mem.hi = tmp >> 32;
+  mem.forward();
+}
+
 
 void Rtype::ADD(Memory& mem) {
     int s1 = (int) mem.reg[source1];
@@ -305,7 +314,7 @@ void Rtype::ADD(Memory& mem) {
         std::cerr << "Overflow" << '\n';
         exit(-10);
     }
-    mem.reg[dest] = (uint32_t) (s1 + s2);
+    mem.reg[dest] = (uint32_t)(s1 + s2);
     mem.forward();
 }
 
@@ -326,21 +335,28 @@ void Rtype::DIV(Memory& mem) {
     }
     int q = (int)mem.reg[source1] / (int)mem.reg[source2];
     int r = (int)mem.reg[source1] % (int)mem.reg[source2];
-    mem.lo = q;
-    mem.hi = r;
+    mem.lo = (uint32_t)q;
+    mem.hi = (uint32_t)r;
     mem.forward();
 }
 //----------------------------------------------------------
 //I-TYPE
 void Itype::ADDI(Memory& mem){
-
-    /* thinking maybe like this?
-    if(!int_overflow(a,b) ) {
-    mem.reg[source2] = mem.reg[source1] + immediate;
+    int s1 = (int) mem.reg[source1];
+    int s2 = mem.sign_extend(immediate, 15);
+    if ( ( ((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0)) ) ){
+        std::cerr << "Overflow" << '\n';
+        exit(-10);
+    }
+    mem.reg[source2] = (uint32_t)(s1 + s2);
+    mem.forward();
 }
-*/
 
-std::cerr << "not fully implemented." << '\n';
+void Itype::ADDIU(Memory& mem){
+  uint32_t s1 = mem.reg[source1];
+  uint32_t s2 = mem.sign_extend(immediate, 15);
+  mem.reg[source2] = (uint32_t)(s1 + s2);
+  mem.forward();
 }
 
 void Itype::LUI(Memory& mem){
@@ -355,35 +371,43 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LB(Memory& mem){
-    unsigned int effective = mem.reg[source1] + immediate;
+    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
-        mem.reg[source1] = (int)mem.imem[value];
+        mem.reg[source1] = mem.sign_extend(mem.imem[value], 7);
     } else if (type == "dmem"){
-        mem.reg[source1] = (int)mem.dmem[value];
+        mem.reg[source1] = mem.sign_extend(mem.dmem[value], 7);
     } else if (type == "getc"){
-        mem.reg[source1] = (int)value;
+        mem.reg[source1] = mem.sign_extend(value, 7);
     }
     mem.forward();
 }
 
 void Itype::LBU(Memory& mem){
-    unsigned int effective = mem.reg[source1] + immediate;
+    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
-        mem.reg[source1] = 0x000000FF & mem.imem[value];
+        mem.reg[source1] = mem.imem[value];
     } else if (type == "dmem"){
-        mem.reg[source1] = 0x000000FF & mem.dmem[value];
+        mem.reg[source1] = mem.dmem[value];
     } else if (type == "getc"){
-        mem.reg[source1] = 0x000000FF & value;
+        mem.reg[source1] = value;
     }
     mem.forward();
 }
 
+void Itype::LH(Memory& mem){
+
+}
+
+void Itype::LHU(Memory& mem){
+
+}
+
 void Itype::LW(Memory& mem){
-    uint32_t location = mem.reg[source2] + (int)immediate;
+    uint32_t location = mem.reg[source2] + mem.sign_extend(immediate, 15);
     if (location % 4 != 0){
         std::cerr << "Address Error, not alligned address" << '\n';
         exit(-11);
@@ -391,17 +415,17 @@ void Itype::LW(Memory& mem){
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
     if (type == "imem"){
-        mem.reg[source1] = (int)mem.instrToWord(value);
+        mem.reg[source1] = mem.instrToWord(value);
     } else if (type == "dmem"){
-        mem.reg[source1] = (int)mem.dataToWord(value);
+        mem.reg[source1] = mem.dataToWord(value);
     } else if (type == "getc"){
-        mem.reg[source1] = value;
+        mem.reg[source1] = mem.sign_extend(value, 7);
     }
     mem.forward();
 }
 
 void Itype::LWL(Memory& mem){
-    unsigned int location = mem.reg[source2] + (int)immediate;
+    unsigned int location = mem.reg[source2] + mem.sign_extend(immediate, 15);
 
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
@@ -436,4 +460,13 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
         mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
     }
     mem.forward();
+}
+
+void Itype::BEQ(Memory& mem){
+    if(mem.reg[source1] == mem.reg[source2]){
+        int offset = mem.sign_extend( (immediate << 2 ), 17)
+        mem.branch(mem.ahead_pc + offset);
+    } else{
+        mem.forward();
+    }
 }
