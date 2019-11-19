@@ -40,19 +40,20 @@ struct Rtype {
     void MULT(Memory& mem);
     void MULTU(Memory& mem);
 
-
     void ADD(Memory& mem);
     void ADDU(Memory& mem);
     void SUB(Memory& mem);
     void SUBU(Memory& mem);
 
-
     void AND(Memory& mem);
+    void OR(Memory& mem);
+    void XOR(Memory& mem);
+
     void DIV(Memory& mem);
     void DIVU(Memory& mem);
 
-
-
+    void SLT(Memory& mem);
+    void SLTU(Memory& mem);
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
