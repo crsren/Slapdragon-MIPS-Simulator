@@ -804,12 +804,12 @@ void Itype::BLTZ(Memory& mem) {
     void Jtype::JAL(Memory& mem) {
         mem.reg[31] = mem.pc + 8;
         uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-        mips.branch(low_28b | high_4b);
+        uint32_t high_4b = (mem.ahead_pc >> 28) << 28;
+        mem.branch(low_28b | high_4b);
     }
 
     void Jtype::J(Memory& mem) {
         uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-        mips.branch(low_28b | high_4b);
+        uint32_t high_4b = (mem.ahead_pc >> 28) << 28;
+        mem.branch(low_28b | high_4b);
     }
