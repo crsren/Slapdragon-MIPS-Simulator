@@ -23,6 +23,7 @@ void Memory::branch(uint8_t target) {
 }
 
 void Memory::forward() {
+    reg[0] = 0;
     pc = ahead_pc;
     ahead_pc = ahead_pc + 4;
 }
