@@ -120,9 +120,8 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x19:  //0b00100001:
-        //MULTU(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        MULTU(mem);
+        std::cerr << "MULTU" << std::endl;
         break;
 
         case 0x1A:  //0b00100001:
@@ -130,9 +129,8 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x1B:  //0b00100001:
-        //DIVU(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        DIVU(mem);
+        std::cerr << "DIVU" << '\n';
         break;
 
         case 0x20:
@@ -436,7 +434,7 @@ void Rtype::MULT(Memory& mem){
 }
 
 void Rtype::MULTU(Memory& mem){
-  long uint32_t tmp = mem.reg[source1] * mem.reg[source2];
+  uint64_t tmp = mem.reg[source1] * mem.reg[source2];
   mem.lo = tmp;
   mem.hi = tmp >> 32;
   mem.forward();
@@ -473,6 +471,18 @@ void Rtype::DIV(Memory& mem) {
     int r = (int)mem.reg[source1] % (int)mem.reg[source2];
     mem.lo = (uint32_t)q;
     mem.hi = (uint32_t)r;
+    mem.forward();
+}
+
+void Rtype::DIVU(Memory& mem) {
+    if (mem.reg[source2] == 0){
+        std::cerr << "Division by 0 error" << '\n';
+        exit(-10);
+    }
+    uint32_t q = mem.reg[source1] / mem.reg[source2];
+    uint32_t r = mem.reg[source1] % mem.reg[source2];
+    mem.lo = q;
+    mem.hi = r;
     mem.forward();
 }
 //----------------------------------------------------------
@@ -598,28 +608,29 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
     mem.forward();
 }
 
-void Itype::BGEZAL(MEMORY& mem) {
+void Itype::BGEZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
-    if(mem.reg[source1] >= 0) {
+    if( ((int)mem.reg[source1]) >= 0) {
         mem.pc += mem.sign_extend(immediate, 15);
     }
 
     mem.forward();
 }
 
-void Itype::BLTZAL(MEMORY& mem) {
+void Itype::BLTZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
-    if(mem.reg[source1] < 0) {
+    if( ((int)mem.reg[source1]) < 0) {
         mem.pc += mem.sign_extend(immediate, 15);
     }
 
     mem.forward();
+}
 
 void Itype::BEQ(Memory& mem){
     if(mem.reg[source1] == mem.reg[source2]){
-        int offset = mem.sign_extend( (immediate << 2 ), 17)
+        int offset = mem.sign_extend( (immediate << 2 ), 17);
         mem.branch(mem.ahead_pc + offset);
     } else{
         mem.forward();

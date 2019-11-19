@@ -34,7 +34,7 @@ public:
   Memory(std::vector<uint8_t>);
   Memory();
 
-  void branch(uint8_t target);
+  void branch(uint32_t target);
   void forward();
   void showRegisters();
   uint32_t instrToWord(int start);

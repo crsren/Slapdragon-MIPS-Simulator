@@ -34,6 +34,7 @@ struct Rtype {
     void MFLO(Memory& mem);
     void MTLO(Memory& mem);
     void MULT(Memory& mem);
+    void MULTU(Memory& mem);
 
 
     void ADD(Memory& mem);
@@ -41,6 +42,9 @@ struct Rtype {
 
     void AND(Memory& mem);
     void DIV(Memory& mem);
+    void DIVU(Memory& mem);
+
+
 
 
     //LUT "fn code" <-> "pointer to function"
