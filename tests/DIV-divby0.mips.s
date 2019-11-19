@@ -1,14 +1,14 @@
 #Created by: Nikita
 #Tests DIV for dividing by zero exception.
 
-lui     v0,0x7fff
-ori     v0,v0,0xffff
-div     $a0,v1
+lui     $v0,0x7fff
+ori     $v0,$v0,0xffff
+div     $v0,$v1
 ssl     $zero, $zero, 0
 ssl     $zero, $zero, 0
-mflo    v0
+mflo    $v0
 
-jr      ra
+jr      $zero
 ssl     $zero, $zero, 0
 
 

@@ -70,6 +70,8 @@ public:
     void LHU(Memory& mem);
     void LWL(Memory& mem);
     void LWR(Memory& mem);
+    void BGEZAL(Memory& mem);
+    void BLTZAL(Memory& mem);
 
 
 

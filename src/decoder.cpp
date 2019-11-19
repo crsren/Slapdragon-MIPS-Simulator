@@ -228,6 +228,20 @@ void Itype::run(Memory& mem) {
         LW(mem);
         break;
 
+        case 0x01:
+        switch(source2) {
+            case 0x10:
+            std::cerr << "BLTZAL" << '\n';
+            BLTZAL(mem);
+            break;
+
+            case 0x11:
+            std::cerr << "BGEZAL" << '\n';
+            BGEZAL(mem);
+            break;
+        }
+        break;
+
         default:
         std::cerr << "Non-existing instruction." << '\n';
         exit(-1);
@@ -330,8 +344,8 @@ void Rtype::AND(Memory& mem) {
 
 void Rtype::DIV(Memory& mem) {
     if (mem.reg[source2] == 0){
-      std::cerr << "Division by 0 error" << '\n';
-      exit(-10);
+        std::cerr << "Division by 0 error" << '\n';
+        exit(-10);
     }
     int q = (int)mem.reg[source1] / (int)mem.reg[source2];
     int r = (int)mem.reg[source1] % (int)mem.reg[source2];
@@ -461,6 +475,25 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
     }
     mem.forward();
 }
+
+void Itype::BGEZAL(MEMORY& mem) {
+    mem.reg[31] = mem.pc+8;
+
+    if(mem.reg[source1] >= 0) {
+        mem.pc += mem.sign_extend(immediate, 15);
+    }
+
+    mem.forward();
+}
+
+void Itype::BLTZAL(MEMORY& mem) {
+    mem.reg[31] = mem.pc+8;
+
+    if(mem.reg[source1] < 0) {
+        mem.pc += mem.sign_extend(immediate, 15);
+    }
+
+    mem.forward();
 
 void Itype::BEQ(Memory& mem){
     if(mem.reg[source1] == mem.reg[source2]){
