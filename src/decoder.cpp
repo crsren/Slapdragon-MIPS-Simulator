@@ -164,15 +164,13 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x22:  //0b00100001:
-        //SUB(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SUB(mem);
+        std::cerr << "SUB" << std::endl;
         break;
 
         case 0x23:  //0b00100001:
-        //SUBU(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SUBU(mem);
+        std::cerr << "SUBU" << std::endl;
         break;
 
         case 0x24:  //0b00100001:
@@ -180,27 +178,24 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x25:  //0b00100001:
-        //OR(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        OR(mem);
+        std::cerr << "OR" << std::endl;
         break;
 
         case 0x26:  //0b00100001:
-        //XOR(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        XOR(mem);
+        std::cerr << "XOR" << std::endl;
         break;
 
         case 0x2A:  //0b00100001:
-        //SLT(mem);
-        std::cerr << "Not implemented yet." << std::endl;
+        SLT(mem);
+        std::cerr << "SLT" << std::endl;
         exit(-1);
         break;
 
         case 0x2B:  //0b00100001:
-        //SLTU(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        SLTU(mem);
+        std::cerr << "SLTU" << std::endl;
         break;
 
         default:
@@ -493,8 +488,34 @@ void Rtype::ADDU(Memory& mem) {
     mem.forward();
 }
 
+void Rtype::SUB(Memory& mem) {
+    int s1 = (int) mem.reg[source1];
+    int s2 = (int) mem.reg[source2];
+    if ( ( ((s1 - s2) < 0) && ((s1 > 0) && (s2 < 0)) ) || ( ((s1 - s2) > 0) && ((s1 < 0) && (s2 > 0)) ) ){
+        std::cerr << "Overflow" << '\n';
+        exit(-10);
+    }
+    mem.reg[dest] = (uint32_t)(s1 - s2);
+    mem.forward();
+}
+
+void Rtype::SUBU(Memory& mem) {
+    mem.reg[dest] = mem.reg[source1] - mem.reg[source2];
+    mem.forward();
+}
+
 void Rtype::AND(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] & mem.reg[source2];
+    mem.forward();
+}
+
+void Rtype::OR(Memory& mem) {
+    mem.reg[dest] = mem.reg[source1] | mem.reg[source2];
+    mem.forward();
+}
+
+void Rtype::XOR(Memory& mem) {
+    mem.reg[dest] = mem.reg[source1] ^ mem.reg[source2];
     mem.forward();
 }
 

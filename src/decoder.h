@@ -43,6 +43,9 @@ struct Rtype {
 
     void ADD(Memory& mem);
     void ADDU(Memory& mem);
+    void SUB(Memory& mem);
+    void SUBU(Memory& mem);
+
 
     void AND(Memory& mem);
     void DIV(Memory& mem);
