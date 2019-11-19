@@ -77,8 +77,10 @@ public:
     void LW(Memory& mem);
     void SW(Memory& mem);
     void BEQ(Memory& mem);
+    void BNE(Memory& mem);
     void LB(Memory& mem);
     void LBU(Memory& mem);
+    void SB(Memory& mem);
     void LH(Memory& mem);
     void LHU(Memory& mem);
     void LWL(Memory& mem);
