@@ -104,6 +104,10 @@ uint32_t Memory::dataToWord(int start){
     return tmp;
 }
 
+uint32_t Memory::instrToHex(int pc){
+    return (pc + imem_off);
+}
+
 void Memory::showRegisters(){
     std::cerr << "******************************************" << '\n';
     for (unsigned int i = 0; i < reg.size(); i++){

@@ -45,6 +45,8 @@ public:
   unsigned int readConvert(std::string& type, uint32_t input);
   unsigned int writeConvert(std::string& type, uint32_t input);
   unsigned int execConvert(uint32_t input);
+
+  uint32_t instrToHex(int pc);
 };
 
 
