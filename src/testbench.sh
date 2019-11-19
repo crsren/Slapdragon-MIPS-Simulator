@@ -28,6 +28,9 @@ echo $TestID
 #run simulator with testcase and redirect stdout and stderr
 $SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr 
 
+#output the stored srdin
+cat $TEST.stdin
+
 #capture and store return code
 got_RETCODE=$?
 echo $got_RETCODE > $TEST.got.retcode
