@@ -9,7 +9,7 @@
 
 Memory::Memory(std::vector<uint8_t> byte){
     imem = byte;
-	 reg.resize(32);
+	  reg.resize(32);
     dmem.resize(dmem_length);
 }
 
@@ -89,23 +89,21 @@ unsigned int Memory::execConvert(uint32_t input){
 }
 
 uint32_t Memory::instrToWord(int start){
-    try {
-        uint32_t tmp = imem[start+3] | imem[start+2] << 8 | imem[start+1] << 16 | imem[start] << 24;
-        return tmp;
+    if (start % 4 != 0){
+      std::cerr << "Non alligned address" << '\n';
+      exit(-1);
     }
-    catch (std::out_of_range) {
-        exit(-11);
-    }
+    uint32_t tmp = imem[start+3] | imem[start+2] << 8 | imem[start+1] << 16 | imem[start] << 24;
+    return tmp;
 }
 
 uint32_t Memory::dataToWord(int start){
-    try {
-        uint32_t tmp = dmem[start+3] | dmem[start+2] << 8 | dmem[start+1] << 16 | dmem[start] << 24;
-        return tmp;
+    if (start % 4 != 0){
+      std::cerr << "Non alligned address" << '\n';
+      exit(-1);
     }
-    catch (std::out_of_range) {
-        exit(-11);
-    }
+    uint32_t tmp = dmem[start+3] | dmem[start+2] << 8 | dmem[start+1] << 16 | dmem[start] << 24;
+    return tmp;
 }
 
 void Memory::showRegisters(){
