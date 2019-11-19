@@ -616,6 +616,18 @@ void Itype::LBU(Memory& mem){
     mem.forward();
 }
 
+void Itype::SB(Memory& mem){
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    std::string type ="";
+    unsigned int value = mem.writeConvert(type, effective);
+    if (type == "dmem"){
+        mem.dmem[value] = bitwise::isolate(mem.reg[source2], 0, 8);
+    } else if (type == "putc"){
+        std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+    }
+    mem.forward();
+}
+
 void Itype::LH(Memory& mem){
 
 }
@@ -651,7 +663,10 @@ void Itype::SW(Memory& mem){
   std::string type = "";
   unsigned int value = mem.writeConvert(type, location);
   if (type == "dmem"){
-      mem.dmem[value] = mem.reg[source2];
+      mem.dmem[value+3] = bitwise::isolate(mem.reg[source2], 0, 8);
+      mem.dmem[value+2] = bitwise::isolate(mem.reg[source2], 8, 8);
+      mem.dmem[value+1] = bitwise::isolate(mem.reg[source2], 16, 8);
+      mem.dmem[value] = bitwise::isolate(mem.reg[source2], 24, 8);
   } else if (type == "putc"){
       std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
   }
@@ -701,7 +716,7 @@ void Itype::BGEZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
     if( ((int)mem.reg[source1]) >= 0) {
-        offset = mem.sign_extend( (immediate << 2), 17);
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
 
@@ -712,7 +727,7 @@ void Itype::BLTZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
     if( ((int)mem.reg[source1]) < 0) {
-        offset = mem.sign_extend( (immediate << 2), 17);
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
 
@@ -730,7 +745,7 @@ void Itype::BEQ(Memory& mem){
 
 void Itype::BGEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) >= 0) {
-        int offset = mem.sign_extend( (immediate << 2), 17)
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
     mem.forward();
@@ -738,7 +753,7 @@ void Itype::BGEZ(Memory& mem) {
 
 void Itype::BGTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) > 0) {
-        int offset = mem.sign_extend( (immediate << 2), 17)
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
     mem.forward();
@@ -746,7 +761,7 @@ void Itype::BGTZ(Memory& mem) {
 
 void Itype::BLEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) <= 0) {
-        int offset = mem.sign_extend( (immediate << 2), 17)
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
     mem.forward();
@@ -754,10 +769,11 @@ void Itype::BLEZ(Memory& mem) {
 
 void Itype::BLTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) < 0) {
-        int offset = mem.sign_extend( (immediate << 2), 17)
+        int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.ahead_pc + offset);
     }
     mem.forward();
+}
 
 void Itype::BNE(Memory& mem){
     if(mem.reg[source1] != mem.reg[source2]){
