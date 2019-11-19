@@ -645,7 +645,12 @@ void Itype::SB(Memory& mem){
 }
 
 void Itype::LH(Memory& mem){
-
+    int vAddr = mem.sign_extend(immediate) + mem.reg[source1];
+    if( (vAddr & 1) != 0) {
+        std::cerr << "Memory exception" << '\n';
+        exit(-11);
+    }
+    
 }
 
 void Itype::LHU(Memory& mem){
