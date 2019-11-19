@@ -244,10 +244,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x05:
-        //BNE(mem);
+        BNE(mem);
         std::cerr << "BNE" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
 
@@ -538,8 +536,15 @@ void Rtype::DIVU(Memory& mem) {
     mem.forward();
 }
 
+void Rtype::SLT(Memory& mem) {
+    mem.reg[dest] = ((int)mem.reg[source1] < (int)mem.reg[source2]);
+    mem.forward();
+}
 
-
+void Rtype::SLTU(Memory& mem) {
+    mem.reg[dest] = (mem.reg[source1] < mem.reg[source2]);
+    mem.forward();
+}
 
 
 //----------------------------------------------------------
@@ -552,6 +557,16 @@ void Itype::ADDI(Memory& mem){
         exit(-10);
     }
     mem.reg[source2] = (uint32_t)(s1 + s2);
+    mem.forward();
+}
+
+void Itype::SLTI(Memory& mem) {
+    mem.reg[dest] = ((int)mem.reg[source1] < (int)mem.sign_extend(immediate,15));
+    mem.forward();
+}
+
+void Itype::SLTIU(Memory& mem) {
+    mem.reg[dest] = (mem.reg[source1] < mem.sign_extend(immediate,15));
     mem.forward();
 }
 
@@ -574,7 +589,7 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LB(Memory& mem){
-    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
@@ -588,7 +603,7 @@ void Itype::LB(Memory& mem){
 }
 
 void Itype::LBU(Memory& mem){
-    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
@@ -610,7 +625,7 @@ void Itype::LHU(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-    uint32_t location = mem.reg[source2] + mem.sign_extend(immediate, 15);
+    uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     if (location % 4 != 0){
         std::cerr << "Address Error, not alligned address" << '\n';
         exit(-11);
@@ -618,17 +633,34 @@ void Itype::LW(Memory& mem){
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
     if (type == "imem"){
-        mem.reg[source1] = mem.instrToWord(value);
+        mem.reg[source2] = mem.instrToWord(value);
     } else if (type == "dmem"){
-        mem.reg[source1] = mem.dataToWord(value);
+        mem.reg[source2] = mem.dataToWord(value);
     } else if (type == "getc"){
-        mem.reg[source1] = mem.sign_extend(value, 7);
+        mem.reg[source2] = mem.sign_extend(value, 7);
     }
     mem.forward();
 }
 
+void Itype::SW(Memory& mem){
+  uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+  if (location % 4 != 0){
+      std::cerr << "Address Error, not alligned address" << '\n';
+      exit(-11);
+  }
+  std::string type = "";
+  unsigned int value = mem.writeConvert(type, location);
+  if (type == "dmem"){
+      mem.dmem[value] = mem.reg[source2];
+  } else if (type == "putc"){
+      std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+  }
+  mem.forward();
+}
+
+
 void Itype::LWL(Memory& mem){
-    unsigned int location = mem.reg[source2] + mem.sign_extend(immediate, 15);
+    unsigned int location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
 
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
@@ -726,4 +758,12 @@ void Itype::BLTZ(Memory& mem) {
         mem.branch(mem.ahead_pc + offset);
     }
     mem.forward();
+
+void Itype::BNE(Memory& mem){
+    if(mem.reg[source1] != mem.reg[source2]){
+        int offset = mem.sign_extend( (immediate << 2 ), 17);
+        mem.branch(mem.ahead_pc + offset);
+    } else{
+        mem.forward();
+    }
 }
