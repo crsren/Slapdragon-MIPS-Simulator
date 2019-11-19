@@ -354,6 +354,13 @@ void Itype::ORI(Memory& mem){
     mem.forward();
 }
 
+void Itype::LB(Memory& mem){
+    unsigned int effective = mem.reg[source1] + immediate;
+    char tmp = mem.dmem[readConvert(effective)];
+    mem.reg[source2] = (int)tmp;
+    mem.forward();
+}
+
 void Itype::LW(Memory& mem){
     uint32_t location = mem.reg[source2] + (int)immediate;
     if (location % 4 != 0){
