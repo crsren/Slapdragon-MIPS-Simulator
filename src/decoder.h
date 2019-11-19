@@ -64,6 +64,7 @@ public:
     void LW(Memory& mem);
     void BEQ(Memory& mem);
     void LB(Memory& mem);
+    void LBU(Memory& mem);
     void LWL(Memory& mem);
     void LWR(Memory& mem);
 
