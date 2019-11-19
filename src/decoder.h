@@ -26,9 +26,13 @@ struct Rtype {
     void run(Memory& mem);
 
     void SLL(Memory& mem);
+    void SLLV(Memory& mem);
     void SRL(Memory& mem);
+    void SRLV(Memory& mem);
     void SRA(Memory& mem);
+    void SRAV(Memory& mem);
     void JR(Memory& mem);
+    void JALR(Memory& mem);
     void MFHI(Memory& mem);
     void MTHI(Memory& mem);
     void MFLO(Memory& mem);

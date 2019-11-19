@@ -89,21 +89,18 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x04:
-        //SLLV(mem);
+        SLLV(mem);
         std::cerr << "SLLV" << '\n';
-        exit(-1);
         break;
 
         case 0x06:
-        //SRLV(mem);
+        SRLV(mem);
         std::cerr << "SRLV" << '\n';
-        exit(-1);
         break;
 
         case 0x07:
-        //SRAV(mem);
+        SRAV(mem);
         std::cerr << "SRAV" << '\n';
-        exit(-1);
         break;
 
         case 0x08:  //0b00100001:
@@ -112,7 +109,7 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x0A:
-        //JALR(mem);
+        JALR(mem);
         std::cerr << "JALR" << '\n';
         exit(-1);
         break;
@@ -403,8 +400,18 @@ void Rtype::SLL(Memory& mem) {
     mem.forward();
 }
 
+void Rtype::SLLV(Memory& mem) {
+    mem.reg[dest] = mem.reg[source2] << bitwise::isolate(mem.reg[source1], 0, 5);
+    mem.forward();
+}
+
 void Rtype::SRL(Memory& mem) {
     mem.reg[dest] = mem.reg[source2] >> shift_amt;
+    mem.forward();
+}
+
+void Rtype::SRLV(Memory& mem) {
+    mem.reg[dest] = mem.reg[source2] >> bitwise::isolate(mem.reg[source1], 0, 5);
     mem.forward();
 }
 
@@ -416,7 +423,20 @@ void Rtype::SRA(Memory& mem) {
     mem.forward();
 }
 
+void Rtype::SRAV(Memory& mem) {
+    uint32_t bottom = mem.reg[source2] >> bitwise::isolate(mem.reg[source1], 0, 5);
+    uint32_t top = -(mem.reg[source2] >> 31) << (32-bitwise::isolate(mem.reg[source1], 0, 5));
+    mem.reg[dest] = top | bottom;
+
+    mem.forward();
+}
+
 void Rtype::JR(Memory& mem) {
+    mem.branch(mem.reg[source1]);
+}
+
+void Rtype::JALR(Memory& mem) {
+    mem.reg[dest] = mem.ahead_pc + 4;
     mem.branch(mem.reg[source1]);
 }
 
@@ -501,6 +521,11 @@ void Rtype::DIVU(Memory& mem) {
     mem.hi = r;
     mem.forward();
 }
+
+
+
+
+
 //----------------------------------------------------------
 //I-TYPE
 void Itype::ADDI(Memory& mem){
@@ -627,7 +652,7 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
 void Itype::BGEZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
-    if( ((int)mem.reg[source1])`` >= 0) {
+    if( ((int)mem.reg[source1]) >= 0) {
         mem.pc += mem.sign_extend(immediate, 15);
     }
 
