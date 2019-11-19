@@ -632,7 +632,7 @@ void Itype::LHU(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-    uint32_t location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
+    uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     if (location % 4 != 0){
         std::cerr << "Address Error, not alligned address" << '\n';
         exit(-11);
@@ -640,14 +640,31 @@ void Itype::LW(Memory& mem){
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
     if (type == "imem"){
-        mem.reg[source1] = mem.instrToWord(value);
+        mem.reg[source2] = mem.instrToWord(value);
     } else if (type == "dmem"){
-        mem.reg[source1] = mem.dataToWord(value);
+        mem.reg[source2] = mem.dataToWord(value);
     } else if (type == "getc"){
-        mem.reg[source1] = mem.sign_extend(value, 7);
+        mem.reg[source2] = mem.sign_extend(value, 7);
     }
     mem.forward();
 }
+
+void Itype::SW(Memory& mem){
+  uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+  if (location % 4 != 0){
+      std::cerr << "Address Error, not alligned address" << '\n';
+      exit(-11);
+  }
+  std::string type = "";
+  unsigned int value = mem.writeConvert(type, location);
+  if (type == "dmem"){
+      mem.dmem[value] = mem.reg[source2];
+  } else if (type == "putc"){
+      std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+  }
+  mem.forward();
+}
+
 
 void Itype::LWL(Memory& mem){
     unsigned int location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);

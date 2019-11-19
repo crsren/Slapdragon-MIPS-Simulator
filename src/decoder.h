@@ -75,6 +75,7 @@ public:
     void ORI(Memory& mem);
     void LUI(Memory& mem);
     void LW(Memory& mem);
+    void SW(Memory& mem);
     void BEQ(Memory& mem);
     void LB(Memory& mem);
     void LBU(Memory& mem);

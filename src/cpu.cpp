@@ -65,10 +65,8 @@ unsigned int Memory::writeConvert(std::string& type, uint32_t input){
       type = "dmem";
       return offset;
   } else if (input == putc_off){
-      char tmp;
-      std::cout << tmp;
       type = "putc";
-      return (unsigned int)tmp;
+      return 0;
   } else{
     std::cerr << "Memmory Error" << '\n';
     std::exit(-11);
