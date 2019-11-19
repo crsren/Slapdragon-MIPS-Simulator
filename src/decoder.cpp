@@ -207,10 +207,88 @@ void Itype::init(uint32_t& word) {
 }
 
 void Itype::run(Memory& mem) {
-    switch(opCode) {
+      switch(opCode) {
+        case 0x01:
+          switch(source2) {
+              case 0x00:
+              //std::cerr << "BLTZ" << '\n';
+              std::cerr << "Not implemnted yet" << '\n';
+              //BLTZ(mem);
+              exit(-1);
+              break;
+              case 0x01:
+              //std::cerr << "BGEZ" << '\n';
+              std::cerr << "Not implemnted yet" << '\n';
+              //BGEZ(mem);
+              exit(-1);
+              break;
+              case 0x10:
+              std::cerr << "BLTZAL" << '\n';
+              BLTZAL(mem);
+              break;
+
+              case 0x11:
+              std::cerr << "BGEZAL" << '\n';
+              BGEZAL(mem);
+              break;
+          }
+        break;
+
+        case 0x04:
+        BEQ(mem);
+        std::cerr << "BEQ" << '\n';
+        break;
+
+        case 0x05:
+        //BNE(mem);
+        std::cerr << "BNE" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
+        case 0x06:
+        //BLEZ(mem);
+        std::cerr << "BLEZ" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
+        case 0x07:
+        //BGTZ(mem);
+        std::cerr << "BGTZ" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
         case 0x08:
         ADDI(mem);
         std::cerr << "ADDI" << '\n';
+        break;
+
+        case 0x09:
+        ADDIU(mem);
+        std::cerr << "ADDIU" << '\n';
+        break;
+
+        case 0x0A:
+        //SLTI(mem);
+        std::cerr << "SLTI" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
+        case 0x0B:
+        //SLTIU(mem);
+        std::cerr << "SLTIU" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
+        case 0x0C:
+        //ANDI(mem);
+        std::cerr << "ANDI" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
         break;
 
         case 0x0D:
@@ -218,9 +296,31 @@ void Itype::run(Memory& mem) {
         std::cerr << "ORI" << '\n';
         break;
 
+        case 0x0E:
+        //XORI(mem);
+        std::cerr << "XORI" << '\n';
+        std::cerr << "Not implemnted yet" << '\n';
+        exit(-1);
+        break;
+
         case 0x0F:
         LUI(mem);
         std::cerr << "LUI" << '\n';
+        break;
+
+        case 0x20:
+        LB(mem);
+        std::cerr << "LB" << '\n';
+        break;
+
+        case 0x21:
+        LH(mem);
+        std::cerr << "LH" << '\n';
+        break;
+
+        case 0x22:
+        LWL(mem);
+        std::cerr << "LWL" << '\n';
         break;
 
         case 0x23:
@@ -228,18 +328,40 @@ void Itype::run(Memory& mem) {
         LW(mem);
         break;
 
-        case 0x01:
-        switch(source2) {
-            case 0x10:
-            std::cerr << "BLTZAL" << '\n';
-            BLTZAL(mem);
-            break;
+        case 0x24:
+        LBU(mem);
+        std::cerr << "LBU" << '\n';
+        break;
 
-            case 0x11:
-            std::cerr << "BGEZAL" << '\n';
-            BGEZAL(mem);
-            break;
-        }
+        case 0x25:
+        LHU(mem);
+        std::cerr << "LHU" << '\n';
+        break;
+
+        case 0x26:
+        LWR(mem);
+        std::cerr << "LWR" << '\n';
+        break;
+
+        case 0x28:
+        //SB(mem);
+        std::cerr << "SB" << '\n';
+        std::cerr << "NOT" << '\n';
+        exit(-1);
+        break;
+
+        case 0x29:
+        //SH(mem);
+        std::cerr << "SH" << '\n';
+        std::cerr << "NOT" << '\n';
+        exit(-1);
+        break;
+
+        case 0x2B:
+        //SW(mem);
+        std::cerr << "SW" << '\n';
+        std::cerr << "NOT" << '\n';
+        exit(-1);
         break;
 
         default:
