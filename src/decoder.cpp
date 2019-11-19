@@ -566,12 +566,12 @@ void Itype::ADDI(Memory& mem){
 }
 
 void Itype::SLTI(Memory& mem) {
-    mem.reg[dest] = ((int)mem.reg[source1] < (int)mem.sign_extend(immediate,15));
+    mem.reg[source2] = ((int)mem.reg[source1] < (int)mem.sign_extend(immediate,15));
     mem.forward();
 }
 
 void Itype::SLTIU(Memory& mem) {
-    mem.reg[dest] = (mem.reg[source1] < mem.sign_extend(immediate,15));
+    mem.reg[source2] = (mem.reg[source1] < mem.sign_extend(immediate,15));
     mem.forward();
 }
 
