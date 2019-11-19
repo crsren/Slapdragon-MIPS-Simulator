@@ -696,18 +696,19 @@ void Itype::SW(Memory& mem){
 void Itype::LWL(Memory& mem){
     unsigned int location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
 
-    std::string type = "";
-    unsigned int value = mem.readConvert(type, location);
-
-    if (type == "imem"){
-        int tmp = (int)mem.instrToWord(value);
-        mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
-    } else if (type == "dmem"){
-        int tmp = (int)mem.dataToWord(value);
-        mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
-    } else if (type == "getc"){
-        int tmp = value;
-        mem.reg[source1] = bitwise::isolate(tmp, 15, 16);
+    while(location div 4 != 0){
+      std::string type = "";
+      int shift = 0;
+      unsigned int value = mem.readConvert(type, location);
+      if (type == "imem"){
+          int tmp = (int)mem.instrToWord(value);
+          uint32_t shifted = mem.imem[value] << (24 - shift));
+          mem.reg[source1] = mem.reg[source1] & shifted;
+      } else if (type == "dmem"){
+          uint32_t shifted = mem.dmem[value] << (24 - shift);
+          mem.reg[source1] = mem.reg[source1] & shifted;
+      location++;
+      shift += 8;
     }
     mem.forward();
 }
@@ -715,18 +716,19 @@ void Itype::LWL(Memory& mem){
 void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
     unsigned int location = mem.reg[source2] + (int)immediate;
 
-    std::string type = "";
-    unsigned int value = mem.readConvert(type, location);
-
-    if (type == "imem"){
-        int tmp = (int)mem.instrToWord(value);
-        mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
-    } else if (type == "dmem"){
-        int tmp = (int)mem.dataToWord(value);
-        mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
-    } else if (type == "getc"){
-        int tmp = value;
-        mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
+    while(location div 4 != 0){
+      std::string type = "";
+      int shift = 0;
+      unsigned int value = mem.readConvert(type, location);
+      if (type == "imem"){
+          int tmp = (int)mem.instrToWord(value);
+          uint32_t shifted = mem.imem[value] << (shift));
+          mem.reg[source1] = mem.reg[source1] & shifted;
+      } else if (type == "dmem"){
+          uint32_t shifted = mem.dmem[value] << (shift);
+          mem.reg[source1] = mem.reg[source1] & shifted;
+      location--;
+      shift += 8;
     }
     mem.forward();
 }
@@ -806,15 +808,15 @@ void Itype::BNE(Memory& mem){
 //------------------------------------------------------------
 //J-TYPE
 
-void Jtype::JAL(Memory& mem) {
-    mem.reg[31] = mem.pc + 8;
-    uint32_t low_28b = address << 2;
-    uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-    mips.branch(low_28b | high_4b);
-}
+    void Jtype::JAL(Memory& mem) {
+        mem.reg[31] = mem.pc + 8;
+        uint32_t low_28b = address << 2;
+        uint32_t high_4b = (mem.ahead_pc >> 28) << 28;
+        mem.branch(low_28b | high_4b);
+    }
 
-void Jtype::J(Memory& mem) {
-    uint32_t low_28b = address << 2;
-    uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-    mips.branch(low_28b | high_4b);
-}
+    void Jtype::J(Memory& mem) {
+        uint32_t low_28b = address << 2;
+        uint32_t high_4b = (mem.ahead_pc >> 28) << 28;
+        mem.branch(low_28b | high_4b);
+    }
