@@ -39,6 +39,7 @@ public:
   void showRegisters();
   uint32_t instrToWord(int start);
   uint32_t dataToWord(int start);
+  uint32_t sign_extend(uint32_t word, int msb);
 
 
   unsigned int readConvert(std::string& type, uint32_t input);

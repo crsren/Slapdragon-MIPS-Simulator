@@ -9,12 +9,17 @@
 
 Memory::Memory(std::vector<uint8_t> byte){
     imem = byte;
-	  reg.resize(32);
+	 reg.resize(32);
     dmem.resize(dmem_length);
 }
 
 Memory::Memory() {
     //for testing, initiating empty memory;
+}
+
+uint32_t sign_extend(uint32_t word, int msb) {
+        uint32_t extension = -(word >> msb) << (msb+1);
+        return extension | word;
 }
 
 void Memory::branch(uint8_t target) {
