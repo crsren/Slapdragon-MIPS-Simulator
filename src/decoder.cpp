@@ -21,11 +21,11 @@ void instruction::init(uint32_t& word) {
     } else if (opCode == 2 || opCode == 3) {
         tag = 'J';
         std::cerr << "Jtype instruction" << std::endl;
-        j.init(word);
+        j.init(word, opCode);
     } else {
         tag = 'I';
         std::cerr << "Itype instruction" << std::endl;
-        i.init(word);
+        i.init(word, opCode);
     }
 }
 
@@ -204,8 +204,8 @@ void Rtype::run(Memory& mem) {
     }
 }
 
-void Itype::init(uint32_t& word) {
-    opCode = bitwise::isolate(word, 26, 6);
+void Itype::init(uint32_t& word, uint8_t& ins_op) {
+    opCode = ins_op;
     source1 = bitwise::isolate(word,21,5);
     source2 = bitwise::isolate(word,16,5);
     immediate = bitwise::isolate(word, 0,16);
@@ -250,7 +250,6 @@ void Itype::run(Memory& mem) {
         BNE(mem);
         std::cerr << "BNE" << '\n';
         break;
-
 
         case 0x06:
         std::cerr << "BLEZ" << '\n';
@@ -374,20 +373,21 @@ void Itype::run(Memory& mem) {
 
 
 
-void Jtype::init(uint32_t& word) {
+void Jtype::init(uint32_t& word, uint8_t& ins_op) {
     address = bitwise::isolate(word,0,26);
+    opCode = ins_op;
 }
 
 void Jtype::run(Memory& mem) {
     switch(opCode) {
-        case 0x03:
-        std::cerr << "JAL" << '\n';
-        JAL(mem);
-        break;
-
         case 0x02:
         std::cerr << "J" << '\n';
         J(mem);
+        break;
+        
+        case 0x03:
+        std::cerr << "JAL" << '\n';
+        JAL(mem);
         break;
 
         default:
@@ -670,22 +670,22 @@ void Itype::LW(Memory& mem){
 }
 
 void Itype::SW(Memory& mem){
-  uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
-  if (location % 4 != 0){
-      std::cerr << "Address Error, not alligned address" << '\n';
-      exit(-11);
-  }
-  std::string type = "";
-  unsigned int value = mem.writeConvert(type, location);
-  if (type == "dmem"){
-      mem.dmem[value+3] = bitwise::isolate(mem.reg[source2], 0, 8);
-      mem.dmem[value+2] = bitwise::isolate(mem.reg[source2], 8, 8);
-      mem.dmem[value+1] = bitwise::isolate(mem.reg[source2], 16, 8);
-      mem.dmem[value] = bitwise::isolate(mem.reg[source2], 24, 8);
-  } else if (type == "putc"){
-      std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
-  }
-  mem.forward();
+    uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    if (location % 4 != 0){
+        std::cerr << "Address Error, not alligned address" << '\n';
+        exit(-11);
+    }
+    std::string type = "";
+    unsigned int value = mem.writeConvert(type, location);
+    if (type == "dmem"){
+        mem.dmem[value+3] = bitwise::isolate(mem.reg[source2], 0, 8);
+        mem.dmem[value+2] = bitwise::isolate(mem.reg[source2], 8, 8);
+        mem.dmem[value+1] = bitwise::isolate(mem.reg[source2], 16, 8);
+        mem.dmem[value] = bitwise::isolate(mem.reg[source2], 24, 8);
+    } else if (type == "putc"){
+        std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+    }
+    mem.forward();
 }
 
 
@@ -790,27 +790,27 @@ void Itype::BLTZ(Memory& mem) {
     mem.forward();
 }
 
-    void Itype::BNE(Memory& mem){
-        if(mem.reg[source1] != mem.reg[source2]){
-            int offset = mem.sign_extend( (immediate << 2 ), 17);
-            mem.branch(mem.ahead_pc + offset);
-        } else{
-            mem.forward();
-        }
+void Itype::BNE(Memory& mem){
+    if(mem.reg[source1] != mem.reg[source2]){
+        int offset = mem.sign_extend( (immediate << 2 ), 17);
+        mem.branch(mem.ahead_pc + offset);
+    } else{
+        mem.forward();
     }
+}
 
-    //------------------------------------------------------------
-    //J-TYPE
+//------------------------------------------------------------
+//J-TYPE
 
-    void Jtype::JAL(Memory& mem) {
-        mem.reg[31] = mem.pc + 8;
-        uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-        mips.branch(low_28b | high_4b);
-    }
+void Jtype::JAL(Memory& mem) {
+    mem.reg[31] = mem.pc + 8;
+    uint32_t low_28b = address << 2;
+    uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
+    mips.branch(low_28b | high_4b);
+}
 
-    void Jtype::J(Memory& mem) {
-        uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
-        mips.branch(low_28b | high_4b);
-    }
+void Jtype::J(Memory& mem) {
+    uint32_t low_28b = address << 2;
+    uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
+    mips.branch(low_28b | high_4b);
+}

@@ -67,7 +67,7 @@ public:
     uint8_t source2;
     uint32_t immediate;
 
-    void init(uint32_t& word);
+    void init(uint32_t& word, uint8_t& opCode);
     void run(Memory& mem);
 
     void ADDI(Memory& mem);
@@ -99,8 +99,9 @@ public:
 class Jtype {
 public:
     uint32_t address;
+    uint8_t opCode;
 
-    void init(uint32_t& word);
+    void init(uint32_t& word, uint8_t& opCode);
     void run(Memory& mem);
 
     void JAL(Memory& mem);
