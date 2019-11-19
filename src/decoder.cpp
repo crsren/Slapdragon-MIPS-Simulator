@@ -554,7 +554,6 @@ void Rtype::SLTU(Memory& mem) {
 }
 
 
-
 //----------------------------------------------------------
 //I-TYPE
 void Itype::ADDI(Memory& mem){
@@ -565,6 +564,16 @@ void Itype::ADDI(Memory& mem){
         exit(-10);
     }
     mem.reg[source2] = (uint32_t)(s1 + s2);
+    mem.forward();
+}
+
+void Itype::SLTI(Memory& mem) {
+    mem.reg[dest] = ((int)mem.reg[source1] < (int)mem.sign_extend(immediate,15));
+    mem.forward();
+}
+
+void Itype::SLTIU(Memory& mem) {
+    mem.reg[dest] = (mem.reg[source1] < mem.sign_extend(immediate,15));
     mem.forward();
 }
 
@@ -587,7 +596,7 @@ void Itype::ORI(Memory& mem){
 }
 
 void Itype::LB(Memory& mem){
-    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
@@ -601,7 +610,7 @@ void Itype::LB(Memory& mem){
 }
 
 void Itype::LBU(Memory& mem){
-    unsigned int effective = mem.reg[source1] + mem.sign_extend(immediate, 15);
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
@@ -623,7 +632,7 @@ void Itype::LHU(Memory& mem){
 }
 
 void Itype::LW(Memory& mem){
-    uint32_t location = mem.reg[source2] + mem.sign_extend(immediate, 15);
+    uint32_t location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
     if (location % 4 != 0){
         std::cerr << "Address Error, not alligned address" << '\n';
         exit(-11);
@@ -641,7 +650,7 @@ void Itype::LW(Memory& mem){
 }
 
 void Itype::LWL(Memory& mem){
-    unsigned int location = mem.reg[source2] + mem.sign_extend(immediate, 15);
+    unsigned int location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
 
     std::string type = "";
     unsigned int value = mem.readConvert(type, location);
