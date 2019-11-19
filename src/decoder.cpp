@@ -543,7 +543,15 @@ void Rtype::DIVU(Memory& mem) {
     mem.forward();
 }
 
+void Rtype::SLT(Memory& mem) {
+    mem.reg[dest] = ((int)mem.reg[source1] < (int)mem.reg[source2]);
+    mem.forward();
+}
 
+void Rtype::SLTU(Memory& mem) {
+    mem.reg[dest] = (mem.reg[source1] < mem.reg[source2]);
+    mem.forward();
+}
 
 
 
