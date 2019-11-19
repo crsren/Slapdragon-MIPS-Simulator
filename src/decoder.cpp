@@ -246,10 +246,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x05:
-        //BNE(mem);
+        BNE(mem);
         std::cerr << "BNE" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
         break;
 
         case 0x06:
@@ -726,6 +724,15 @@ void Itype::BLTZAL(Memory& mem) {
 
 void Itype::BEQ(Memory& mem){
     if(mem.reg[source1] == mem.reg[source2]){
+        int offset = mem.sign_extend( (immediate << 2 ), 17);
+        mem.branch(mem.ahead_pc + offset);
+    } else{
+        mem.forward();
+    }
+}
+
+void Itype::BNE(Memory& mem){
+    if(mem.reg[source1] != mem.reg[source2]){
         int offset = mem.sign_extend( (immediate << 2 ), 17);
         mem.branch(mem.ahead_pc + offset);
     } else{
