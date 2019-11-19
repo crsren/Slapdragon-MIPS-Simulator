@@ -72,6 +72,8 @@ public:
 
     void ADDI(Memory& mem);
     void ADDIU(Memory& mem);
+    void ANDI(Memory& mem);
+    void XORI(Memory& mem);
     void ORI(Memory& mem);
     void LUI(Memory& mem);
     void LW(Memory& mem);
