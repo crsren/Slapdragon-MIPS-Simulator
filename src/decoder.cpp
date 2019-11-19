@@ -321,8 +321,8 @@ void Rtype::AND(Memory& mem) {
 
 void Rtype::DIV(Memory& mem) {
     if (mem.reg[source2] == 0){
-      std::cerr << "Division by 0 error" << '\n';
-      exit(-10);
+        std::cerr << "Division by 0 error" << '\n';
+        exit(-10);
     }
     int q = (int)mem.reg[source1] / (int)mem.reg[source2];
     int r = (int)mem.reg[source1] % (int)mem.reg[source2];
@@ -435,5 +435,25 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
         int tmp = value;
         mem.reg[source1] = bitwise::isolate(tmp, 0, 16);
     }
+    mem.forward();
+}
+
+void Itype::BGEZAL(MEMORY& mem) {
+    mem.reg[31] = mem.pc+8;
+
+    if(mem.reg[source1] >= 0) {
+        mem.pc += mem.sign_extend(immediate, 15);
+    }
+
+    mem.forward();
+}
+
+void Itype::BLTZAL(MEMORY& mem) {
+    mem.reg[31] = mem.pc+8;
+
+    if(mem.reg[source1] < 0) {
+        mem.pc += mem.sign_extend(immediate, 15);
+    }
+
     mem.forward();
 }
