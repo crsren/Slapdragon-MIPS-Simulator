@@ -101,19 +101,16 @@ void Rtype::run(Memory& mem) {
         case 0x11:  //0b00100001:
         MTHI(mem);
         std::cerr << "MTHI" << std::endl;
-        exit(-1);
         break;
 
         case 0x12:  //0b00100001:
         MFLO(mem);
         std::cerr << "MFLO" << std::endl;
-        exit(-1);
         break;
 
         case 0x13:  //0b00100001:
         MTLO(mem);
         std::cerr << "MTLO" << std::endl;
-        exit(-1);
         break;
 
         case 0x18:  //0b00100001:
@@ -129,9 +126,7 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x1A:  //0b00100001:
-        //DIV(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        DIV(mem);
         break;
 
         case 0x1B:  //0b00100001:
@@ -321,6 +316,18 @@ void Rtype::ADDU(Memory& mem) {
 
 void Rtype::AND(Memory& mem) {
     mem.reg[dest] = mem.reg[source1] & mem.reg[source2];
+    mem.forward();
+}
+
+void Rtype::DIV(Memory& mem) {
+    if (mem.reg[source2] == 0){
+      std::cerr << "Division by 0 error" << '\n';
+      exit(-10);
+    }
+    int q = (int)mem.reg[source1] / (int)mem.reg[source2];
+    int r = (int)mem.reg[source1] % (int)mem.reg[source2];
+    mem.lo = q;
+    mem.hi = r;
     mem.forward();
 }
 //----------------------------------------------------------

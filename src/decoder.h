@@ -40,6 +40,8 @@ struct Rtype {
     void ADDU(Memory& mem);
 
     void AND(Memory& mem);
+    void DIV(Memory& mem);
+
 
     //LUT "fn code" <-> "pointer to function"
     //static std::map< uint8_t, void (*)(int) > fnMap;
