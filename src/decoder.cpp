@@ -88,9 +88,33 @@ void Rtype::run(Memory& mem) {
         std::cerr << "SRA" << '\n';
         break;
 
+        case 0x04:
+        //SLLV(mem);
+        std::cerr << "SLLV" << '\n';
+        exit(-1);
+        break;
+
+        case 0x06:
+        //SRLV(mem);
+        std::cerr << "SRLV" << '\n';
+        exit(-1);
+        break;
+
+        case 0x07:
+        //SRAV(mem);
+        std::cerr << "SRAV" << '\n';
+        exit(-1);
+        break;
+
         case 0x08:  //0b00100001:
         JR(mem);
         std::cerr << "JR" << '\n';
+        break;
+
+        case 0x0A:
+        //JALR(mem);
+        std::cerr << "JALR" << '\n';
+        exit(-1);
         break;
 
         case 0x10:  //0b00100001:
@@ -114,9 +138,8 @@ void Rtype::run(Memory& mem) {
         break;
 
         case 0x18:  //0b00100001:
-        //MULT(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
+        MULT(mem);
+        std::cerr << "MULT" << std::endl;
         break;
 
         case 0x19:  //0b00100001:
@@ -171,12 +194,6 @@ void Rtype::run(Memory& mem) {
         exit(-1);
         break;
 
-        case 0x27:  //0b00100001:
-        //NOR(mem);
-        std::cerr << "Not implemented yet." << std::endl;
-        exit(-1);
-        break;
-
         case 0x2A:  //0b00100001:
         //SLT(mem);
         std::cerr << "Not implemented yet." << std::endl;
@@ -188,7 +205,6 @@ void Rtype::run(Memory& mem) {
         std::cerr << "Not implemented yet." << std::endl;
         exit(-1);
         break;
-
 
         default:
         std::cerr << "Non-existing instruction." << '\n';
@@ -611,7 +627,7 @@ void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
 void Itype::BGEZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
-    if( ((int)mem.reg[source1]) >= 0) {
+    if( ((int)mem.reg[source1])`` >= 0) {
         mem.pc += mem.sign_extend(immediate, 15);
     }
 
