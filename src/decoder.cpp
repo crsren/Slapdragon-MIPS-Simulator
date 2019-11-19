@@ -213,31 +213,29 @@ void Itype::init(uint32_t& word) {
 }
 
 void Itype::run(Memory& mem) {
-      switch(opCode) {
+    switch(opCode) {
         case 0x01:
-          switch(source2) {
-              case 0x00:
-              //std::cerr << "BLTZ" << '\n';
-              std::cerr << "Not implemnted yet" << '\n';
-              //BLTZ(mem);
-              exit(-1);
-              break;
-              case 0x01:
-              //std::cerr << "BGEZ" << '\n';
-              std::cerr << "Not implemnted yet" << '\n';
-              //BGEZ(mem);
-              exit(-1);
-              break;
-              case 0x10:
-              std::cerr << "BLTZAL" << '\n';
-              BLTZAL(mem);
-              break;
+        switch(source2) {
+            case 0x00:
+            std::cerr << "BLTZ" << '\n';
+            BLTZ(mem);
+            break;
 
-              case 0x11:
-              std::cerr << "BGEZAL" << '\n';
-              BGEZAL(mem);
-              break;
-          }
+            case 0x01:
+            std::cerr << "BGEZ" << '\n';
+            BGEZ(mem);
+            break;
+
+            case 0x10:
+            std::cerr << "BLTZAL" << '\n';
+            BLTZAL(mem);
+            break;
+
+            case 0x11:
+            std::cerr << "BGEZAL" << '\n';
+            BGEZAL(mem);
+            break;
+        }
         break;
 
         case 0x04:
@@ -250,18 +248,15 @@ void Itype::run(Memory& mem) {
         std::cerr << "BNE" << '\n';
         break;
 
+
         case 0x06:
-        //BLEZ(mem);
         std::cerr << "BLEZ" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
+        BLEZ(mem);
         break;
 
         case 0x07:
-        //BGTZ(mem);
         std::cerr << "BGTZ" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
-        exit(-1);
+        BGTZ(mem);
         break;
 
         case 0x08:
@@ -463,10 +458,10 @@ void Rtype::MULT(Memory& mem){
 }
 
 void Rtype::MULTU(Memory& mem){
-  uint64_t tmp = mem.reg[source1] * mem.reg[source2];
-  mem.lo = tmp;
-  mem.hi = tmp >> 32;
-  mem.forward();
+    uint64_t tmp = mem.reg[source1] * mem.reg[source2];
+    mem.lo = tmp;
+    mem.hi = tmp >> 32;
+    mem.forward();
 }
 
 
@@ -576,10 +571,10 @@ void Itype::SLTIU(Memory& mem) {
 }
 
 void Itype::ADDIU(Memory& mem){
-  uint32_t s1 = mem.reg[source1];
-  uint32_t s2 = mem.sign_extend(immediate, 15);
-  mem.reg[source2] = (uint32_t)(s1 + s2);
-  mem.forward();
+    uint32_t s1 = mem.reg[source1];
+    uint32_t s2 = mem.sign_extend(immediate, 15);
+    mem.reg[source2] = (uint32_t)(s1 + s2);
+    mem.forward();
 }
 
 void Itype::LUI(Memory& mem){
@@ -706,7 +701,8 @@ void Itype::BGEZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
     if( ((int)mem.reg[source1]) >= 0) {
-        mem.pc += mem.sign_extend(immediate, 15);
+        offset = mem.sign_extend( (immediate << 2), 17);
+        mem.branch(mem.ahead_pc + offset);
     }
 
     mem.forward();
@@ -716,7 +712,8 @@ void Itype::BLTZAL(Memory& mem) {
     mem.reg[31] = mem.pc+8;
 
     if( ((int)mem.reg[source1]) < 0) {
-        mem.pc += mem.sign_extend(immediate, 15);
+        offset = mem.sign_extend( (immediate << 2), 17);
+        mem.branch(mem.ahead_pc + offset);
     }
 
     mem.forward();
@@ -730,6 +727,37 @@ void Itype::BEQ(Memory& mem){
         mem.forward();
     }
 }
+
+void Itype::BGEZ(Memory& mem) {
+    if( ((int)mem.reg[source1]) >= 0) {
+        int offset = mem.sign_extend( (immediate << 2), 17)
+        mem.branch(mem.ahead_pc + offset);
+    }
+    mem.forward();
+}
+
+void Itype::BGTZ(Memory& mem) {
+    if( ((int)mem.reg[source1]) > 0) {
+        int offset = mem.sign_extend( (immediate << 2), 17)
+        mem.branch(mem.ahead_pc + offset);
+    }
+    mem.forward();
+}
+
+void Itype::BLEZ(Memory& mem) {
+    if( ((int)mem.reg[source1]) <= 0) {
+        int offset = mem.sign_extend( (immediate << 2), 17)
+        mem.branch(mem.ahead_pc + offset);
+    }
+    mem.forward();
+}
+
+void Itype::BLTZ(Memory& mem) {
+    if( ((int)mem.reg[source1]) < 0) {
+        int offset = mem.sign_extend( (immediate << 2), 17)
+        mem.branch(mem.ahead_pc + offset);
+    }
+    mem.forward();
 
 void Itype::BNE(Memory& mem){
     if(mem.reg[source1] != mem.reg[source2]){

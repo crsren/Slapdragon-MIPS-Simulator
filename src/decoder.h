@@ -86,8 +86,13 @@ public:
     void LWR(Memory& mem);
     void BGEZAL(Memory& mem);
     void BLTZAL(Memory& mem);
+    void BGEZ(Memory& mem);
+    void BGTZ(Memory& mem);
+    void BLEZ(Memory& mem);
+    void BLTZ(Memory& mem);
     void SLTI(Memory& mem);
     void SLTIU(Memory& mem);
+
 
 
 
