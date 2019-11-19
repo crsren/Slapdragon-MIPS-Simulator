@@ -354,6 +354,20 @@ void Itype::ORI(Memory& mem){
     mem.forward();
 }
 
+void Itype::LB(Memory& mem){
+    unsigned int effective = mem.reg[source1] + immediate;
+    std::string type ="";
+    unsigned int value = mem.readConvert(type, effective);
+    if (type == "imem"){
+        mem.reg[source1] = (int)mem.imem[value];
+    } else if (type == "dmem"){
+        mem.reg[source1] = (int)mem.dmem[value];
+    } else if (type == "getc"){
+        mem.reg[source1] = (int)value;
+    }
+    mem.forward();
+}
+
 void Itype::LW(Memory& mem){
     uint32_t location = mem.reg[source2] + (int)immediate;
     if (location % 4 != 0){

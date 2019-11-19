@@ -63,6 +63,7 @@ public:
     void LUI(Memory& mem);
     void LW(Memory& mem);
     void BEQ(Memory& mem);
+    void LB(Memory& mem);
     void LWL(Memory& mem);
     void LWR(Memory& mem);
 
