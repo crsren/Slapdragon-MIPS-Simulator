@@ -8,7 +8,7 @@
 
 #include "decoder.h"
 #include "helpers.h"
-#include "memory.h"
+#include "cpu.h"
 
 void instruction::init(uint32_t& word) {
     opCode = bitwise::isolate(word, 26, 6);

@@ -1,5 +1,5 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef CPU_H
+#define CPU_H
 
 #include <string>
 #include <vector>

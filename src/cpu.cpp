@@ -4,7 +4,7 @@
 #include <vector>
 #include <bitset>
 
-#include "memory.h"
+#include "cpu.h"
 #include "helpers.h"
 
 Memory::Memory(std::vector<uint8_t> byte){

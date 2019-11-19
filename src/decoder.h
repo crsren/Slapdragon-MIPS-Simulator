@@ -5,7 +5,7 @@
 //#include <map> //change to unordered_map
 #include <functional>
 
-#include "memory.h"
+#include "cpu.h"
 
 
 struct Rtype {

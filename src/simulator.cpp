@@ -6,7 +6,7 @@
 
 #include "decoder.h"
 #include "helpers.h"
-#include "memory.h"
+#include "cpu.h"
 
 // cout for character printed by bitstream
 // cerr for not genuine output
