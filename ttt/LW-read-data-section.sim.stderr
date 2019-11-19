@@ -1,4 +1,159 @@
 Simulating binary ttt/LW-read-data-section.mips.bin
+PC at 0
+00111100000000100010000000000000
+Itype instruction
+[OpCode: 00001111 | Source1: 00000000 | Source2/Dest:00000010 | immediate: 00000000000000000010000000000000 ]
 LUI
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 536870912
+Register 3: 0
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 0
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 4
+10001100010000100000000000000000
+Itype instruction
+[OpCode: 00100011 | Source1: 00000010 | Source2/Dest:00000010 | immediate: 00000000000000000000000000000000 ]
 LW
-Non-existing instruction.
+input: 536870912, offset: 285212672
+final position: 0
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 0
+Register 3: 0
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 0
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000011111000000000000000001000
+Rtype instruction
+[Source1: 00011111 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00001000 ]
+JR
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 0
+Register 3: 0
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 0
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 0
+Register 3: 0
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 0
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
