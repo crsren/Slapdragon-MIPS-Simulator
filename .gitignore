@@ -4,3 +4,5 @@ build
 .DS_Store
 *.csv
 ttt/*.sim.stderr
+ttt/*.got.retcode
+ttt/*.got.stdout
