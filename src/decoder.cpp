@@ -201,7 +201,6 @@ void Rtype::run(Memory& mem) {
         default:
         std::cerr << "Non-existing instruction." << '\n';
         exit(-1);
-        break;
     }
 }
 
@@ -235,6 +234,10 @@ void Itype::run(Memory& mem) {
             std::cerr << "BGEZAL" << '\n';
             BGEZAL(mem);
             break;
+
+            default:
+            std::cerr << "Non-existing instruction." << '\n';
+            exit(-1);
         }
         break;
 
@@ -366,7 +369,6 @@ void Itype::run(Memory& mem) {
         default:
         std::cerr << "Non-existing instruction." << '\n';
         exit(-1);
-        break;
     }
 }
 
@@ -377,8 +379,21 @@ void Jtype::init(uint32_t& word) {
 }
 
 void Jtype::run(Memory& mem) {
-    std::cerr << "J.run not implemented yet." << '\n';
-    exit(-1);
+    switch(opCode) {
+        case 0x03:
+        std::cerr << "JAL" << '\n';
+        JAL(mem);
+        break;
+
+        case 0x02:
+        std::cerr << "J" << '\n';
+        J(mem);
+        break;
+
+        default:
+        std::cerr << "Non-existing instruction." << '\n';
+        exit(-1);
+    }
 }
 
 // --------------------------------------------------------------------
@@ -643,19 +658,19 @@ void Itype::LW(Memory& mem){
 }
 
 void Itype::SW(Memory& mem){
-  uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
-  if (location % 4 != 0){
-      std::cerr << "Address Error, not alligned address" << '\n';
-      exit(-11);
-  }
-  std::string type = "";
-  unsigned int value = mem.writeConvert(type, location);
-  if (type == "dmem"){
-      mem.dmem[value] = mem.reg[source2];
-  } else if (type == "putc"){
-      std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
-  }
-  mem.forward();
+    uint32_t location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    if (location % 4 != 0){
+        std::cerr << "Address Error, not alligned address" << '\n';
+        exit(-11);
+    }
+    std::string type = "";
+    unsigned int value = mem.writeConvert(type, location);
+    if (type == "dmem"){
+        mem.dmem[value] = mem.reg[source2];
+    } else if (type == "putc"){
+        std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+    }
+    mem.forward();
 }
 
 
@@ -759,11 +774,27 @@ void Itype::BLTZ(Memory& mem) {
     }
     mem.forward();
 
-void Itype::BNE(Memory& mem){
-    if(mem.reg[source1] != mem.reg[source2]){
-        int offset = mem.sign_extend( (immediate << 2 ), 17);
-        mem.branch(mem.ahead_pc + offset);
-    } else{
-        mem.forward();
+    void Itype::BNE(Memory& mem){
+        if(mem.reg[source1] != mem.reg[source2]){
+            int offset = mem.sign_extend( (immediate << 2 ), 17);
+            mem.branch(mem.ahead_pc + offset);
+        } else{
+            mem.forward();
+        }
     }
-}
+
+    //------------------------------------------------------------
+    //J-TYPE
+
+    void Jtype::JAL(Memory& mem) {
+        mem.reg[31] = mem.pc + 8;
+        uint32_t low_28b = address << 2;
+        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
+        mips.branch(low_28b | high_4b);
+    }
+
+    void Jtype::J(Memory& mem) {
+        uint32_t low_28b = address << 2;
+        uint32_t high_4b = (mem.pc_ahead >> 28) << 28;
+        mips.branch(low_28b | high_4b);
+    }

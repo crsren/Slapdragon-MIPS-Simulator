@@ -8,3 +8,4 @@ ttt/*.got.retcode
 ttt/*.got.stdout
 tests/*.got.*
 tests/*.sim.stderr
+*.o
