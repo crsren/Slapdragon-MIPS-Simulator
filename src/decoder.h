@@ -96,9 +96,6 @@ public:
     void SLTI(Memory& mem);
     void SLTIU(Memory& mem);
 
-
-
-
 };
 
 class Jtype {
@@ -107,7 +104,12 @@ public:
 
     void init(uint32_t& word);
     void run(Memory& mem);
+
+    void JAL(Memory& mem);
+    void J(Memory& mem);
 };
+
+//-------------------------------------------
 
 class instruction {
 private:
