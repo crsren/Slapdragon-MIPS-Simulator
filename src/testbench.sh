@@ -7,12 +7,11 @@ TEST_DIR="tests"
 chmod 755 $TEST_DIR/*
 
 function getStatus {
-	if [ "$1" == "$2" ] && [ "$3" == "$3" ]
+	if [ $1 == $2 ] && [ "$3" == "$3" ]
 	then
 		Status="Pass"
 	else
 		Status="Fail"
-		echo Failed with retcode $1 "->" $2 and stdout $3 "->" $4 "!"
 		Error="Retcode ["$1"] expected ["$2"] - Stdout ["$3"] expected ["$4"]."
 	fi
 }
@@ -26,13 +25,8 @@ TEST=${BIN%%.*} #remove suffix
 TestID=${TEST##*/}
 
 echo "------------------------------------------------------------"
-echo $TestID
-
 #run simulator with testcase and redirect stdout and stderr
-$SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr
-
-#output the stored srdin
-cat $TEST.stdin
+cat $TEST.stdin | $SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr
 
 #capture and store return code
 got_RETCODE=$?
@@ -59,6 +53,7 @@ Author=${tmp##*:}
 tmp=$(sed -n 2p $TEST.mips.s)
 Message=${tmp##*#}
 
+echo $TestID","$Instruction","$Status
 echo $TestID","$Instruction","$Status","$Author","$Message";"$Error >> out.csv
 
 done

@@ -1,257 +1,1336 @@
-Simulating binary logs/Slapdragon/test/BNE-loop.mips.bin
-32
-Read 32
-00100100
-00000011
-00000000
-00000001
-00100100
-00001000
-00000000
-00001010
-00000000
-01000011
-00010000
-00100001
-00010100
-01001000
-11111111
-11111110
-00000000
-00000000
-00000000
-00000000
-00000011
-11100000
-00000000
-00001000
-00000000
-00000000
-00000000
-00000000
-00000000
-00000000
-00000000
-00000000
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 | Address:01011011110110100000000101000000 ]
-PC at 0
-[OpCode: 00000001 
+Simulating binary testsThomas/BNE-loop.mips.bin
+PC at 0
+00100100000000110000000000000001
+Itype instruction
+[OpCode: 00001001 | Source1: 00000000 | Source2/Dest:00000011 | immediate: 00000000000000000000000000000001 ]
+ADDIU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 0
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 0
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 4
+00100100000010000000000000001010
+Itype instruction
+[OpCode: 00001001 | Source1: 00000000 | Source2/Dest:00001000 | immediate: 00000000000000000000000000001010 ]
+ADDIU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 0
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 1
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 1
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 1
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 2
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 2
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 2
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 3
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 3
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 3
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 4
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 4
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 4
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 5
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 5
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 5
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 6
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 6
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 6
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 7
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 7
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 7
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 8
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 8
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 8
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 9
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+final position: 8
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 9
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 9
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 8
+00000000010000110001000000100001
+Rtype instruction
+[Source1: 00000010 | Source2: 00000011 | Dest: 00000010 | Shift Amt: 00000000 | Fn Code: 00100001 ]
+ADDU
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 10
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 12
+00010100010010001111111111111110
+Itype instruction
+[OpCode: 00000101 | Source1: 00000010 | Source2/Dest:00001000 | immediate: 00000000000000001111111111111110 ]
+BNE
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 10
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 16
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 10
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 20
+00000011111000000000000000001000
+Rtype instruction
+[Source1: 00011111 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00001000 ]
+JR
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 10
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
+PC at 24
+00000000000000000000000000000000
+Rtype instruction
+[Source1: 00000000 | Source2: 00000000 | Dest: 00000000 | Shift Amt: 00000000 | Fn Code: 00000000 ]
+SLL
+******************************************
+Register 0: 0
+Register 1: 0
+Register 2: 10
+Register 3: 1
+Register 4: 0
+Register 5: 0
+Register 6: 0
+Register 7: 0
+Register 8: 10
+Register 9: 0
+Register 10: 0
+Register 11: 0
+Register 12: 0
+Register 13: 0
+Register 14: 0
+Register 15: 0
+Register 16: 0
+Register 17: 0
+Register 18: 0
+Register 19: 0
+Register 20: 0
+Register 21: 0
+Register 22: 0
+Register 23: 0
+Register 24: 0
+Register 25: 0
+Register 26: 0
+Register 27: 0
+Register 28: 0
+Register 29: 0
+Register 30: 0
+Register 31: 0
+******************************************
