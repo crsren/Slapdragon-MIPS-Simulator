@@ -449,8 +449,8 @@ void Rtype::MTLO(Memory& mem) {
 }
 
 void Rtype::MULT(Memory& mem){
-    int s1 = (int)mem.reg[source1];
-    int s2 = (int)mem.reg[source2];
+    long int s1 = (long int)mem.reg[source1];
+    long int s2 = (long int)mem.reg[source2];
     long int tmp = s1 * s2;
     mem.lo = tmp;
     mem.hi = tmp >> 32;
@@ -650,8 +650,8 @@ void Itype::SH(Memory& mem){
     std::string type ="";
     unsigned int value = mem.writeConvert(type, effective);
     if (type == "dmem"){
-        mem.dmem[value] = bitwise::isolate(mem.reg[source2], 0, 8);
-        mem.dmem[value + 1] = bitwise::isolate(mem.reg[source2], 8, 8);
+        mem.dmem[value+1] = bitwise::isolate(mem.reg[source2], 0, 8);
+        mem.dmem[value] = bitwise::isolate(mem.reg[source2], 8, 8);
     } else if (type == "putc"){
         std::putchar(bitwise::isolate(mem.reg[source2], 0, 8));
     }

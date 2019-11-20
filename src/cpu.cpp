@@ -48,8 +48,7 @@ unsigned int Memory::readConvert(std::string& type, uint32_t input){
         type = "dmem";
         return offset;
     } else if ((input == getc_off) || (input == getc_off + 3) || (input == getc_off + 2)){
-        char tmp;
-        std::cin >> tmp;
+        char tmp = getchar();
         type = "getc";
         return (unsigned int)tmp;
     } else{
