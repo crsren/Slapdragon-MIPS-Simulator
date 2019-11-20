@@ -7,7 +7,7 @@ TEST_DIR="tests"
 chmod 755 $TEST_DIR/*
 
 function getStatus {
-	if [ $1 == $2 ] && [ "$3" == "$3" ]
+	if [ "$1" == "$2" ] && [ "$3" == "$4" ]
 	then
 		Status="Pass"
 	else
@@ -25,12 +25,15 @@ TEST=${BIN%%.*} #remove suffix
 TestID=${TEST##*/}
 
 echo "------------------------------------------------------------"
+
 #run simulator with testcase and redirect stdout and stderr
-cat $TEST.stdin | $SIMULATOR $BIN 1>$TEST.got.stdout 2>$TEST.sim.stderr
+
+cat $TEST.stdin | $SIMULATOR $BIN > $TEST.got.stdout 2> $TEST.sim.stderr
 
 #capture and store return code
 got_RETCODE=$?
 echo $got_RETCODE > $TEST.got.retcode
+
 
 #load references (used in getStatus)
 got_STDOUT=$(cat $TEST.got.stdout)
@@ -45,7 +48,6 @@ Instruction=${TestID%%-*}
 #check when exactly STATUS is supposed to be FAIL or PASS !!!!!!!!!!!!
 getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 
-#check where we are supposed to get Author from !!!!!!!!!!!!!!
 tmp=$(sed -n 1p $TEST.mips.s)
 Author=${tmp##*:}
 
