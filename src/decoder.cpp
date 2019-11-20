@@ -108,10 +108,9 @@ void Rtype::run(Memory& mem) {
         std::cerr << "JR" << '\n';
         break;
 
-        case 0x0A:
+        case 0x09:
         JALR(mem);
         std::cerr << "JALR" << '\n';
-        exit(-1);
         break;
 
         case 0x10:  //0b00100001:
@@ -390,39 +389,38 @@ void Jtype::run(Memory& mem) {
 // --------------------------------------------------------------------
 // R-TYPE
 void Rtype::SLL(Memory& mem) {
-    mem.reg[dest] = mem.reg[source2] << shift_amt;
     mem.forward();
+    mem.reg[dest] = mem.reg[source2] << shift_amt;
 }
 
 void Rtype::SLLV(Memory& mem) {
-    mem.reg[dest] = mem.reg[source2] << bitwise::isolate(mem.reg[source1], 0, 5);
     mem.forward();
+    mem.reg[dest] = mem.reg[source2] << bitwise::isolate(mem.reg[source1], 0, 5);
 }
 
 void Rtype::SRL(Memory& mem) {
-    mem.reg[dest] = mem.reg[source2] >> shift_amt;
     mem.forward();
+    mem.reg[dest] = mem.reg[source2] >> shift_amt;
 }
 
 void Rtype::SRLV(Memory& mem) {
-    mem.reg[dest] = mem.reg[source2] >> bitwise::isolate(mem.reg[source1], 0, 5);
     mem.forward();
+    mem.reg[dest] = mem.reg[source2] >> bitwise::isolate(mem.reg[source1], 0, 5);
 }
 
 void Rtype::SRA(Memory& mem) {
+    mem.forward();
     uint32_t bottom = mem.reg[source2] >> shift_amt;
     uint32_t top = -(mem.reg[source2] >> 31) << (32-shift_amt);
     mem.reg[dest] = top | bottom;
-
-    mem.forward();
 }
 
 void Rtype::SRAV(Memory& mem) {
+    mem.forward();
     uint32_t bottom = mem.reg[source2] >> bitwise::isolate(mem.reg[source1], 0, 5);
     uint32_t top = -(mem.reg[source2] >> 31) << (32-bitwise::isolate(mem.reg[source1], 0, 5));
     mem.reg[dest] = top | bottom;
 
-    mem.forward();
 }
 
 void Rtype::JR(Memory& mem) {
@@ -430,7 +428,7 @@ void Rtype::JR(Memory& mem) {
 }
 
 void Rtype::JALR(Memory& mem) {
-    mem.reg[dest] = mem.ahead_pc + 4;
+    mem.reg[dest] = mem.makeAddress(mem.ahead_pc) + 4;
     mem.branch(mem.reg[source1]);
 }
 
@@ -464,9 +462,12 @@ void Rtype::MULT(Memory& mem){
 }
 
 void Rtype::MULTU(Memory& mem){
-    uint64_t tmp = mem.reg[source1] * mem.reg[source2];
+    uint64_t s1 = mem.reg[source1];
+    uint64_t s2 = mem.reg[source2];
+    uint64_t tmp = s1 * s2;
     mem.lo = tmp;
     mem.hi = tmp >> 32;
+    std::cerr << tmp << '\n';
     mem.forward();
 }
 
@@ -609,11 +610,11 @@ void Itype::LB(Memory& mem){
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
-        mem.reg[source1] = mem.sign_extend(mem.imem[value], 7);
+        mem.reg[source2] = mem.sign_extend(mem.imem[value], 7);
     } else if (type == "dmem"){
-        mem.reg[source1] = mem.sign_extend(mem.dmem[value], 7);
+        mem.reg[source2] = mem.sign_extend(mem.dmem[value], 7);
     } else if (type == "getc"){
-        mem.reg[source1] = mem.sign_extend(value, 7);
+        mem.reg[source2] = mem.sign_extend(value, 7);
     }
     mem.forward();
 }
@@ -623,11 +624,11 @@ void Itype::LBU(Memory& mem){
     std::string type ="";
     unsigned int value = mem.readConvert(type, effective);
     if (type == "imem"){
-        mem.reg[source1] = mem.imem[value];
+        mem.reg[source2] = mem.imem[value];
     } else if (type == "dmem"){
-        mem.reg[source1] = mem.dmem[value];
+        mem.reg[source2] = mem.dmem[value];
     } else if (type == "getc"){
-        mem.reg[source1] = value;
+        mem.reg[source2] = value;
     }
     mem.forward();
 }
@@ -639,18 +640,18 @@ void Itype::SB(Memory& mem){
     if (type == "dmem"){
         mem.dmem[value] = bitwise::isolate(mem.reg[source2], 0, 8);
     } else if (type == "putc"){
-        std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+        std::putchar(bitwise::isolate(mem.reg[source2], 0, 8));
     }
     mem.forward();
 }
 
 void Itype::LH(Memory& mem){
-    int vAddr = mem.sign_extend(immediate) + mem.reg[source1];
+    int vAddr = mem.sign_extend(immediate, 15) + mem.reg[source1];
     if( (vAddr & 1) != 0) {
         std::cerr << "Memory exception" << '\n';
         exit(-11);
     }
-    
+
 }
 
 void Itype::LHU(Memory& mem){
@@ -689,51 +690,54 @@ void Itype::SW(Memory& mem){
         mem.dmem[value+1] = bitwise::isolate(mem.reg[source2], 16, 8);
         mem.dmem[value] = bitwise::isolate(mem.reg[source2], 24, 8);
     } else if (type == "putc"){
-        std::cout << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+        std::cerr << bitwise::isolate(mem.reg[source2], 0, 8) << '\n';
+        std::putchar(bitwise::isolate(mem.reg[source2], 0, 8));
     }
     mem.forward();
 }
 
 
 void Itype::LWL(Memory& mem){
-    unsigned int location = mem.reg[source2] + (int)mem.sign_extend(immediate, 15);
-
+    unsigned int location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    int shift = 0;
+    int count = 3;
+    int offset = location - location%4;
     while(location % 4 != 0){
-      std::string type = "";
-      int shift = 0;
-      unsigned int value = mem.readConvert(type, location);
-      if (type == "imem"){
-          int tmp = (int)mem.instrToWord(value);
-          uint32_t shifted = mem.imem[value] << (24 - shift);
-          mem.reg[source1] = mem.reg[source1] & shifted;
-      } else if (type == "dmem"){
-          uint32_t shifted = mem.dmem[value] << (24 - shift);
-          mem.reg[source1] = mem.reg[source1] & shifted;
+        std::string type = "";
+        unsigned int value = mem.readConvert(type, location+offset);
+        if (type == "imem"){
+            uint32_t shifted = mem.imem[value] << (24 - shift);
+            mem.byteOverride(mem.reg[source2], count, shifted);
+        } else if (type == "dmem"){
+            uint32_t shifted = mem.dmem[value] << (24 - shift);
+            mem.byteOverride(mem.reg[source2], count, shifted);
         }
-      location++;
-      shift += 8;
+        location++;
+        shift += 8;
+        count--;
     }
     mem.forward();
 }
 
 
-void Itype::LWR(Memory& mem){ //doesnt properly work, needs to be sign extended
-    unsigned int location = mem.reg[source2] + (int)immediate;
-
+void Itype::LWR(Memory& mem){
+    unsigned int location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    int shift = 0;
+    int count = 0;
     while(location % 4 != 0){
-      std::string type = "";
-      int shift = 0;
-      unsigned int value = mem.readConvert(type, location);
-      if (type == "imem"){
-          int tmp = (int)mem.instrToWord(value);
-          uint32_t shifted = mem.imem[value] << shift;
-          mem.reg[source1] = mem.reg[source1] & shifted;
-      } else if (type == "dmem"){
-          uint32_t shifted = mem.dmem[value] << (shift);
-          mem.reg[source1] = mem.reg[source1] & shifted;
+        std::string type = "";
+        unsigned int value = mem.readConvert(type, location);
+        if (type == "imem"){
+            int tmp = (int)mem.instrToWord(value);
+            uint32_t shifted = mem.imem[value] << shift;
+            mem.byteOverride(mem.reg[source2], count, shifted);
+        } else if (type == "dmem"){
+            uint32_t shifted = mem.dmem[value] << (shift);
+            mem.byteOverride(mem.reg[source2], count, shifted);
         }
-      location--;
-      shift += 8;
+        location--;
+        shift += 8;
+        count++;
     }
     mem.forward();
 }
@@ -743,7 +747,7 @@ void Itype::BGEZAL(Memory& mem) {
 
     if( ((int)mem.reg[source1]) >= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
 
     mem.forward();
@@ -754,7 +758,7 @@ void Itype::BLTZAL(Memory& mem) {
 
     if( ((int)mem.reg[source1]) < 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
 
     mem.forward();
@@ -763,7 +767,7 @@ void Itype::BLTZAL(Memory& mem) {
 void Itype::BEQ(Memory& mem){
     if(mem.reg[source1] == mem.reg[source2]){
         int offset = mem.sign_extend( (immediate << 2 ), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     } else{
         mem.forward();
     }
@@ -772,7 +776,7 @@ void Itype::BEQ(Memory& mem){
 void Itype::BGEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) >= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
     mem.forward();
 }
@@ -780,7 +784,7 @@ void Itype::BGEZ(Memory& mem) {
 void Itype::BGTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) > 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
     mem.forward();
 }
@@ -788,7 +792,7 @@ void Itype::BGTZ(Memory& mem) {
 void Itype::BLEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) <= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
     mem.forward();
 }
@@ -796,7 +800,7 @@ void Itype::BLEZ(Memory& mem) {
 void Itype::BLTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) < 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     }
     mem.forward();
 }
@@ -804,7 +808,7 @@ void Itype::BLTZ(Memory& mem) {
 void Itype::BNE(Memory& mem){
     if(mem.reg[source1] != mem.reg[source2]){
         int offset = mem.sign_extend( (immediate << 2 ), 17);
-        mem.branch(mem.instrToHex(mem.ahead_pc) + offset);
+        mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
     } else{
         mem.forward();
     }
@@ -813,15 +817,15 @@ void Itype::BNE(Memory& mem){
 //------------------------------------------------------------
 //J-TYPE
 
-    void Jtype::JAL(Memory& mem) {
-        mem.reg[31] = mem.pc + 8;
-        uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.instrToHex(mem.ahead_pc) >> 28) << 28;
-        mem.branch(low_28b | high_4b);
-    }
+void Jtype::JAL(Memory& mem) {
+    mem.reg[31] = mem.makeAddress(mem.ahead_pc) + 4;
+    uint32_t low_28b = address << 2;
+    uint32_t high_4b = (mem.makeAddress(mem.ahead_pc) >> 28) << 28;
+    mem.branch(low_28b | high_4b);
+}
 
-    void Jtype::J(Memory& mem) {
-        uint32_t low_28b = address << 2;
-        uint32_t high_4b = (mem.instrToHex(mem.ahead_pc) >> 28) << 28;
-        mem.branch(low_28b | high_4b);
-    }
+void Jtype::J(Memory& mem) {
+    uint32_t low_28b = address << 2;
+    uint32_t high_4b = (mem.makeAddress(mem.ahead_pc) >> 28) << 28;
+    mem.branch(low_28b | high_4b);
+}

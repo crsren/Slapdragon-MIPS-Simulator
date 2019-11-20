@@ -37,16 +37,19 @@ public:
   void branch(uint32_t target);
   void forward();
   void showRegisters();
+  void checkDmem();
   uint32_t instrToWord(int start);
   uint32_t dataToWord(int start);
   uint32_t sign_extend(uint32_t word, int msb);
+  void byteOverride(uint32_t& word, int start, uint32_t newbyte);
+
 
 
   unsigned int readConvert(std::string& type, uint32_t input);
   unsigned int writeConvert(std::string& type, uint32_t input);
   unsigned int execConvert(uint32_t input);
 
-  uint32_t instrToHex(int pc);
+  uint32_t makeAddress(int pc);
 };
 
 

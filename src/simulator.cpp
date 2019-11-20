@@ -47,7 +47,6 @@ int main(int argc, char *argv[]) {
         ins.showContent();
         ins.run(mem);
         mem.showRegisters();
-
         if (mem.pc == -1){
             exit(bitwise::isolate(mem.reg[2], 0, 8));
         }
