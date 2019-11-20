@@ -9,3 +9,9 @@ ttt/*
 *.stdin
 *.stderr
 *.bin
+tests/DIV-divby0.ref.retcode
+tests/DIV-divby0.ref.stdout
+tests/DIV-divby0.stdin
+tests/DIV-normal-qtest.ref.retcode
+tests/DIV-normal-qtest.ref.stdout
+tests/DIV-normal-qtest.stdin
