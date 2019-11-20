@@ -3,9 +3,9 @@ bin
 build
 .DS_Store
 *.csv
-ttt/*.sim.stderr
-ttt/*.got.retcode
-ttt/*.got.stdout
+ttt/*
 tests/*.got.*
 tests/*.sim.stderr
-*.o
+tests/*.bin
+tests/*.stdin
+tests/*.ref.*
