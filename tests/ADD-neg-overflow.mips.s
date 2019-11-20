@@ -1,6 +1,6 @@
 # Created by car3418
 # Adding two negative integers wit overflow
-# Return code: -10
+# Return code: 246
 
 lui $8, 0x8000
 addi $9, $0, -1

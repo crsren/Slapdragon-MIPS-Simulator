@@ -12,8 +12,8 @@ function getStatus {
 		Status="Pass"
 	else
 		Status="Fail"
-		Error="Retcode ["$1"] expected ["$2"] - Stdout ["$3"] expected ["$4"]."
 	fi
+	Error="Retcode ["$1"] to ["$2"] - Stdout ["$3"] to ["$4"]."
 }
 
 echo TestID,Instruction,Status,Author,Message > out.csv #clean csv file and write header row
@@ -54,6 +54,7 @@ tmp=$(sed -n 2p $TEST.mips.s)
 Message=${tmp##*#}
 
 echo $TestID","$Instruction","$Status
-echo $TestID","$Instruction","$Status","$Author","$Message";"$Error >> out.csv
+echo $Error
+echo $TestID","$Instruction","$Status","$Author","$Message","$Error";" >> out.csv
 
 done

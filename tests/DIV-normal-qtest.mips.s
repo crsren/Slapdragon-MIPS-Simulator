@@ -1,3 +1,7 @@
+# Created by NB696969
+# What does this do + retcode
+# retcode: 0
+
 lui     v0,0x7fff
 ori     v0,v0,0xffff
 lui     v1,0x7fff
@@ -9,17 +13,3 @@ mflo    v0
 
 jr      ra
 ssl     $zero, $zero, 0
-
-
-0x3C027FFF
-0x3442FFFF
-0x3C037FFF
-0x3463FFFF
-0x0043001A
-0x00000000
-0x00000000
-0x00001012
-0x03E00008
-0x00000000
-
-0x3C027FFF3442FFFF3C037FFF3463FFFF0043001A00000000000000000000101203E0000800000000

@@ -5,10 +5,15 @@ DEST="../tests"
 
 for FILE in $FILES
 do
-	bin/parser $FILE "$DEST/#"
 
 	tmp=${FILE##*/}
 	NAME=${tmp%%.*}
+
+	echo "-----------------------------------"
+	echo $NAME
+
+	bin/parser $FILE "$DEST/#"
+
 	#so that we dont have to create extra files for retcode, stdout and stdin
 	RetCodeLine=$(grep "code" $FILE)
 	RETCODE=${RetCodeLine##*": "}
