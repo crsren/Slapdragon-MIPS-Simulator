@@ -1,12 +1,9 @@
 # Created by car3418
-# Adding two positive integers without overflow
-# Return code: 40
+# Adding two negative numbers ignoring the overflow
+# Return code: 2
 
-ori $8, $0, 0x0012
-addi $9, $0, 22
-#r8 = 18 and r9 = 22
-
-add $2, $8, $9
-#r2 = 40
+addi $9, $0, 0xF001
+addu $2, $9, 0xF001
+#r2 = 2 because overflow ignored
 
 jr $0
