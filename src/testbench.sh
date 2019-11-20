@@ -2,7 +2,7 @@
 
 
 SIMULATOR=$1
-TEST_DIR="ttt"
+TEST_DIR="tests"
 
 chmod 755 $TEST_DIR/*
 

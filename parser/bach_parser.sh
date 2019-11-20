@@ -1,11 +1,25 @@
 #!/bin/bash
 
-FILES="files/*.s"
-DEST="bin_files"
+FILES="../tests/*.s"
+DEST="../tests"
 
 for FILE in $FILES
 do
-    bin/parser $FILE "$DEST/#"
+	bin/parser $FILE "$DEST/#"
+
+	tmp=${FILE##*/}
+	NAME=${tmp%%.*}
+	#so that we dont have to create extra files for retcode, stdout and stdin
+	RetCodeLine=$(grep "code" $FILE)
+	RETCODE=${RetCodeLine##*": "}
+	echo $RETCODE > $DEST/$NAME.ref.retcode
+	StdoutLine=$(grep "tdout" $FILE)
+	STDOUT=${StdoutLine##*": "}
+	echo $STDOUT > $DEST/$NAME.ref.stdout
+	StdinLine=$(grep "tdin" $FILE)
+	STDIN=${StdinLine##*": "}
+	echo $STDIN > $DEST/$NAME.stdin
+
 done
 
 echo -e "Finished.\n"
