@@ -47,7 +47,7 @@ unsigned int Memory::readConvert(std::string& type, uint32_t input){
         std::cerr << "final position: " << offset << '\n';
         type = "dmem";
         return offset;
-    } else if ((input == getc_off) || (input == getc_off + 3)){
+    } else if ((input == getc_off) || (input == getc_off + 3) || (input == getc_off + 2)){
         char tmp;
         std::cin >> tmp;
         type = "getc";
@@ -65,7 +65,7 @@ unsigned int Memory::writeConvert(std::string& type, uint32_t input){
       std::cerr << "final position: " << offset << '\n';
       type = "dmem";
       return offset;
-  } else if ((input == putc_off) || (input == putc_off + 3)){
+  } else if ((input == putc_off) || (input == putc_off + 3) || (input == putc_off + 2)){
       type = "putc";
       return 0;
   } else{

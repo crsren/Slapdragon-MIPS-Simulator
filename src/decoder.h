@@ -83,6 +83,7 @@ public:
     void LB(Memory& mem);
     void LBU(Memory& mem);
     void SB(Memory& mem);
+    void SH(Memory& mem);
     void LH(Memory& mem);
     void LHU(Memory& mem);
     void LWL(Memory& mem);

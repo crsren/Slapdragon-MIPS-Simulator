@@ -307,9 +307,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x21:
-        //LH(mem);
+        LH(mem);
         std::cerr << "LH" << '\n';
-        exit(-1);
         break;
 
         case 0x22:
@@ -328,9 +327,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x25:
-        //LHU(mem);
+        LHU(mem);
         std::cerr << "LHU" << '\n';
-        exit(-1);
         break;
 
         case 0x26:
@@ -344,10 +342,8 @@ void Itype::run(Memory& mem) {
         break;
 
         case 0x29:
-        //SH(mem);
+        SH(mem);
         std::cerr << "SH" << '\n';
-        std::cerr << "NOT" << '\n';
-        exit(-1);
         break;
 
         case 0x2B:
@@ -645,17 +641,58 @@ void Itype::SB(Memory& mem){
     mem.forward();
 }
 
-void Itype::LH(Memory& mem){
-    int vAddr = mem.sign_extend(immediate, 15) + mem.reg[source1];
-    if( (vAddr & 1) != 0) {
+void Itype::SH(Memory& mem){
+    unsigned int effective = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
+    if( effective % 2 != 0) {
         std::cerr << "Memory exception" << '\n';
         exit(-11);
     }
+    std::string type ="";
+    unsigned int value = mem.writeConvert(type, effective);
+    if (type == "dmem"){
+        mem.dmem[value] = bitwise::isolate(mem.reg[source2], 0, 8);
+        mem.dmem[value + 1] = bitwise::isolate(mem.reg[source2], 8, 8);
+    } else if (type == "putc"){
+        std::putchar(bitwise::isolate(mem.reg[source2], 0, 8));
+    }
+    mem.forward();
+}
+
+void Itype::LH(Memory& mem){
+    unsigned int effective = (int)mem.sign_extend(immediate, 15) + mem.reg[source1];
+    if( effective % 2 != 0) {
+        std::cerr << "Memory exception" << '\n';
+        exit(-11);
+    }
+    std::string type ="";
+    unsigned int value = mem.readConvert(type, effective);
+    if (type == "imem"){
+        mem.reg[source2] = mem.sign_extend((mem.imem[value] << 8 | mem.imem[value + 1] ), 15);
+    } else if (type == "dmem"){
+        mem.reg[source2] = mem.sign_extend((mem.dmem[value] << 8 | mem.dmem[value + 1] ), 15);
+    } else if (type == "getc"){
+        mem.reg[source2] = mem.sign_extend(value, 8);
+    }
+    mem.forward();
 
 }
 
 void Itype::LHU(Memory& mem){
-
+  unsigned int effective = (int)mem.sign_extend(immediate, 15) + mem.reg[source1];
+  if( effective % 2 != 0) {
+      std::cerr << "Memory exception" << '\n';
+      exit(-11);
+  }
+  std::string type ="";
+  unsigned int value = mem.readConvert(type, effective);
+  if (type == "imem"){
+      mem.reg[source2] = (mem.imem[value] << 8 | mem.imem[value + 1] );
+  } else if (type == "dmem"){
+      mem.reg[source2] = (mem.dmem[value] << 8 | mem.dmem[value + 1] );
+  } else if (type == "getc"){
+      mem.reg[source2] = value;
+  }
+  mem.forward();
 }
 
 void Itype::LW(Memory& mem){
