@@ -1,13 +1,13 @@
-#Created by: Nikita
-#Tests DIV for dividing by zero exception. + retcode
-# Retcode: 0
+#Created by: nb2618
+#Tests DIV for dividing by zero exception
+# Retcode: 246
 
-lui     $v0,0x7fff
-ori     $v0,$v0,0xffff
-div     $v0,$v1
-ssl     $zero, $zero, 0
-ssl     $zero, $zero, 0
-mflo    $v0
+lui     $5, 0x7fff
+ori     $6, $6, 0xffff
+div     $5, $6
+nop
+nop
+mflo    $2
 
-jr      $zero
-ssl     $zero, $zero, 0
+jr      $0
+nop
