@@ -1,6 +1,6 @@
 #Created by: Nikita
 #Tests DIV for dividing by zero exception. + retcode
-# Retcode: 0
+# Retcode: 246
 
 lui     $v0,0x7fff
 ori     $v0,$v0,0xffff
@@ -11,3 +11,4 @@ mflo    $v0
 
 jr      $zero
 ssl     $zero, $zero, 0
+nop

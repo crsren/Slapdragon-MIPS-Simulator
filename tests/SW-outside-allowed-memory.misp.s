@@ -1,6 +1,6 @@
 # Created by nb2618
 # loading outside of the allowed memory
-# Return code: 251
+# Return code: 245
 
 lui $4, 0x8000
 ori $4, $4, 0x4567
@@ -13,4 +13,5 @@ sw $4, -4($6)
 lb $2, 7($6)
 
 jr $0
+nop
 nop

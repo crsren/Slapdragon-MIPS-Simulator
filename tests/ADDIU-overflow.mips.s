@@ -9,3 +9,4 @@ addiu $2, $3, 1
 
 
 jr $0
+nop

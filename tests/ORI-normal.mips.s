@@ -8,3 +8,4 @@ or      $2 $4, 0x8E
 
 jr      $0
 nop
+nop

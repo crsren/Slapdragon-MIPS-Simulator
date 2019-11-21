@@ -13,3 +13,4 @@ mflo    v0
 
 jr      ra
 ssl     $zero, $zero, 0
+nop

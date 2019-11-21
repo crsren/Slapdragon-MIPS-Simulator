@@ -10,3 +10,4 @@ addi $2, $8, 0x0001
 # Arithmetic exception -10 is 246
 
 jr $0
+nop
