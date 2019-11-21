@@ -13,3 +13,4 @@
 
  jr      ra
  ssl     $zero, $zero, 0
+nop

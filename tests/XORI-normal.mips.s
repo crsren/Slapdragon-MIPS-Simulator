@@ -8,3 +8,4 @@ xori     $2, $5, 0x22
 
 jr      $0
 nop
+nop

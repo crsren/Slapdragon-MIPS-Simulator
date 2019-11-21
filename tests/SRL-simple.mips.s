@@ -7,3 +7,4 @@ sra $2, $8, 28
 #logical so lowest 8 bit: 0b00001000 = 8
 
 jr $0
+nop

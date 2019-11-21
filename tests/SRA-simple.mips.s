@@ -7,3 +7,4 @@ sra $2, $8, 28
 #sign extended so lowest 8 bit: 0b11111000 = 248
 
 jr $0
+nop

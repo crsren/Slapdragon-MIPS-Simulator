@@ -7,3 +7,4 @@ addu $2, $9, 0xF001
 #r2 = 2 because overflow ignored
 
 jr $0
+nop
