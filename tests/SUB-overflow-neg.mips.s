@@ -1,5 +1,5 @@
 # Created by car3418
-# Checking for overflow when substracting from max neg int
+# Checking for overflow -A - (+B)
 # Return code: 246
 
 lui $2, 0x8000
