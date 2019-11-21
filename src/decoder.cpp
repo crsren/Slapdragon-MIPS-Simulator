@@ -857,12 +857,12 @@ void Itype::BNE(Memory& mem){
 void Jtype::JAL(Memory& mem) {
     mem.reg[31] = mem.makeAddress(mem.ahead_pc) + 4;
     uint32_t low_28b = address << 2;
-    uint32_t high_4b = (mem.makeAddress(mem.ahead_pc) >> 28) << 28;
+    uint32_t high_4b = mem.makeAddress(mem.ahead_pc) & 0xF0000000;
     mem.branch(low_28b | high_4b);
 }
 
 void Jtype::J(Memory& mem) {
     uint32_t low_28b = address << 2;
-    uint32_t high_4b = (mem.makeAddress(mem.ahead_pc) >> 28) << 28;
+    uint32_t high_4b = mem.makeAddress(mem.ahead_pc) & 0xF0000000;
     mem.branch(low_28b | high_4b);
 }
