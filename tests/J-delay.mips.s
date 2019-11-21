@@ -2,7 +2,8 @@
 # Check if instruction after jump is being executed before branching
 # Return code: 3
 
-j 3
+j 4
+# 4 << 2 is 16
 ori $2, 1
 and $2, 0
 addi $2, 1

@@ -3,12 +3,12 @@
 # Return code: 121
 
 
-jal 5
+jal function
 ori $2, 10
 addi $2, 100
 j $0
 nop
-addi $2, 1
+function: addi $2, 1
 j $31
 nop
 

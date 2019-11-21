@@ -3,6 +3,7 @@
 # Return code: 20
 
 j 1
+# 1 << 2 = 4
 addi $2, 10
 
 jr $0

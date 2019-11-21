@@ -1,6 +1,6 @@
 # Created by car3418
 # Check if two consecutive jumps work
-# Return code: 2
+# Return code: 12
 
 j 3
 j 4
