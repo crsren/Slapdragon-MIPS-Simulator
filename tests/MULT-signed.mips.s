@@ -1,7 +1,7 @@
 #created by: nb2618
 #Testing signed functionality of MULT
-#return code: 0
-#cout: 0 177
+#return code: 177
+#cout: Z
 
 lui     $4, 0xff4f
 ori     $4, $4, 0x33ff #-11586561
@@ -13,9 +13,10 @@ nop
 mflo    $10     #0x5B656800
 mfhi    $11     #0xFFD037B1
 
+add     $2, $2, $11
 lui     $7, 0x3000
+addi    $10, $10, 0x5A
 sw      $10, 4($7)
-sw      $11, 4($7)
 
 jr      $0
 nop
