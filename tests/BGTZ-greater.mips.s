@@ -2,7 +2,7 @@
 # Check if branches for A > 0
 # Return code: 7
 
-ori $3, 1
+ori $3, $3, 1
 bgtz $3, 3
 # 3 << 2 = 12
 ori $2, $2, 3

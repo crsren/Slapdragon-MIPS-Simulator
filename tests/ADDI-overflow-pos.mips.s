@@ -2,7 +2,7 @@
 # Adding pos immediate to pos a pos int with overflow
 # Return code: 246
 
-#lui $8, 0x7FFF
+lui $8, 0x7FFF
 ori $8, $0, 0xFFFF
 
 addi $2, $8, 0x0001

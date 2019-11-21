@@ -5,7 +5,7 @@
 jal function
 addi $2, $2, 3
 nop
-and $2, $2, 0
+and $2, $2, $0
 jr $0
 
 function: jr $0

@@ -1,6 +1,6 @@
 # Created by car3418
 # Check if branching backwards works
-# Return code:
+# Return code: 9
 
 lui $3, 0xFFFF
 ori $3, $3, 0xFFFF
