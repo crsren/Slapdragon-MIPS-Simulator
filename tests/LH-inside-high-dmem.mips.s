@@ -2,7 +2,7 @@
 # loading inside high dmem
 # Return code: 153
 
-lui $4, $1DC0
+lui $4, 0x1DC0
 ori $4, $4, 0xDE99
 
 lui $6, 0x2400
