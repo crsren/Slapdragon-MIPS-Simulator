@@ -1,9 +1,9 @@
 # Created by nb2618
-# Testing normal functioning 
+# Testing normal functioning
 # Return code: 52
 
 lui $4, 0x8000
-ori $4, $4, BC34
+ori $4, $4, 0xBC34
 
 lui $6, 0x2000
 ori $6, $6, 0x0004
