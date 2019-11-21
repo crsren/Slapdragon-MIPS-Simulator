@@ -3,7 +3,7 @@
 # Return code: 0
 
 lui $3, 0xFFFF
-ori $3, 0xFFFF
+ori $3, $3, 0xFFFF
 
 addiu $2, $3, 1
 

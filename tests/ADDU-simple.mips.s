@@ -3,7 +3,7 @@
 # Return code: 2
 
 addi $9, $0, 0xF001
-addu $2, $9, 0xF001
+addu $2, $9, $9
 #r2 = 2 because overflow ignored
 
 jr $0

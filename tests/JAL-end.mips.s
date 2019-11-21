@@ -3,9 +3,9 @@
 # Return code: 3
 
 jal function
-addi r2, 3
+addi $2, $2, 3
 nop
-and $2, 0
+and $2, $2, 0
 jr $0
 
 function: jr $0

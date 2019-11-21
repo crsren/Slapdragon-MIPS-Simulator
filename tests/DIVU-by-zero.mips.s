@@ -3,12 +3,12 @@
 # Return code: 246
 
 lui $8, 0x00BC
-addi $8, 0x614E
-#r8 = 12345678
+addi $8, $8, 0x614E
+# r8 is 12345678
 lui $9, 0
 
 divu $8, $9
-# -10 = 246
+# -10 is 246
 
 jr $0
 nop

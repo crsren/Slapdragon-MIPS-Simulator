@@ -7,7 +7,7 @@ ori $8, $8, 0xFFE3
 ori $9, $9, 0x001B
 
 # 11011 becomes 00011
-srla $2, $9, $8
+srav $2, $9, $8
 
 
 jr $0

@@ -4,10 +4,10 @@
 
 j 3
 j 4
-and $2, 0
-addi $2, 1
-addi $2, 10
-addi $2, 1
+and $2, $2, 0
+addi $2, $2, 1
+addi $2, $2, 10
+addi $2, $2, 1
 
 jr $0
 nop

@@ -4,11 +4,11 @@
 
 blez $2, 4
 # 4 << 2 = 16
-ori $2, 3
-lr $0
+ori $2, $2, 3
+jr $0
 nop
 nop
-ori $2, 5
+ori $2, $2, 5
 # 0011 ored 0101 is 0111 = 7
 jr $0
 nop

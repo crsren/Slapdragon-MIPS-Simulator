@@ -49,7 +49,7 @@ Instruction=${TestID%%-*}
 getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 
 tmp=$(sed -n 1p $TEST.mips.s)
-Author=${tmp##*:}
+Author=${tmp##*" "}
 
 #Message (optional (what went wrong), free form) !!!!!!!!!
 tmp=$(sed -n 2p $TEST.mips.s)

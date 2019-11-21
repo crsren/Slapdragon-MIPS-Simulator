@@ -4,11 +4,11 @@
 
 ori $8, $8, 0xFFE3
 # 5 loweset bits are 00011 so shift by 3
-lui $9, $9, 0xFFFF
+lui $9, 0xFFFF
 ori $9, $9, 0xFFDF
 
-# 11011 is -4 = unsigned 251
-srla $2, $9, $8
+# 11011 is -4 is unsigned 251
+srav $2, $9, $8
 
 
 jr $0

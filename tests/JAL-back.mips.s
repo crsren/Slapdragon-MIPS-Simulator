@@ -5,7 +5,7 @@
 
 jal function
 ori $2, 10
-addi $2, 100
+addi $2, $2, 100
 j $0
 nop
 function: addi $2, 1

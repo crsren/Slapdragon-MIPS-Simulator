@@ -4,12 +4,12 @@
 
 lui $3, 0x8000
 bgez $3, 3
-# 3 << 2 = 12
-ori $2, 3
-lr $0
+# 3 << 2 is 12
+ori $2, $2, 3
+jr $0
 nop
 
-ori $2, 5
-# 0011 ored 0101 is 0111 = 7
+ori $2, $2, 5
+# 0011 ored 0101 is 0111 is 7
 jr $0
 nop
