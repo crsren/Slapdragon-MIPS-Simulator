@@ -471,7 +471,7 @@ void Rtype::MULTU(Memory& mem){
 void Rtype::ADD(Memory& mem) {
     int s1 = (int) mem.reg[source1];
     int s2 = (int) mem.reg[source2];
-    if ( ( ((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0)) ) ){
+    if ( ( ((s1 + s2) <= 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) => 0) && ((s1 < 0) && (s2 < 0)) ) ){
         std::cerr << "Overflow" << '\n';
         exit(-10);
     }
@@ -487,7 +487,7 @@ void Rtype::ADDU(Memory& mem) {
 void Rtype::SUB(Memory& mem) {
     int s1 = (int) mem.reg[source1];
     int s2 = (int) mem.reg[source2];
-    if ( ( ((s1 - s2) < 0) && ((s1 > 0) && (s2 < 0)) ) || ( ((s1 - s2) > 0) && ((s1 < 0) && (s2 > 0)) ) ){
+    if ( ( ((s1 - s2) <= 0) && ((s1 > 0) && (s2 < 0)) ) || ( ((s1 - s2) => 0) && ((s1 < 0) && (s2 > 0)) ) ){
         std::cerr << "Overflow" << '\n';
         exit(-10);
     }
@@ -555,7 +555,7 @@ void Rtype::SLTU(Memory& mem) {
 void Itype::ADDI(Memory& mem){
     int s1 = (int) mem.reg[source1];
     int s2 = mem.sign_extend(immediate, 15);
-    if ( ( ((s1 + s2) < 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) > 0) && ((s1 < 0) && (s2 < 0)) ) ){
+    if ( ( ((s1 + s2) <= 0) && ((s1 > 0) && (s2 > 0)) ) || ( ((s1 + s2) => 0) && ((s1 < 0) && (s2 < 0)) ) ){
         std::cerr << "Overflow" << '\n';
         exit(-10);
     }
