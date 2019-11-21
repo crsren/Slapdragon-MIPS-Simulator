@@ -1,6 +1,6 @@
 # Created by nb2618
 # checking storing to putc
-# Return code: 234
+# Return code: 0
 # stdout: ?
 
 

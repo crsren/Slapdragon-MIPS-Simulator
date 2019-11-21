@@ -4,7 +4,7 @@
 
 lui     $4, 0x114f
 ori     $4, $4, 0x33E5
-or      $2 $4, 0x008E
+ori      $2, $4, 0x008E
 
 jr      $0
 nop

@@ -13,7 +13,7 @@ divu $8, $9
 
 #hi should be 0x0009EA2C
 lui $4, 0x3000
-ori $4, 4
+ori $4, $4, 4
 #use r4 to store addr_putc
 mfhi $3
 # LSb is 0x2c is 0b00101100
