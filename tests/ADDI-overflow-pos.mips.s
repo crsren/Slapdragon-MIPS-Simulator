@@ -5,8 +5,8 @@
 lui $8, 0x7FFF
 ori $8, $0, 0xFFFF
 
-addi $2, $8, 0x0001
-#r8 = max pos and immediate = 1 -> signed negative
+addi $2, $8, 1
+# 0x7fff + 1 = 0x8000
 # Arithmetic exception -10 is 246
 
 jr $0

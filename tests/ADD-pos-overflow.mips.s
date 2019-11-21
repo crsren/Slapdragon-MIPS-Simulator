@@ -3,7 +3,8 @@
 # Return code: 246
 
 lui $8, 0x7FFF
-lui $9, 0x7FFF
+ori $8, $8, 0xFFFF
+lui $9, 0x1
 #r8 = max pos and r9 = max pos
 
 add $2, $8, $9

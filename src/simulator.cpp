@@ -16,7 +16,7 @@ std::vector<uint32_t> convert(std::vector<unsigned char> vec);
 void printvector(std::vector<uint32_t> v);
 
 
-int main(int argc, char *argv[]) {
+int main(int argc,  char *argv[]) {
 
 
 
@@ -27,7 +27,6 @@ int main(int argc, char *argv[]) {
 
     //get length of binary instructions of input file
     bin_stream.seekg(0, bin_stream.end);
-    int bin_length = bin_stream.tellg();
     bin_stream.seekg(0, bin_stream.beg);
 
     std::vector<unsigned char> immembyte(std::istreambuf_iterator<char>(bin_stream), {});
@@ -44,10 +43,10 @@ int main(int argc, char *argv[]) {
         uint32_t word = mem.instrToWord(mem.pc);
         std::cerr << bitwise::get_binary(word) << '\n';
         ins.init(word);
-        ins.showContent();
+        //ins.showContent();
         ins.run(mem);
-        mem.showRegisters();
-        if (mem.pc == -1){
+        //mem.showRegisters();
+        if ((int)mem.pc == -1){
             exit(bitwise::isolate(mem.reg[2], 0, 8));
         }
         // std::cin.get();

@@ -1,6 +1,6 @@
 # Created by car3418
-# Check if branchs and links for A > 0
-# Return code: 7
+# Check if branches and links for A > 0
+# Return code: 8
 
 ori $3, $3, 0xFFFF
 bgezal $3, 4
