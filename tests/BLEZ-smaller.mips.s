@@ -2,6 +2,7 @@
 # Check if branches for A < 0
 # Return code: 7
 
+lui $3, -1
 ori $3, $3, -1
 blez $3, 3
 ori $2, $2, 3
