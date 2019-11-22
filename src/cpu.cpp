@@ -104,8 +104,8 @@ uint32_t Memory::dataToWord(int start){
     return tmp;
 }
 
-uint32_t Memory::makeAddress(int pc){
-    return (pc + imem_off);
+uint32_t Memory::makeAddress(int tmp){
+    return (tmp + imem_off);
 }
 
 void Memory::byteOverride(uint32_t& word, int start, uint32_t newbyte){

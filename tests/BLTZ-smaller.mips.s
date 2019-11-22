@@ -3,11 +3,10 @@
 # Return code: 7
 
 ori $3, $3, -1
-bltz $3, 4
+bltz $3, 3
 ori $2, $2, 3
-# 4 << 2 = 16
+# 3 << 2 = 12
 jr $0
-nop
 nop
 ori $2, $2, 5
 # 0011 ored 0101 is 0111 = 7
