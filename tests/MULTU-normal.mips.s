@@ -1,21 +1,21 @@
-#created by: nb2618
-#Testing signed functionality of MULT
-#return code: 19
-#cout: u
+#created by: car3418
+#Testing unsigned functionality of MULTU
+#return code: 251
+# stdout: W
 
 lui     $4, 0xff4f
-ori     $4, $4, 0x33ff # 4283380735
-lui     $6, 0x4530
-ori     $6, $6, 0x3FFF # 18572640255
-mult    $4, $6  #result 0x50077B137DACC000
-nop
-nop
-mflo    $10     #0x7DACC000
-mfhi    $11     #0x50077B13
+ori     $4, $4, 0x33ff
+ori     $6, $6, 5
 
+mult    $4, $6
+# result 0xFC8C03FB is 4237034491
+
+mflo    $2     #0xfc8c03fb
+mfhi    $11     # is -1
 
 lui     $7, 0x3000
-addi    $2, $10, 0x75
+andi    $11, $11, 87
+# gives 01010111 which is W
 sw      $11, 4($7)
 
 jr      $0

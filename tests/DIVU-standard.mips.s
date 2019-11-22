@@ -1,30 +1,26 @@
 # Created by car3418
 # Checks if normal unsigned devision works
-# Return code: 207
-# Stdout: X
+# Return code: 13
+# Stdout: 6
 
-lui $8, 0x00BC
+
+lui $8, 0x80BC
 addi $8, $8, 0x614E
-#r8 is 12345678
-lui $9, 0x0013
+ori $9, $9, 0x0013
 #r9 is 19
 
 divu $8, $9
+# quotient 0x6C68BDB
+# remainder 13
 
-#hi should be 0x0009EA2C
-lui $4, 0x3000
-ori $4, $4, 4
-#use r4 to store addr_putc
-mfhi $3
-# LSb is 0x2c is 0b00101100
-# shift by one to the left to get ASCII X
-sll $3, $3, 1
-sb $3, 0($4)
+mfhi $2
 
-
-#lo should be 0x00086bcf
-mflo $2
-# r2 lowest 8 bits of lo is 0xcf is 207
+mflo $10
+andi $10, $10, 0x00FF
+srl $10, $10, 2
+# 0b0110110 is char 6
+lui $20, 0x3000
+sw $10, 4($20)
 
 
 jr $0

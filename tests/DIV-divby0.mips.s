@@ -3,11 +3,11 @@
 # Retcode: 246
 
 lui     $5, 0x7fff
-ori     $6, $6, 0xffff
-div     $5, $6
+ori     $5, $5, 0xffff
+div     $5, $4
 nop
 nop
-mflo    $2
+
 
 jr      $0
 nop
