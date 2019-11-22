@@ -2,7 +2,7 @@
 
 
 SIMULATOR=$1
-TEST_DIR="tests"
+TEST_DIR="testsThomas"
 
 chmod 755 $TEST_DIR/*
 
@@ -51,12 +51,11 @@ getStatus $got_RETCODE $ref_RETCODE $got_STDOUT $ref_STDOUT
 tmp=$(sed -n 1p $TEST.mips.s)
 Author=${tmp##*" "}
 
-#Message (optional (what went wrong), free form) !!!!!!!!!
 tmp=$(sed -n 2p $TEST.mips.s)
 Message=${tmp##*#}
 
 echo $TestID","$Instruction","$Status
 echo $Error
-echo $TestID","$Instruction","$Status","$Author","$Message","$Error";" >> out.csv
+echo $TestID","$Instruction","$Status","$Author","$Message";" >> out.csv
 
 done
