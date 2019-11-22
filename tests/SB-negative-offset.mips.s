@@ -1,6 +1,6 @@
 # Created by nb2618
 # Testing negative offset function of SB
-# Return code: 36
+# Return code: 32
 
 ori $4, $4, 0xD420
 

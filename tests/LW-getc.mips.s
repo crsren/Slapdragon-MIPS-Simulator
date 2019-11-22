@@ -1,6 +1,6 @@
 # Created by nb2618
 # cin a character LW test
-# Return code: 113
+# Return code: 81
 # stdin: Q
 
 lui $7, 0x3000
