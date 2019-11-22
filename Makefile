@@ -28,7 +28,7 @@ simulator: ./build/*.o
 
 clean:
 	rm -rf ./bin/*
-	rm -rf ./build/*
+#	rm -rf ./build/*
 
 
 testbench: ./src/testbench.sh
