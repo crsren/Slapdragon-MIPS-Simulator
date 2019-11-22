@@ -745,20 +745,23 @@ void Itype::LWL(Memory& mem){
     unsigned int location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     int shift = 0;
     int count = 3;
-    while(location % 4 != 0){
+    do{
         std::string type = "";
         unsigned int value = mem.readConvert(type, location);
         if (type == "imem"){
             uint32_t shifted = mem.imem[value] << (24 - shift);
             mem.byteOverride(mem.reg[source2], count, shifted);
+            std::cerr << bitwise::get_binary(mem.reg[source2]) << '\n';
         } else if (type == "dmem"){
             uint32_t shifted = mem.dmem[value] << (24 - shift);
             mem.byteOverride(mem.reg[source2], count, shifted);
+            std::cerr << bitwise::get_binary(mem.reg[source2]) << '\n';
         }
         location++;
         shift += 8;
         count--;
-    }
+
+    }while(location % 4 != 0);
     mem.forward();
 }
 
@@ -767,7 +770,7 @@ void Itype::LWR(Memory& mem){
     unsigned int location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     int shift = 0;
     int count = 0;
-    while(location % 4 != 0){
+    do{
         std::string type = "";
         unsigned int value = mem.readConvert(type, location);
         if (type == "imem"){
@@ -777,11 +780,12 @@ void Itype::LWR(Memory& mem){
         } else if (type == "dmem"){
             uint32_t shifted = mem.dmem[value] << (shift);
             mem.byteOverride(mem.reg[source2], count, shifted);
+            std::cerr << bitwise::get_binary(mem.reg[source2]) << '\n';
         }
         location--;
         shift += 8;
         count++;
-    }
+    }while((location + 1) % 4 != 0);
     mem.forward();
 }
 

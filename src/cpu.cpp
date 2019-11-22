@@ -111,8 +111,9 @@ uint32_t Memory::makeAddress(int tmp){
 void Memory::byteOverride(uint32_t& word, int start, uint32_t newbyte){
     std::vector<uint32_t> b;
     for (unsigned int i=0; i<32; i= i + 8){
-      b.push_back(bitwise::isolate(word, i, 8));
+      b.push_back(bitwise::isolate(word, i, 8) << i);
     }
+    std::cerr << +b[0] << ", " << +b[1] << ", " << +b[2] << ", " << +b[3] << '\n';
     b[start] = newbyte;
     word = b[0] | b[1] | b[2] | b[3];
 }
