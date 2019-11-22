@@ -685,21 +685,21 @@ void Itype::LH(Memory& mem){
 }
 
 void Itype::LHU(Memory& mem){
-  unsigned int effective = (int)mem.sign_extend(immediate, 15) + mem.reg[source1];
-  if( effective % 2 != 0) {
-      std::cerr << "Memory exception" << '\n';
-      exit(-11);
-  }
-  std::string type ="";
-  unsigned int value = mem.readConvert(type, effective);
-  if (type == "imem"){
-      mem.reg[source2] = (mem.imem[value] << 8 | mem.imem[value + 1] );
-  } else if (type == "dmem"){
-      mem.reg[source2] = (mem.dmem[value] << 8 | mem.dmem[value + 1] );
-  } else if (type == "getc"){
-      mem.reg[source2] = value;
-  }
-  mem.forward();
+    unsigned int effective = (int)mem.sign_extend(immediate, 15) + mem.reg[source1];
+    if( effective % 2 != 0) {
+        std::cerr << "Memory exception" << '\n';
+        exit(-11);
+    }
+    std::string type ="";
+    unsigned int value = mem.readConvert(type, effective);
+    if (type == "imem"){
+        mem.reg[source2] = (mem.imem[value] << 8 | mem.imem[value + 1] );
+    } else if (type == "dmem"){
+        mem.reg[source2] = (mem.dmem[value] << 8 | mem.dmem[value + 1] );
+    } else if (type == "getc"){
+        mem.reg[source2] = value;
+    }
+    mem.forward();
 }
 
 void Itype::LW(Memory& mem){
@@ -795,9 +795,9 @@ void Itype::BGEZAL(Memory& mem) {
     if( ((int)mem.reg[source1]) >= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-
-    mem.forward();
 }
 
 void Itype::BLTZAL(Memory& mem) {
@@ -806,9 +806,9 @@ void Itype::BLTZAL(Memory& mem) {
     if( ((int)mem.reg[source1]) < 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-
-    mem.forward();
 }
 
 void Itype::BEQ(Memory& mem){
@@ -824,32 +824,36 @@ void Itype::BGEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) >= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-    mem.forward();
 }
 
 void Itype::BGTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) > 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-    mem.forward();
 }
 
 void Itype::BLEZ(Memory& mem) {
     if( ((int)mem.reg[source1]) <= 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-    mem.forward();
 }
 
 void Itype::BLTZ(Memory& mem) {
     if( ((int)mem.reg[source1]) < 0) {
         int offset = mem.sign_extend( (immediate << 2), 17);
         mem.branch(mem.makeAddress(mem.ahead_pc) + offset);
+    } else {
+        mem.forward();
     }
-    mem.forward();
 }
 
 void Itype::BNE(Memory& mem){
