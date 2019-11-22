@@ -12,10 +12,8 @@ do
 	echo "-----------------------------------"
 	echo $NAME
 
-	if !("$NAME" == "J-delay") && !("$NAME" == "INTERNAL-invalid-instruction")
-	then
-		bin/parser $FILE "$DEST/#"
-	fi
+	bin/parser $FILE "$DEST/#"
+
 	#so that we dont have to create extra files for retcode, stdout and stdin
 	RetCodeLine=$(grep "code" $FILE)
 	RETCODE=${RetCodeLine##*": "}
