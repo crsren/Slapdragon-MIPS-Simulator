@@ -19,6 +19,7 @@ $(PRG_SRC):
 
 
 simulator: ./build/*.o
+	$(MAKE) o
 	mkdir -p bin
 	$(CC) $(CPPFLAGS) ./build/*.o -o ./bin/mips_simulator
 
