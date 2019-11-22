@@ -738,10 +738,9 @@ void Itype::LWL(Memory& mem){
     unsigned int location = mem.reg[source1] + (int)mem.sign_extend(immediate, 15);
     int shift = 0;
     int count = 3;
-    int offset = location - location%4;
     while(location % 4 != 0){
         std::string type = "";
-        unsigned int value = mem.readConvert(type, location+offset);
+        unsigned int value = mem.readConvert(type, location);
         if (type == "imem"){
             uint32_t shifted = mem.imem[value] << (24 - shift);
             mem.byteOverride(mem.reg[source2], count, shifted);
