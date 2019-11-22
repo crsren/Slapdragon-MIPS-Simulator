@@ -1,0 +1,28 @@
+TestID,Instruction,Status,Author,Message
+ADD-neg-overflow,ADD,Pass,car3418, Adding two negative integers wit overflow;
+ADD-neg,ADD,Pass,car3418, Adding to a negative integer without overflow;
+ADD-pos-overflow,ADD,Pass,car3418, Adding two positive integers wit overflow;
+ADD-pos,ADD,Pass,car3418, Adding two positive integers without overflow;
+ADDI-neg,ADDI,Pass,car3418, Adding a negative immediate;
+ADDI-overflow-pos,ADDI,Pass,car3418, Adding pos immediate to a pos int with overflow;
+ADDI-pos,ADDI,Pass,car3418, Adding integer and imemediate without overflow;
+ADDIU-overflow,ADDIU,Pass,car3418, Tests that it does not throw exception when dealing with overflow;
+ADDU-simple,ADDU,Pass,car3418, Adding two negative numbers ignoring the overflow;
+AND-simple,AND,Pass,car3418, Regular anding of two registers;
+ANDI-simple,ANDI,Pass,car3418, Regular anding of two registers;
+BEQ-false,BEQ,Pass,car3418, Check if does not branch when A != B;
+BEQ-true,BEQ,Pass,car3418, Check if branches when A = B;
+BGEZ-equal,BGEZ,Pass,car3418, Check if branches for A = 0;
+BGEZ-greater,BGEZ,Pass,car3418, Check if branches for A > 0;
+BGEZ-smaller,BGEZ,Pass,car3418, Check if does not branch for A < 0;
+BGEZAL-equal,BGEZAL,Pass,car3418, Check if branchs and links for A = 0;
+BGEZAL-greater,BGEZAL,Pass,car3418, Check if branches and links for A > 0;
+BGEZAL-smaller,BGEZAL,Pass,car3418, Check if does not branch for A < 0;
+BGTZ-equal,BGTZ,Pass,car3418, Check if does not branch for A = 0;
+BGTZ-greater,BGTZ,Pass,car3418, Check if branches for A > 0;
+BGTZ-smaller,BGTZ,Pass,car3418, Check if does not branch for A < 0;
+BLEZ-equal,BLEZ,Pass,car3418, Check if branches for A = 0;
+BLEZ-greater,BLEZ,Pass,car3418, Check if does not branch for A > 0;
+BLEZ-smaller,BLEZ,Pass,car3418, Check if branches for A < 0;
+BLTZ-equal,BLTZ,Pass,car3418, Check if does not branch for A = 0;
+BLTZ-greater,BLTZ,Fail,car3418, Check if does not branch for A > 0;
