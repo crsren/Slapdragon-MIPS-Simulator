@@ -20,6 +20,7 @@ int main(int argc,  char *argv[]) {
 
 
 
+
     std::cerr << "Simulating binary " << argv[1] << std::endl;
 
     std::ifstream bin_stream(argv[1], std::ios::binary);
@@ -34,7 +35,7 @@ int main(int argc,  char *argv[]) {
     // std::cerr << "Read " << immembyte.size() << std::endl;
     Memory mem(immembyte);
     // printvector(mem.imem);
-
+    int counter = 0;
 
     instruction ins;
     while(1) {
@@ -50,6 +51,12 @@ int main(int argc,  char *argv[]) {
             exit(bitwise::isolate(mem.reg[2], 0, 8));
         }
         // std::cin.get();
+
+        if (counter == 200){
+          exit(-1);
+        }
+        counter++;
+
     }
 
     return 1;

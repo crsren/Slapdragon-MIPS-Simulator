@@ -2,7 +2,7 @@
 # loading inside low dmem
 # Return code: 34
 
-lui $4, 1222
+lui $4, 0x1222
 ori $4, $4, 0x373D
 
 lui $6, 0x2000

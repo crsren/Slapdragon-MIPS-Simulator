@@ -2,7 +2,7 @@
 # checks access to outside high imem edge
 # Return code: 245
 
-lui $7, 0x1000
+lui $7, 0x1100
 
 ori $4, $4, 0x9876
 

@@ -1,6 +1,6 @@
 # Created by nb2618
 # testing negative offset
-# Return code: 4
+# Return code: 146
 
 ori $4, $4, 0x8392
 

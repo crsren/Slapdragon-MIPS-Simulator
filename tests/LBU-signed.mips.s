@@ -2,7 +2,7 @@
 # testing zero extension LBU
 # Return code: 0
 
-lui $7, 0x1000
+lui $7, 0x2000
 ori $4, $4, 0x12FF
 
 sw $4,  0($7)
