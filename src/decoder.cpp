@@ -235,7 +235,7 @@ void Itype::run(Memory& mem) {
 
             default:
             std::cerr << "Non-existing instruction." << '\n';
-            exit(-1);
+            exit(-12);
         }
         break;
 

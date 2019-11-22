@@ -39,21 +39,21 @@ int main(int argc,  char *argv[]) {
 
     instruction ins;
     while(1) {
-        std::cerr << "PC at " << mem.pc << std::endl;
-        std::cerr << "Ahead_PC at " << mem.ahead_pc << std::endl;
+        //std::cerr << "PC at " << mem.pc << std::endl;
+        //std::cerr << "Ahead_PC at " << mem.ahead_pc << std::endl;
 
         uint32_t word = mem.instrToWord(mem.pc);
         ins.init(word);
-        std::cerr << bitwise::get_binary(word) << '\n';
-        ins.showContent();
+        //std::cerr << bitwise::get_binary(word) << '\n';
+        //ins.showContent();
         ins.run(mem);
-        mem.showRegisters();
+        //mem.showRegisters();
         if ((int)mem.pc == -1){
             exit(bitwise::isolate(mem.reg[2], 0, 8));
         }
         // std::cin.get();
 
-        if (counter == 200){
+        if (counter == 20000){
           exit(-1);
         }
         counter++;
