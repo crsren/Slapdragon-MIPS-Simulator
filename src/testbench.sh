@@ -2,7 +2,7 @@
 
 
 SIMULATOR=$1
-TEST_DIR="testsThomas"
+TEST_DIR="tests"
 
 chmod 755 $TEST_DIR/*
 
