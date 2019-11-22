@@ -67,8 +67,6 @@ void Rtype::init(uint32_t& word) {
     dest = bitwise::isolate(word, 11,5);
     shift_amt = bitwise::isolate(word, 6,5);
     fnCode = bitwise::isolate(word, 0,6);
-
-    //fnMap[0b00100001] = ADDU;
 }
 
 void Rtype::run(Memory& mem) {
@@ -272,13 +270,11 @@ void Itype::run(Memory& mem) {
         case 0x0A:
         SLTI(mem);
         std::cerr << "SLTI" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
         break;
 
         case 0x0B:
         SLTIU(mem);
         std::cerr << "SLTIU" << '\n';
-        std::cerr << "Not implemnted yet" << '\n';
         break;
 
         case 0x0C:

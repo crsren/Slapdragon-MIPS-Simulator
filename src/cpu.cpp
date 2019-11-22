@@ -14,10 +14,6 @@ Memory::Memory(std::vector<uint8_t> byte){
     dmem.resize(dmem_length);
 }
 
-Memory::Memory() {
-    //for testing, initiating empty memory;
-}
-
 uint32_t Memory::sign_extend(uint32_t word, int msb) {
         uint32_t extension = -(word >> msb) << (msb+1);
         return extension | word;
