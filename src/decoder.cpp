@@ -449,11 +449,16 @@ void Rtype::MTLO(Memory& mem) {
 }
 
 void Rtype::MULT(Memory& mem){
-    long int s1 = (long int)mem.reg[source1];
-    long int s2 = (long int)mem.reg[source2];
+    long int top = (-(long int)(mem.reg[source1] >> 31)) << 32;
+    long int s1 = top | (long int)mem.reg[source1];
+    top = (-(long int)(mem.reg[source2] >> 31)) << 32;
+    long int s2 = top | (long int)mem.reg[source2];
     long int tmp = s1 * s2;
+    std::cerr << tmp << '\n';
     mem.lo = tmp;
     mem.hi = tmp >> 32;
+
+    std::cerr << mem.lo << ", " <<  mem.hi << '\n';
     mem.forward();
 }
 
@@ -522,6 +527,7 @@ void Rtype::DIV(Memory& mem) {
     }
     int q = (int)mem.reg[source1] / (int)mem.reg[source2];
     int r = (int)mem.reg[source1] % (int)mem.reg[source2];
+    std::cerr << q << ", " << r << '\n';
     mem.lo = (uint32_t)q;
     mem.hi = (uint32_t)r;
     mem.forward();
@@ -534,6 +540,7 @@ void Rtype::DIVU(Memory& mem) {
     }
     uint32_t q = mem.reg[source1] / mem.reg[source2];
     uint32_t r = mem.reg[source1] % mem.reg[source2];
+    std::cerr << q << ", " << r << '\n';
     mem.lo = q;
     mem.hi = r;
     mem.forward();
