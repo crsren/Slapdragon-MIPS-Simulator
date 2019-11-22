@@ -2,8 +2,9 @@
 # Simple shift left
 # Return code: 1
 
-lui $3, 0x8000
-sll $2, $3, 31
+ori $3, $3, 0x0001
+sll $3, $3, 31
+srl $2, $3, 31
 
 jr $0
 nop

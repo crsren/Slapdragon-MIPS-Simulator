@@ -2,8 +2,8 @@
 # Check if branches for A < 0
 # Return code: 7
 
-lui $3, $3, -1
-ori $3, $3, -1
+lui $3, $3, 0xFFFF
+ori $3, $3, 0xFFFF
 bltz $3, 3
 ori $2, $2, 3
 # 3 << 2 = 12
