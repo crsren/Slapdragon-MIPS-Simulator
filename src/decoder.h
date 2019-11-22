@@ -2,20 +2,12 @@
 #define DECODER_H
 
 #include <string>
-//#include <map> //change to unordered_map
 #include <functional>
 
 #include "cpu.h"
 
 
 struct Rtype {
-//public:
-    //custom size or just 8bit (like rn) ??
-    // int source1 : 5;
-    // int source2 : 5;
-    // int dest: 5;
-    // int shift_amt: 5;
-    // int fnCode: 6;
     uint8_t source1;
     uint8_t source2;
     uint8_t dest;
@@ -54,10 +46,6 @@ struct Rtype {
 
     void SLT(Memory& mem);
     void SLTU(Memory& mem);
-
-    //LUT "fn code" <-> "pointer to function"
-    //static std::map< uint8_t, void (*)(int) > fnMap;
-    // std::map< uint8_t, void (*)(Memory& mem) > fnMap;
 };
 
 class Itype {
@@ -115,7 +103,6 @@ public:
 
 class instruction {
 private:
-    // int opCode : 6;
     uint8_t opCode;
 public:
     char tag;
@@ -126,8 +113,6 @@ public:
     void init(uint32_t& word);
     void showContent();
     void run(Memory& mem);
-
-    // void (*run) (Memory& mem);
 };
 
 
