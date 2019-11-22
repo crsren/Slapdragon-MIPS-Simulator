@@ -28,3 +28,8 @@ do
 done
 
 echo -e "Finished.\n"
+
+rm ../tests/J-delay.mips.bin
+rm ../tests/INTERNAL-invalid-instruction.mips.bin
+cp ../../J-delay.mips.bin ../tests/J-delay.mips.bin
+cp ../../INTERNAL-invalid-instruction.mips.bin ../tests/INTERNAL-invalid-instruction.mips.bin
