@@ -1,0 +1,10 @@
+Simulating binary tests/LW-non-aligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 0, offset: 285212672
+Memmory Error

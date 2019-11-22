@@ -1,0 +1,15 @@
+Simulating binary tests/XOR-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+XOR
+Rtype instruction
+JR
+Rtype instruction
+SLL

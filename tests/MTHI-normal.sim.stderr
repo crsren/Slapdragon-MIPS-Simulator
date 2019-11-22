@@ -1,0 +1,11 @@
+Simulating binary tests/MTHI-normal.mips.bin
+Itype instruction
+ORI
+Rtype instruction
+MTHI
+Rtype instruction
+MFHI
+Rtype instruction
+JR
+Rtype instruction
+SLL

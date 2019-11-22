@@ -1,0 +1,15 @@
+Simulating binary tests/LH-unaligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 536870916, offset: 285212672
+final position: 4
+SW
+Itype instruction
+Memory exception

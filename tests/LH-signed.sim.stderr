@@ -1,0 +1,23 @@
+Simulating binary tests/LH-signed.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 536870916, offset: 285212672
+final position: 4
+SW
+Itype instruction
+input: 536870918, offset: 285212672
+final position: 6
+LH
+Rtype instruction
+SRL
+Rtype instruction
+JR
+Rtype instruction
+SLL

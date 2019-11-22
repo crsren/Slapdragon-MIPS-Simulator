@@ -1,0 +1,11 @@
+Simulating binary tests/SRLV-standard.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+SRLV
+Rtype instruction
+JR
+Rtype instruction
+SLL

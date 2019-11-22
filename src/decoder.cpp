@@ -420,13 +420,8 @@ void Rtype::JR(Memory& mem) {
 }
 
 void Rtype::JALR(Memory& mem) {
-    if(mem.reg[source1] % 4) {
-        mem.reg[dest] = mem.makeAddress(mem.ahead_pc) + 4;
-        mem.branch(mem.reg[source1]);
-    } else {
-        std::cerr << "Target address not naturally alligned: " << mem.reg[source1] << '\n';
-        exit(-11);
-    }
+    mem.reg[dest] = mem.makeAddress(mem.ahead_pc) + 4;
+    mem.branch(mem.reg[source1]);
 }
 
 void Rtype::MFHI(Memory& mem) {

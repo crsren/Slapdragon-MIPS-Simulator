@@ -1,0 +1,13 @@
+Simulating binary tests/LBU-inside-low-imeme.mips.bin
+Itype instruction
+LUI
+Itype instruction
+LUI
+Itype instruction
+input: 268435456, offset: 285212672
+final position: 0
+LBU
+Rtype instruction
+JR
+Rtype instruction
+SLL

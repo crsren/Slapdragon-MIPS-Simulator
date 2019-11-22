@@ -1,0 +1,9 @@
+Simulating binary tests/LW-putc.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LW
+input: 805306372, offset: 285212672
+Memmory Error

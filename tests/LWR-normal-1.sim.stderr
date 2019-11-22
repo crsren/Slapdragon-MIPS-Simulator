@@ -1,0 +1,40 @@
+Simulating binary tests/LWR-normal-1.mips.bin
+Itype instruction
+LUI
+Itype instruction
+LUI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 536870912, offset: 285212672
+final position: 0
+SW
+Itype instruction
+input: 536870914, offset: 285212672
+final position: 2
+0, 0, 0, 553648128
+00100001000000000000000001000100
+input: 536870913, offset: 285212672
+final position: 1
+68, 0, 0, 553648128
+00100001000000000100110001000100
+input: 536870912, offset: 285212672
+final position: 0
+68, 19456, 0, 553648128
+00100001010110110100110001000100
+LWR
+Rtype instruction
+SRL
+Rtype instruction
+SRL
+Itype instruction
+input: 805306375, offset: 285212672
+SB
+Rtype instruction
+JR
+Rtype instruction
+SLL

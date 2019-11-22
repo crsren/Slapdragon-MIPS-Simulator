@@ -1,0 +1,13 @@
+Simulating binary tests/LBU-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 268435458, offset: 285212672
+final position: 2
+LBU
+Rtype instruction
+JR
+Rtype instruction
+SLL

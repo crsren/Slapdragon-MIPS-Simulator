@@ -1,0 +1,11 @@
+Simulating binary tests/ADD-neg.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ADDI
+Rtype instruction
+ADD
+Rtype instruction
+JR
+Rtype instruction
+SLL

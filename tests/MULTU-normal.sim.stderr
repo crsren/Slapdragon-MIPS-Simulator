@@ -1,0 +1,27 @@
+Simulating binary tests/MULTU-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+-57932805
+4237034491, 4294967295
+MULT
+Rtype instruction
+MFLO
+Rtype instruction
+MFHI
+Itype instruction
+LUI
+Itype instruction
+ANDI
+Itype instruction
+input: 805306372, offset: 285212672
+87
+SW
+Rtype instruction
+JR
+Rtype instruction
+SLL

@@ -1,0 +1,16 @@
+Simulating binary tests/BEQ-true.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ORI
+Itype instruction
+final position: 24
+BEQ
+Rtype instruction
+SLL
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

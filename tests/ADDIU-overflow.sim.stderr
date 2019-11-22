@@ -1,0 +1,11 @@
+Simulating binary tests/ADDIU-overflow.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+ADDIU
+Rtype instruction
+JR
+Rtype instruction
+SLL

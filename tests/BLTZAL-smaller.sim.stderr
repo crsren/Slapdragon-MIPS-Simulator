@@ -1,0 +1,23 @@
+Simulating binary tests/BLTZAL-smaller.mips.bin
+Itype instruction
+LUI
+Itype instruction
+BLTZAL
+final position: 20
+Itype instruction
+ORI
+Rtype instruction
+SLL
+Itype instruction
+ORI
+Rtype instruction
+final position: 12
+JR
+Rtype instruction
+SLL
+Itype instruction
+ADDI
+Rtype instruction
+JR
+Rtype instruction
+SLL

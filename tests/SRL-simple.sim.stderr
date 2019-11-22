@@ -1,0 +1,9 @@
+Simulating binary tests/SRL-simple.mips.bin
+Itype instruction
+LUI
+Rtype instruction
+SRL
+Rtype instruction
+JR
+Rtype instruction
+SLL

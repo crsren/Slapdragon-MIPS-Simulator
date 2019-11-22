@@ -1,0 +1,11 @@
+Simulating binary tests/BLTZAL-greater.mips.bin
+Itype instruction
+ORI
+Itype instruction
+BLTZAL
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

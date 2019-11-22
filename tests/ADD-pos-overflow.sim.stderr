@@ -1,0 +1,9 @@
+Simulating binary tests/ADD-pos-overflow.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Rtype instruction
+Overflow

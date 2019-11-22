@@ -1,0 +1,10 @@
+Simulating binary tests/SB-imem.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 268435460, offset: 285212672
+Memmory Error

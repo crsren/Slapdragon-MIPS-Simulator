@@ -1,0 +1,9 @@
+Simulating binary tests/LW-outside-low-dmem.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LW
+input: 536870908, offset: 285212672
+Memmory Error

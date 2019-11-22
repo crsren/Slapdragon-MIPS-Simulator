@@ -1,0 +1,35 @@
+Simulating binary tests/LWL-aligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 536870912, offset: 285212672
+final position: 0
+SW
+Itype instruction
+input: 536870912, offset: 285212672
+final position: 0
+0, 0, 0, 0
+00110100000000000000000000000000
+input: 536870913, offset: 285212672
+final position: 1
+0, 0, 0, 872415232
+00110100101110110000000000000000
+input: 536870914, offset: 285212672
+final position: 2
+0, 0, 12255232, 872415232
+00110100101110110001001000000000
+input: 536870915, offset: 285212672
+final position: 3
+0, 4608, 12255232, 872415232
+00110100101110110001001011011110
+LWL
+Rtype instruction
+JR
+Rtype instruction
+SLL

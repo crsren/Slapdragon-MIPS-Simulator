@@ -1,0 +1,7 @@
+Simulating binary tests/ADD-neg-overflow.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ADDI
+Rtype instruction
+Overflow

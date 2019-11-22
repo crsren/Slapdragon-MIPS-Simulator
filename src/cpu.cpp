@@ -85,7 +85,7 @@ unsigned int Memory::execConvert(uint32_t input){
 uint32_t Memory::instrToWord(int start){
     if (start % 4 != 0){
       std::cerr << "Non alligned address" << '\n';
-      exit(-1);
+      exit(-11);
     }
     uint32_t tmp = imem[start+3] | imem[start+2] << 8 | imem[start+1] << 16 | imem[start] << 24;
     return tmp;
@@ -94,7 +94,7 @@ uint32_t Memory::instrToWord(int start){
 uint32_t Memory::dataToWord(int start){
     if (start % 4 != 0){
       std::cerr << "Non alligned address" << '\n';
-      exit(-1);
+      exit(-11);
     }
     uint32_t tmp = dmem[start+3] | dmem[start+2] << 8 | dmem[start+1] << 16 | dmem[start] << 24;
     return tmp;

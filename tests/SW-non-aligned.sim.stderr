@@ -1,0 +1,9 @@
+Simulating binary tests/SW-non-aligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+Address Error, not alligned address

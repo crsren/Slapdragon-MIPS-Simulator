@@ -1,0 +1,11 @@
+Simulating binary tests/SUBU-simple.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+SUBU
+Rtype instruction
+JR
+Rtype instruction
+SLL

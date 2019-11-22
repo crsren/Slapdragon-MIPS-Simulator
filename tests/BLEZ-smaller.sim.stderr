@@ -1,0 +1,16 @@
+Simulating binary tests/BLEZ-smaller.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+BLEZ
+final position: 24
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

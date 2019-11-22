@@ -1,0 +1,13 @@
+Simulating binary tests/SRLA-neg.mips.bin
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+SRAV
+Rtype instruction
+JR
+Rtype instruction
+SLL

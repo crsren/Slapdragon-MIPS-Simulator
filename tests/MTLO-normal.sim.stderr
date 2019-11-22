@@ -1,0 +1,11 @@
+Simulating binary tests/MTLO-normal.mips.bin
+Itype instruction
+ORI
+Rtype instruction
+MTLO
+Rtype instruction
+MFLO
+Rtype instruction
+JR
+Rtype instruction
+SLL

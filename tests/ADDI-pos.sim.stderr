@@ -1,0 +1,9 @@
+Simulating binary tests/ADDI-pos.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ADDI
+Rtype instruction
+JR
+Rtype instruction
+SLL

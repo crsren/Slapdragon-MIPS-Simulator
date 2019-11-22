@@ -1,0 +1,12 @@
+Simulating binary tests/SW-outside-allowed-memory.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 536870908, offset: 285212672
+Memmory Error

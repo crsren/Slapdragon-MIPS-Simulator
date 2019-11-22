@@ -1,0 +1,11 @@
+Simulating binary tests/BLTZ-greater.mips.bin
+Itype instruction
+LUI
+Itype instruction
+BLTZ
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

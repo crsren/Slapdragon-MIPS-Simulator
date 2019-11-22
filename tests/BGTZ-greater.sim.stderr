@@ -1,0 +1,14 @@
+Simulating binary tests/BGTZ-greater.mips.bin
+Itype instruction
+ORI
+Itype instruction
+BGTZ
+final position: 20
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

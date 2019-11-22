@@ -1,0 +1,13 @@
+Simulating binary tests/BGEZAL-smaller.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+BGEZAL
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

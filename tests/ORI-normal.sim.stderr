@@ -1,0 +1,11 @@
+Simulating binary tests/ORI-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

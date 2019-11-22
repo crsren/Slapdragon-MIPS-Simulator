@@ -1,0 +1,11 @@
+Simulating binary tests/JAL-end.mips.bin
+Jtype instruction
+JAL
+final position: 20
+Itype instruction
+ADDI
+Rtype instruction
+JR
+Rtype instruction
+final position: 8
+JR

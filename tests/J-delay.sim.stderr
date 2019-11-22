@@ -1,0 +1,12 @@
+Simulating binary tests/J-delay.mips.bin
+Jtype instruction
+J
+final position: 16
+Itype instruction
+ORI
+Itype instruction
+ADDI
+Rtype instruction
+JR
+Rtype instruction
+SLL

@@ -1,0 +1,29 @@
+Simulating binary tests/DIV-signed.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+-6, -2
+Rtype instruction
+SLL
+Rtype instruction
+MFHI
+Itype instruction
+ADDI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 805306372, offset: 285212672
+65
+SW
+Rtype instruction
+MFLO
+Rtype instruction
+JR
+Rtype instruction
+SLL

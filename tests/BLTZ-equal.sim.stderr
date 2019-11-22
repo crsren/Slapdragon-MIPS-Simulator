@@ -1,0 +1,9 @@
+Simulating binary tests/BLTZ-equal.mips.bin
+Itype instruction
+BLTZ
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

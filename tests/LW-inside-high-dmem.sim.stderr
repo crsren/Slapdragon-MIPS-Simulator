@@ -1,0 +1,17 @@
+Simulating binary tests/LW-inside-high-dmem.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 603979772, offset: 285212672
+final position: 67108860
+SW
+Itype instruction
+LW
+input: 603979772, offset: 285212672
+final position: 67108860
+Rtype instruction
+JR
+Rtype instruction
+SLL

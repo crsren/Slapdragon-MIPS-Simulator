@@ -1,0 +1,21 @@
+Simulating binary tests/SB-inside-low-dmem.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+input: 536870912, offset: 285212672
+final position: 0
+SB
+Itype instruction
+LW
+input: 536870912, offset: 285212672
+final position: 0
+Rtype instruction
+SRL
+Rtype instruction
+JR
+Rtype instruction
+SLL

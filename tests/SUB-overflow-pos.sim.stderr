@@ -1,0 +1,11 @@
+Simulating binary tests/SUB-overflow-pos.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+Overflow

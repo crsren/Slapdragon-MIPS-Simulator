@@ -1,0 +1,7 @@
+Simulating binary tests/DIV-divby0.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+Division by 0 error

@@ -1,0 +1,16 @@
+Simulating binary tests/SB-putc.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+input: 805306375, offset: 285212672
+SB
+Rtype instruction
+JR
+Rtype instruction
+SLL

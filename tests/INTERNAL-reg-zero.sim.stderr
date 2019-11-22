@@ -1,0 +1,9 @@
+Simulating binary tests/INTERNAL-reg-zero.mips.bin
+Itype instruction
+ADDI
+Rtype instruction
+ADD
+Rtype instruction
+JR
+Rtype instruction
+SLL

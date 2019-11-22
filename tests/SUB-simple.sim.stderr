@@ -1,0 +1,11 @@
+Simulating binary tests/SUB-simple.mips.bin
+Itype instruction
+ADDI
+Itype instruction
+ADDI
+Rtype instruction
+SUB
+Rtype instruction
+JR
+Rtype instruction
+SLL

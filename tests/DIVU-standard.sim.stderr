@@ -1,0 +1,28 @@
+Simulating binary tests/DIVU-standard.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ADDI
+Itype instruction
+ORI
+Rtype instruction
+113675227, 13
+DIVU
+Rtype instruction
+MFHI
+Rtype instruction
+MFLO
+Itype instruction
+ANDI
+Rtype instruction
+SRL
+Itype instruction
+LUI
+Itype instruction
+input: 805306372, offset: 285212672
+54
+SW
+Rtype instruction
+JR
+Rtype instruction
+SLL

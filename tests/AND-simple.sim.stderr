@@ -1,0 +1,10 @@
+Simulating binary tests/AND-simple.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+Rtype instruction
+JR
+Rtype instruction
+SLL

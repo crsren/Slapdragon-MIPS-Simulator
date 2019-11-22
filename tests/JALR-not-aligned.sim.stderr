@@ -1,0 +1,11 @@
+Simulating binary tests/JALR-not-aligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+final position: 19
+JALR
+Rtype instruction
+SLL
+Non alligned address

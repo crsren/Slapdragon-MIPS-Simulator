@@ -1,0 +1,9 @@
+Simulating binary tests/SLTIU-false.mips.bin
+Itype instruction
+ADDI
+Itype instruction
+SLTIU
+Rtype instruction
+JR
+Rtype instruction
+SLL

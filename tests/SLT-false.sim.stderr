@@ -1,0 +1,8 @@
+Simulating binary tests/SLT-false.mips.bin
+Itype instruction
+ADDI
+Rtype instruction
+Rtype instruction
+JR
+Rtype instruction
+SLL

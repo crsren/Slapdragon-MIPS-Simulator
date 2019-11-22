@@ -1,0 +1,18 @@
+Simulating binary tests/JALR-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+SLL
+Rtype instruction
+final position: 28
+JALR
+Rtype instruction
+SLL
+Rtype instruction
+OR
+Rtype instruction
+JR
+Rtype instruction
+SLL

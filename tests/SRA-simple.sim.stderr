@@ -1,0 +1,9 @@
+Simulating binary tests/SRA-simple.mips.bin
+Itype instruction
+LUI
+Rtype instruction
+SRA
+Rtype instruction
+JR
+Rtype instruction
+SLL

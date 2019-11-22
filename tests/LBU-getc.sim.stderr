@@ -1,0 +1,10 @@
+Simulating binary tests/LBU-getc.mips.bin
+Itype instruction
+LUI
+Itype instruction
+input: 805306371, offset: 285212672
+LB
+Rtype instruction
+JR
+Rtype instruction
+SLL

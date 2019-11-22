@@ -1,0 +1,21 @@
+Simulating binary tests/BGEZAL-greater.mips.bin
+Itype instruction
+ORI
+Itype instruction
+BGEZAL
+final position: 24
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+final position: 12
+JR
+Rtype instruction
+SLL
+Itype instruction
+ADDI
+Rtype instruction
+JR
+Rtype instruction
+SLL

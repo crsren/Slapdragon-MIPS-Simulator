@@ -1,0 +1,35 @@
+Simulating binary tests/MULT-normal.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+ORI
+Rtype instruction
+2864029874787434497
+818921473, 666833919
+MULT
+Rtype instruction
+SLL
+Rtype instruction
+SLL
+Rtype instruction
+MFLO
+Rtype instruction
+MFHI
+Rtype instruction
+ADD
+Itype instruction
+LUI
+Itype instruction
+ADDI
+Itype instruction
+input: 805306372, offset: 285212672
+65
+SW
+Rtype instruction
+JR
+Rtype instruction
+SLL

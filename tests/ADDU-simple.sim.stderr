@@ -1,0 +1,9 @@
+Simulating binary tests/ADDU-simple.mips.bin
+Itype instruction
+ADDI
+Rtype instruction
+ADDU
+Rtype instruction
+JR
+Rtype instruction
+SLL

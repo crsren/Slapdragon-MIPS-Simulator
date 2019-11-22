@@ -1,0 +1,11 @@
+Simulating binary tests/SRLA-pos.mips.bin
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+SRAV
+Rtype instruction
+JR
+Rtype instruction
+SLL

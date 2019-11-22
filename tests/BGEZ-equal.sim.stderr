@@ -1,0 +1,12 @@
+Simulating binary tests/BGEZ-equal.mips.bin
+Itype instruction
+BGEZ
+final position: 20
+Itype instruction
+ORI
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

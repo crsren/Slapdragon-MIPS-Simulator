@@ -1,0 +1,9 @@
+Simulating binary tests/SH-non-alligned.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LUI
+Itype instruction
+Memory exception

@@ -1,0 +1,13 @@
+Simulating binary tests/BNE-false.mips.bin
+Itype instruction
+ORI
+Itype instruction
+BNE
+Rtype instruction
+SLL
+Itype instruction
+ORI
+Rtype instruction
+JR
+Rtype instruction
+SLL

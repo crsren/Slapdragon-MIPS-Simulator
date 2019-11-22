@@ -1,0 +1,13 @@
+Simulating binary tests/LW-inside-high-imem.mips.bin
+Itype instruction
+LUI
+Itype instruction
+ORI
+Itype instruction
+LW
+input: 285212668, offset: 285212672
+final position: 16777212
+Rtype instruction
+JR
+Rtype instruction
+SLL
