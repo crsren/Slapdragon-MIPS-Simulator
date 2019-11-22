@@ -3,8 +3,8 @@
 # Return code: 8
 
 lui $3, 0x8000
-bltzal $3, 4
-# 4 << 2 = 16
+bltzal $3, 3
+# 3 << 2 = 12
 ori $2, $2, 3
 addi $2, $2, 1
 jr $0

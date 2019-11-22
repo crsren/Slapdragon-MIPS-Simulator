@@ -1,9 +1,9 @@
 # Created by car3418
-# Adding pos immediate to pos a pos int with overflow
+# Adding pos immediate to a pos int with overflow
 # Return code: 246
 
 lui $8, 0x7FFF
-ori $8, $0, 0xFFFF
+ori $8, $8, 0xFFFF
 
 addi $2, $8, 1
 # 0x7fff + 1 = 0x8000
