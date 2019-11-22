@@ -16,6 +16,7 @@ function getStatus {
 	Error="Retcode ["$1"] to ["$2"] - Stdout ["$3"] to ["$4"]."
 }
 
+touch out.csv
 echo TestID,Instruction,Status,Author,Message > out.csv #clean csv file and write header row
 
 for BIN in $TEST_DIR/*.bin
