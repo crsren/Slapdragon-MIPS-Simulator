@@ -3,7 +3,7 @@
 # Return code: 28
 
 jr $0
-addi $2, $2, 5
+addi $2, $2, 28
 jalr $3, $0
 nop
 nop
